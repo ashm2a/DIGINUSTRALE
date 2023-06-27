@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "porcs#index"
+  root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :porcs, only: [:new, :create, :show, :edit, :update] do
+  resources :porcs, only: [:index, :new, :create, :show, :edit, :update] do
     resources :prisuttus, only: [:new, :create, :edit, :update]
     resources :lonzus, only: [:new, :create, :edit, :update]
     resources :coppas, only: [:new, :create, :edit, :update]

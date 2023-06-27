@@ -1,5 +1,26 @@
-<h1>Index des porcs vivants</h1>
+<div data-controller="grid">
+  <%= render "shared/navbar" %>
 
-<% @porcs.each do |porc| %>
-<p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
-<% end %>
+  <div class="elevage-container enable" data-grid-target="grid">
+    <% @porcs.each do |porc| %>
+      <div class="elevage">
+        <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="production-container" data-grid-target="grid">
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+  </div>
+</div>

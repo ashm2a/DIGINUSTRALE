@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "porcs#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :porcs, only: [:index, :new, :create, :show, :edit, :update] do
     resources :prisuttus, only: [:new, :create, :edit, :update]

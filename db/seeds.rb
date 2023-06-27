@@ -8,8 +8,9 @@
 puts "Cleaning database..."
 Porc.destroy_all
 User.destroy_all
+Abattage.destroy_all
 
-puts "creating user"
+puts "crzxeating user"
 user = User.create!(
   nom: "Santoni", prénom: "Paul-François", EDE: "02AANE" , email: "santoni.audrey@gmail.com", password: "123456", adresse: "53 route de curratoghja", code_postal: 20113, ville: "Olmeto"
 )

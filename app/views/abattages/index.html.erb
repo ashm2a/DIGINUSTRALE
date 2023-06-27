@@ -1,0 +1,9 @@
+<h1>Lot abattage</h1>
+
+<ul>
+  <% @abattages.each do |abattage| %>
+    <li><%= abattage.numéro_lot %></li>
+     <li><%= abattage.date %></li>
+      <li><%= abattage.lieu %></li>
+  <% end %>
+</ul>

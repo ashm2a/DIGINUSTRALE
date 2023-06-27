@@ -10,7 +10,7 @@ class PorcsController < ApplicationController
 
   def create
     @porc = Porc.new(porc_params)
-    # @porc.user =
+    @porc.user = current_user
     if @porc.save!
       redirect_to porcs_path
     else
@@ -19,6 +19,8 @@ class PorcsController < ApplicationController
   end
 
   def show
+    @porc = Porc.find(params[:id])
+    #@mère = Porc.find_by(boucle: @porc.boucle_mère)
   end
 
   def edit
@@ -30,6 +32,6 @@ class PorcsController < ApplicationController
   private
 
   def porc_params
-    params.require(:review).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe)
+    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe)
   end
 end

@@ -1,0 +1,35 @@
+<h1>Détails du porc <%=@porc.user.EDE%><%=@porc.boucle%></h1>
+
+<div class="infos-mère">
+  <h2>Informations de la truie</h2>
+  <div>
+    <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
+    <%# <p>Né.e le <%= @mère.date_de_naissance %>
+  </div>
+
+</div>
+
+<div class="infos-père">
+  <h2>Informations du verrat</h2>
+  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
+  <p>Né.e le <%= @porc.date_de_naissance %></p>
+</div>
+
+<div class="infos-porc">
+  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle%></p>
+  <p>Né.e le <%= @porc.date_de_naissance %></p>
+  <p>Sexe: <%= @porc.sexe %></p>
+  <p>Poids à 2 mois: </p>
+</div>
+
+<div class="vermifuges">
+  @porc.
+
+</div>
+
+<%# si décès %>
+
+<%# si abattu %>
+<div class="abattoir">
+
+</div>

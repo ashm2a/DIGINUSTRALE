@@ -31,3 +31,39 @@
     height: 210%;
   }
 }
+
+.submit-button {
+  position: relative;
+  display: inline-block;
+  padding: 18px;
+  border-radius: 25px;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: $blue;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(20deg);
+    width: 0;
+    height: 210%;
+    background-color: $blue;
+    transition: all 0.4s ease;
+    z-index: -1;
+  }
+
+  &:hover:after {
+    width: 101%;
+    height: 210%;
+  }
+}

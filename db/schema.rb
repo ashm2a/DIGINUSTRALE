@@ -10,9 +10,90 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_093241) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_095104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abattages", force: :cascade do |t|
+    t.integer "numéro_lot"
+    t.date "date"
+    t.string "lieu"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coppas", force: :cascade do |t|
+    t.bigint "porc_id", null: false
+    t.integer "numéro_lot"
+    t.float "poids"
+    t.float "epaisseur_lard"
+    t.float "ph"
+    t.date "date_mise_au_sel"
+    t.date "date_sortie_de_sel"
+    t.integer "durée_fumage"
+    t.float "poids_sortie_sèche"
+    t.date "date_entrée_affinage"
+    t.date "date_sortie_affinage_vente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["porc_id"], name: "index_coppas_on_porc_id"
+  end
+
+  create_table "lonzus", force: :cascade do |t|
+    t.bigint "porc_id", null: false
+    t.integer "numéro_lot"
+    t.float "poids"
+    t.float "epaisseur_lard"
+    t.float "ph"
+    t.date "date_mise_au_sel"
+    t.date "date_sortie_de_sel"
+    t.integer "durée_fumage"
+    t.float "poids_sortie_sèche"
+    t.date "date_entrée_affinage"
+    t.date "date_sortie_affinage_vente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["porc_id"], name: "index_lonzus_on_porc_id"
+  end
+
+  create_table "porcs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "boucle"
+    t.integer "boucle_mère"
+    t.integer "boucle_père"
+    t.date "date_de_naissance"
+    t.string "sexe"
+    t.float "poids"
+    t.float "décès"
+    t.date "date_décès"
+    t.boolean "abattu"
+    t.bigint "abattage_id", null: false
+    t.float "poids_carcasse"
+    t.float "epaisseur_lard"
+    t.float "ph"
+    t.boolean "eligible_AOP"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abattage_id"], name: "index_porcs_on_abattage_id"
+    t.index ["user_id"], name: "index_porcs_on_user_id"
+  end
+
+  create_table "prisuttus", force: :cascade do |t|
+    t.bigint "porc_id", null: false
+    t.integer "numéro_lot"
+    t.float "poids"
+    t.float "epaisseur_lard"
+    t.float "ph"
+    t.date "date_mise_au_sel"
+    t.date "date_sortie_de_sel"
+    t.integer "durée_fumage"
+    t.float "poids_sortie_sèche"
+    t.date "date_entrée_affinage"
+    t.date "date_sortie_affinage_vente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["porc_id"], name: "index_prisuttus_on_porc_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +113,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_093241) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coppas", "porcs"
+  add_foreign_key "lonzus", "porcs"
+  add_foreign_key "porcs", "abattages"
+  add_foreign_key "porcs", "users"
+  add_foreign_key "prisuttus", "porcs"
 end

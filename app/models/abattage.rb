@@ -1,0 +1,2 @@
+class Abattage < ApplicationRecord
+end

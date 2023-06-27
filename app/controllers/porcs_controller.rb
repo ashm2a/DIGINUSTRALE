@@ -9,8 +9,13 @@ class PorcsController < ApplicationController
   end
 
   def create
-    @porc.user = 
-    redirec_to #index porcs
+    @porc = Porc.new(porc_params)
+    # @porc.user =
+    if @porc.save!
+      redirect_to porcs_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -20,5 +25,11 @@ class PorcsController < ApplicationController
   end
 
   def update
+  end
+
+  private
+
+  def porc_params
+    params.require(:review).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe)
   end
 end

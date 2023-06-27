@@ -3,3 +3,5 @@
 <% @porcs.each do |porc| %>
 <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
 <% end %>
+
+<%= link_to "Ajoutez un nouveau porc", new_porc_path %>

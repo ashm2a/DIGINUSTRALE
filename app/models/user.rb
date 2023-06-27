@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :prisuttus, through: :porcs
   has_many :lonzus, through: :porcs
   has_many :coppas, through: :porcs
-  validates :nom, :prénom, :EDE, :email, :mot_de_passe, :adresse, :code_postal, presence: true
+  validates :nom, :prénom, :EDE, :email, :encrypted_password, :adresse, :code_postal, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

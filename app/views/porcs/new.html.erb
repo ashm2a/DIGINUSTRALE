@@ -1,18 +1,11 @@
 <h1>Ajouter un nouveau porc</h1>
 
 <%= simple_form_for @porc do |f| %>
-    <%= f.input :boucle, label: '' %>
-    <%= f.input :boucle_mère %>
-    <%= f.input :boucle_père %>
+    <%= f.input :boucle %>
+    <%= f.input :boucle_mère, collection: Porc.where(sexe: "femelle").pluck(:boucle) %>
+    <%= f.input :boucle_père, collection: Porc.where(sexe: "mâle").pluck(:boucle)  %>
     <%= f.input :date_de_naissance, as: :date %>
-    <%= f.input :sexe, collection; %>
+    <%= f.input :sexe, as: :radio_buttons, collection: [['femelle', 'femelle'], ['mâle', 'mâle']] %>
     <%= f.button :submit %>
   </div>
 <% end %>
-
-form
-inputs:
-n de boucle
-n bouclle mère, père (list)
-date naissace (date)
-sexe (box)

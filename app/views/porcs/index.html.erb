@@ -5,6 +5,7 @@
     <% @porcs.each do |porc| %>
       <div class="elevage">
         <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
+        <%= link_to "Voir détails du porc", porc_path(porc) %>
       </div>
     <% end %>
   </div>
@@ -24,3 +25,5 @@
     <div class="products"></div>
   </div>
 </div>
+
+<%= link_to "Ajoutez un nouveau porc", new_porc_path %>

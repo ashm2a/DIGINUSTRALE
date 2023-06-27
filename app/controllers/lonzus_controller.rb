@@ -1,0 +1,2 @@
+class LonzusController < ApplicationController
+end

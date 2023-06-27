@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_122347) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_124312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,7 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_122347) do
     t.date "date_de_naissance"
     t.string "sexe"
     t.float "poids"
-    t.float "décès", default: 0.0
     t.date "date_décès"
     t.boolean "abattu", default: false
     t.bigint "abattage_id"
@@ -74,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_122347) do
     t.boolean "eligible_AOP", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "décès", default: false
     t.index ["abattage_id"], name: "index_porcs_on_abattage_id"
     t.index ["user_id"], name: "index_porcs_on_user_id"
   end

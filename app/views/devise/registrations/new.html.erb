@@ -1,25 +1,85 @@
-<h2>Sign up</h2>
+<div class="user-container-global">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+  <div class="background">
+    <%= image_tag("background.jpg", alt: "developer picture") %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+  <div class="form-container">
+    <h2>Rejoins nous !</h2>
 
-<%= render "devise/shared/links" %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="formBloc">
+        <%= f.error_notification %>
+
+        <div class="formGroupe two">
+          <%= f.label :nom %>
+          <%= f.text_field :nom,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "first-name" }%>
+        </div>
+        <div class="formGroupe two">
+          <%= f.label :prénom %>
+          <%= f.text_field :prénom,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "last-name" }%>
+        </div>
+        <div class="formGroupe two">
+          <%= f.label :email %>
+          <%= f.text_field :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+        </div>
+        <div class="formGroupe two">
+          <%= f.label :EDE %>
+          <%= f.text_field :EDE,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="formGroupe full-width">
+          <%= f.label :adresse %>
+          <%= f.text_field :adresse,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="formGroupe two">
+          <%= f.label :code_postal %>
+          <%= f.text_field :code_postal,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="formGroupe two">
+          <%= f.label :ville %>
+          <%= f.text_field :ville,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="formGroupe">
+          <%= f.label :password %>
+          <%= f.text_field :password,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="formGroupe">
+          <%= f.label :password_confirmation %>
+          <%= f.text_field :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="d-flex justify-content-between form-actions">
+          <div>
+            <%= render "devise/shared/links" %>
+          </div>
+          <%= f.button :submit, "S'inscrire", class: "submit-button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

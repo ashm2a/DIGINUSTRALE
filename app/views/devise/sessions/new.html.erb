@@ -1,20 +1,40 @@
-<h2>Log in</h2>
+<div class="user-container-global">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="background">
+    <%= image_tag("background.jpg", alt: "developer picture") %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  <div class="form-container">
+    <h2>Se connecter</h2>
 
-<%= render "devise/shared/links" %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="formBloc mt-5">
+      <%= f.error_notification %>
+        <div class="formGroupe">
+          <%= f.label :email %>
+          <%= f.text_field :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" } %>
+        </div>
+
+        <div class="formGroupe">
+          <%= f.label :password %>
+          <%= f.text_field :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+        </div>
+
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+        <div class="d-flex justify-content-between pt-4 form-actions">
+          <div>
+            <%= render "devise/shared/links" %>
+          </div>
+          <%= f.button :submit, "Connexion", class: "submit-button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+.nav-container {
+  width: 100%;
+  color: white;
+
+  .option-bar {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .option-left {
+      display: flex;
+      gap: 20px;
+      font-size: 25px;
+      position: relative;
+
+      .active-indicator {
+        position: absolute;
+        bottom: 0;
+        height: 5px;
+        background-color: $blue;
+      }
+
+      p {
+        cursor: pointer;
+        color: $gray;
+        font-weight: 700;
+      }
+
+      .active {
+        color: white;
+      }
+    }
+
+    .option-right {
+      display: flex;
+      gap: 20px;
+
+      form {
+        position: relative;
+
+        input {
+          width: 300px;
+          background-color: white;
+          color: $gray;
+          border-radius: 25px;
+          font-size: 16px;
+          padding: 18px;
+          outline: none;
+          border: none;
+        }
+
+        button {
+          height: 100%;
+          font-size: 20px;
+          background-color: transparent;
+          border: none;
+          border-top-right-radius: 25px;
+          border-bottom-right-radius: 25px;
+          position: absolute;
+          top: 0;
+          right: 10px;
+        }
+      }
+    }
+  }
+}

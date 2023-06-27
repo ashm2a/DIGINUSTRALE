@@ -5,6 +5,7 @@ class AbattagesController < ApplicationController
   end
 
   def new
+    @abattage = Abattage.new
   end
 
   def create

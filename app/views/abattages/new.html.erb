@@ -1,0 +1,10 @@
+<h1>New abatagge</h1>
+<%= form_with model: @abattage do |f| %>
+  <%= f.label :numéro_lot %>
+  <%= f.number_field :numéro_lot %>
+  <%= f.label :lieu %>
+  <%= f.text_field :lieu %>
+  <%= f.label :datetime %>
+  <%= f.number_field :datetime %>
+  <%= f.submit %>
+<% end %>

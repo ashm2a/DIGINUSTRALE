@@ -3,10 +3,11 @@
 
   <div class="elevage-container enable" data-grid-target="grid">
     <% @porcs.each do |porc| %>
-      <div class="elevage">
+      <%= link_to porc_path(porc), class: "elevage", style: "text-decoration: none" do %>
         <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
-        <%= link_to "Voir détails du porc", porc_path(porc) %>
-      </div>
+        <p>Naissance: <%= porc.date_de_naissance.strftime('%d/%m/%Y') %></p>
+        <p>Sexe: <%= porc.sexe %> </p>
+      <% end %>
     <% end %>
   </div>
 

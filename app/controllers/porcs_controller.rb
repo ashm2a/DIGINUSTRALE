@@ -1,5 +1,5 @@
 class PorcsController < ApplicationController
-  before_action :set_porc, only: [:edit, :show]
+  before_action :set_porc, only: [:edit, :show, :update]
 
   def index
     @porcs = Porc.where(décès: false, abattu: false)
@@ -27,6 +27,11 @@ class PorcsController < ApplicationController
   end
 
   def update
+    if @porc.update(porc_params)
+      redirect_to porc_path(@porc)
+    else
+      render :edit
+    end
   end
 
   private

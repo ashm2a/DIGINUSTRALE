@@ -1,13 +1,25 @@
-<div class="container">
-  <h1>Lot abattage</h1>
-    <ul>
-      <% @abattages.each do |abattage| %>
-       <a href="<%= abattage_path(abattage) %>">
-        <li><%= abattage.numéro_lot %></li>
-        <li><%= abattage.date %></li>
-        <li><%= abattage.lieu %></li>
-      <% end %>
-    </ul>
-</div>
 
-<%= link_to "Exit", "/porcs", class: "btn btn-primary" %>
+  <div class="elevage-container enable" data-grid-target="grid">
+    <% @abattages.each do |abattage| %>
+      <div class="elevage">
+        <p> Lot: <%= abattage.numéro_lot %><%= abattage.lieu %></p>
+        <%= link_to "Voir détails", abattage_path(abattage) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="production-container" data-grid-target="grid">
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+    <div class="products"></div>
+  </div>
+

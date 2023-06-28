@@ -1,4 +1,5 @@
 class PorcsController < ApplicationController
+  before_action :set_porc, only: [:edit, :show]
 
   def index
     @porcs = Porc.where(décès: false, abattu: false)
@@ -20,11 +21,9 @@ class PorcsController < ApplicationController
 
 
   def show
-    @porc = Porc.find(params[:id])
   end
 
   def edit
-    @porc = Porc.find(params[:id])
   end
 
   def update
@@ -34,5 +33,9 @@ class PorcsController < ApplicationController
 
   def porc_params
     params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe)
+  end
+
+  def set_porc
+    @porc = Porc.find(params[:id])
   end
 end

@@ -3,6 +3,7 @@ class PorcsController < ApplicationController
 
   def index
     @porcs = Porc.where(décès: false, abattu: false)
+    @abattages = Abattage.all
   end
 
   def new

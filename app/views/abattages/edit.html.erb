@@ -1,11 +1,19 @@
 <div class="container">
-  <h1>Création sur lot </h1>
+
     <div>
-      <h2>Date et lieu d'abattage: 03/01/2023 </h2>
-    </div>
-    <div>
+    <%= simple_form_for @abattage do |f| %>
+      <% @abattage.porcs.each do |porc| %>
+          <%= f.input :boucle %>
+          <%= f.input :poids_carcasse %>
+          <%= f.input :ph %>
+          <%= f.button :submit %>
+        <% end %>
+      <% end %>
+
+
+
       <%= simple_form_for @abattage do |f| %>
-        <%= f.input :IPG %>
+        <%= f.input :IPG%>
         <%= f.input :poids_carcasse %>
         <%= f.input :ph %>
         <%= f.button :submit %>

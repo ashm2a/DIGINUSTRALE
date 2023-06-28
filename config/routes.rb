@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :coppas, only: [:new, :create, :edit, :update]
   end
 
-  resources :abattages, only: [:index, :new, :create, :show, :edit, :update]
+  resources :abattages, only: [:new, :create, :show, :edit, :update]
   # Defines the root path route ("/")
   # root "articles#index"
 end

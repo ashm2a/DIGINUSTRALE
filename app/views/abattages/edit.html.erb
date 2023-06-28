@@ -1,10 +1,17 @@
-<div class="test">
-  <% @abattage.porcs.each do |porc| %>
-    <%= porc.boucle %>
+<h1>edit abattage</h1>
+
+<div class="container">
+  <%= simple_form_for @abattage do |f| %>
+    <% @abattage.porcs.each do |porc| %>
+      <%= f.simple_fields_for porc do |fp| %>
+        <%= fp.input :boucle %>
+        <%= fp.input :poids_carcasse %>
+        <%= fp.input :epaisseur_lard %>
+        <%= fp.input :ph%>
+      <% end %>
+    <% end %>
+    <%= f.button :submit %>
   <% end %>
+
 </div>
-<% console %>
-
-
-
 <%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

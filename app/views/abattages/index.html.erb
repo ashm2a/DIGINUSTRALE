@@ -2,7 +2,9 @@
   <div class="elevage-container enable" data-grid-target="grid">
     <% @abattages.each do |abattage| %>
       <div class="elevage">
-        <p> Lot: <%= abattage.numéro_lot %><%= abattage.lieu %></p>
+        <p> Lot: <%= abattage.numéro_lot %></p>
+        <p> Lieu :<%= abattage.lieu %></p>
+        <p> Date :<%= abattage.date %></p>
         <%= link_to "Voir détails", abattage_path(abattage) %>
       </div>
     <% end %>
@@ -22,4 +24,3 @@
     <div class="products"></div>
     <div class="products"></div>
   </div>
-

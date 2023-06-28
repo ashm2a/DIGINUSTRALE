@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>New abattage</h1>
+
+  <%= simple_form_for @abattage do |f| %>
+  <%= f.input :numéro_lot %>
+  <%= f.input :lieu, collection: Abattage::ABATTOIRS %>
+  <%= f.input :date,  as: :date%>
+  <%= f.button :submit %>
+<% end %>
+
+</div>
+
+<%= link_to "Exit", "/abattages", class: "btn btn-primary" %>

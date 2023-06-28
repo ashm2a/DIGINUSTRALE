@@ -1,10 +1,11 @@
-<h1>New abatagge</h1>
-<%= form_with model: @abattage do |f| %>
-  <%= f.label :numéro_lot %>
-  <%= f.number_field :numéro_lot %>
-  <%= f.label :lieu %>
-  <%= f.text_field :lieu %>
-  <%= f.label :datetime %>
-  <%= f.number_field :datetime %>
-  <%= f.submit %>
+<div class="container">
+  <h1>New abattage</h1>
+
+  <%= simple_form_for @abattage do |f| %>
+  <%= f.input :numéro_lot %>
+  <%= f.input :lieu, collection: Abattage::ABATTOIRS %>
+  <%= f.input :date,  as: :date%>
+  <%= f.button :submit %>
 <% end %>
+
+</div>

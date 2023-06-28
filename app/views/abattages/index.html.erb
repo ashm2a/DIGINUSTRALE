@@ -1,9 +1,11 @@
-<h1>Lot abattage</h1>
-
-<ul>
-  <% @abattages.each do |abattage| %>
-    <li><%= abattage.numéro_lot %></li>
-     <li><%= abattage.date %></li>
-      <li><%= abattage.lieu %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>Lot abattage</h1>
+    <ul>
+      <% @abattages.each do |abattage| %>
+       <a href="<%= abattage_path(abattage) %>">
+        <li><%= abattage.numéro_lot %></li>
+        <li><%= abattage.date %></li>
+        <li><%= abattage.lieu %></li>
+      <% end %>
+    </ul>
+</div>

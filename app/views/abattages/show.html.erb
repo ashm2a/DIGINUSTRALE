@@ -17,23 +17,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with do |form| %>
+        <%= form_with url: "/coppas/create", method: :post do |form| %>
+          <div class="form-group">
+            <%= form.label :q_coppa, "Quantité de coppa: ", style: "color: black" %>
+            <%= form.number_field :q_coppa, in: 1..10%>
+            <%= form.submit "OK"%>
+          </div>
+        <% end %>
+
+        <%= form_with url: "/prisuttus/create", method: :post do |form| %>
         <div class="form-group">
-          <%= form.label :q_coppa, "Quantité de coppa: ", style: "color: black" %>
-          <%= form.number_field :q_coppa, in: 1..10%>
-          <%= form.submit "OK"%>
-        </div>
-        <div class="form-group">
-          <%= form.label :q_coppa, "Quantité de prisuttu: ", style: "color: black" %>
+          <%= form.label :q_prisuttu, "Quantité de prisuttu: ", style: "color: black" %>
           <%= form.number_field :q_prisuttu, in: 1..10%>
           <%= form.submit "OK"%>
         </div>
+        <% end %>
+
+        <%= form_with url: "/lonzus/create", method: :post do |form| %>
         <div class="form-group">
-          <%= form.label :q_coppa, "Quantité de lonzu: ", style: "color: black" %>
+          <%= form.label :q_lonzu, "Quantité de lonzu: ", style: "color: black" %>
           <%= form.number_field :q_lonzu, in: 1..10%>
           <%= form.submit "OK"%>
         </div>
-
         <% end %>
       </div>
       <div class="modal-footer">

@@ -1,35 +1,71 @@
 <h1>Détails du porc <%=@porc.user.EDE%><%=@porc.boucle%></h1>
 
-<div class="infos-mère">
-  <h2>Informations de la truie</h2>
-  <div>
-    <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
-    <%# <p>Né.e le <%= @mère.date_de_naissance %>
-  </div>
-
-</div>
-
-<div class="infos-père">
-  <h2>Informations du verrat</h2>
-  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
-  <p>Né.e le <%= @porc.date_de_naissance %></p>
-</div>
-
 <div class="infos-porc">
+  <h2>Informations du porc</h2>
   <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle%></p>
   <p>Né.e le <%= @porc.date_de_naissance %></p>
   <p>Sexe: <%= @porc.sexe %></p>
   <p>Poids à 2 mois: </p>
 </div>
 
+<div class="infos-mère">
+  <h2>Mère</h2>
+  <div>
+    <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
+    <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_mère)&.date_de_naissance %></p>
+  </div>
+
+</div>
+
+<div class="infos-père">
+  <h2>Verrat père</h2>
+  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
+  <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_père)&.date_de_naissance %></p>
+</div>
+
+
 <div class="vermifuges">
-  @porc.
+<h2>Carnet de santé</h2>
+<%# ajouter les conditions %>
+  <ul style="list-style-type: none">
+    <li>
+    <% if @porc.vermifuge_2_mois %>
+      <i class="fa-sharp fa-regular fa-square-check"></i>
+    <% else %>
+      <i class="fa-sharp fa-regular fa-square"></i>
+    <% end %>
+    Vermifuge à 2 mois
+    </li>
 
+    <li>
+    <% if @porc.vermifuge_6_mois %>
+      <i class="fa-sharp fa-regular fa-square-check"></i>
+    <% else %>
+      <i class="fa-sharp fa-regular fa-square"></i>
+    <% end %>
+    Vermifuge à 6 mois
+    </li>
+
+    <li>
+    <% if @porc.vermifuge_12_mois %>
+      <i class="fa-sharp fa-regular fa-square-check"></i>
+    <% else %>
+      <i class="fa-sharp fa-regular fa-square"></i>
+    <% end %>
+    Vermifuge à 12 mois
+    </li>
+
+  </ul>
 </div>
 
-<%# si décès %>
+<% if @porc.décès %>
+    <div class="décès">
+      Décès sur exploitation le <%= @porc.date_décès %>
+    </div>
+  <% elsif @porc.abattu %>
+    <div class="décès">
+      Envoyé à l'abattoir le <%= @porc.abattage.date %>
+    </div>
+<% end %>
 
-<%# si abattu %>
-<div class="abattoir">
-
-</div>
+<%= link_to "Modifier les infos de ce porc", edit_porc_path(@porc) %>

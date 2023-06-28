@@ -22,7 +22,7 @@ porc_abattage = Abattage.create!(numéro_lot: 1, date: Date.new(2022, 11, 30), l
 puts "Creating porcs..."
 porc_one = { user: user, boucle: 00005, boucle_mère: 00001, boucle_père: 00002, date_de_naissance: Date.new(2019, 11, 10), sexe: "femelle", abattage: porc_abattage }
 porc_two = { user: user, boucle: 00007, boucle_mère: 00003, boucle_père: 00004, date_de_naissance: Date.new(2019, 12, 10), sexe: "mâle" }
-porc_three = { user: user, boucle: 00006, boucle_mère: 00001, boucle_père: 00002, date_de_naissance: Date.new(2019, 12, 10), sexe: "femelle" }
+porc_three = { user: user, boucle: 00006, boucle_mère: 00005, boucle_père: 00007, date_de_naissance: Date.new(2019, 12, 10), sexe: "femelle" }
 
 [porc_one, porc_two, porc_three].each do |attributes|
   Porc.create!(attributes)

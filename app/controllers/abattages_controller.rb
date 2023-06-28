@@ -1,8 +1,5 @@
 class AbattagesController < ApplicationController
   before_action :set_abattage, only: [:show, :edit, :update]
-  def index
-    @abattages = Abattage.all
-  end
 
   def new
     @abattage = Abattage.new

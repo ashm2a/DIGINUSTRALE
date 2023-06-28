@@ -14,19 +14,16 @@
       <% end %>
     </div>
 
-    <div class="production-container" data-grid-target="grid">
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
-      <div class="products"></div>
+    <div class="elevage-container" data-grid-target="grid">
+      <% @abattages.each do |abattage| %>
+        <div class="elevage">
+          <p> Lot : <%= abattage.numéro_lot %></p>
+          <p> Lieu : <%= abattage.lieu %></p>
+          <p> Date abatoir : <%=  abattage.date %></p>
+          <%= link_to "Voir détails", abattage_path(abattage)%>
+          <%= link_to "Modifier", edit_abattage_path(abattage) %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

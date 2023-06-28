@@ -1,15 +1,10 @@
-<div class="container">
-  <h1>Création sur lot </h1>
-    <div>
-      <h2>Date et lieu d'abattage: 03/01/2023 </h2>
-    </div>
-    <div>
-      <%= simple_form_for @abattage do |f| %>
-        <%= f.input :IPG %>
-        <%= f.input :poids_carcasse %>
-        <%= f.input :ph %>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
+<div class="test">
+  <% @abattage.porcs.each do |porc| %>
+    <%= porc.boucle %>
+  <% end %>
 </div>
-<%= link_to "Exit", "/abattages", class: "btn btn-primary" %>
+<% console %>
+
+
+
+<%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

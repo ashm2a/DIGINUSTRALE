@@ -10,8 +10,11 @@ class AbattagesController < ApplicationController
 
   def create
     @abattage = Abattage.new(abattage_params)
-    @abattage.save!
-    redirect_to abattage_path(@abattage)
+    if @abattage.save!
+      redirect_to abattage_path(@abattage)
+    else
+      render :new
+    end
   end
 
   def show

@@ -9,7 +9,7 @@
 </div>
 
 <div class="infos-mère">
-  <h2>Informations de la truie mère</h2>
+  <h2>Mère</h2>
   <div>
     <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
     <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_mère)&.date_de_naissance %></p>
@@ -18,15 +18,20 @@
 </div>
 
 <div class="infos-père">
-  <h2>Informations du verrat père</h2>
+  <h2>Verrat père</h2>
   <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
   <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_père)&.date_de_naissance %></p>
 </div>
 
 
 <div class="vermifuges">
-
-
+<h2>Carnet de santé</h2>
+<%# ajouter les conditions %>
+  <ul style="list-style-type: none">
+    <li><i class="fa-sharp fa-regular fa-square-check"></i>   Vermifuge à 2 mois</li>
+    <li><i class="fa-sharp fa-regular fa-square"></i>   Vermifuge à 6 mois</li>
+    <li><i class="fa-sharp fa-regular fa-square"></i>   Vermifuge à 12 mois</li>
+  </ul>
 </div>
 
 <% if @porc.décès %>

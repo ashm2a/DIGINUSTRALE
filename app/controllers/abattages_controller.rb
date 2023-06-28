@@ -1,6 +1,6 @@
 class AbattagesController < ApplicationController
   before_action :set_abattage, only: [:show, :edit, :update]
- 
+
   def new
     @abattage = Abattage.new
   end

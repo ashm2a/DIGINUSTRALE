@@ -1,6 +1,8 @@
 .user-container-global {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 100vh;
 }
 
 .background {
@@ -15,75 +17,98 @@
   }
 }
 
-.form-container {
+.right-container {
+  display: flex;
   width: 50%;
-  border-radius: 10px;
+  flex-direction: column;
 
-  h3, h2 {
-    padding-bottom: 50px;
-  }
+  .title {
+    width: 100%;
+    margin-bottom: 80px;
+    h1 {
+      font-size: 4rem;
+      color: $blue;
+      font-weight: 900;
 
-  .formBloc {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+      a {
+        text-decoration: none;
 
-    .formGroupe {
-      flex: 0 0 100%;
-      margin-bottom: 50px;
-
-      &.two {
-        flex-basis: 49%;
-      }
-
-      .full-width {
-        flex: 0 0 100%;
-      }
-
-      label {
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        transition: 0.4s ease-out;
-      }
-
-      input, textarea {
-        display: block;
-        width: 100%;
-        padding: 10px 0;
-        border: none;
-        outline: none;
-        background: none;
-        border-bottom: 2px solid #DEE2E6;
-        color: white;
-        font-size: 19px;
-        transition: 0.4s ease-out;
-      }
-
-      textarea {
-        min-height: 200px;
-      }
-
-      &:focus-within {
-        label {
+        &:hover {
           color: $blue;
         }
-
-        input, textarea {
-          border-bottom-color: $blue;
-        }
       }
     }
+  }
 
-    .d-flex {
-      flex: 0 0 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .form-container {
+    width: 100%;
+    padding: 0 15px;
+    border-radius: 10px;
+
+    h3, h2 {
+      padding-bottom: 50px;
     }
 
-    .links {
-      color: $blue;
+    .formBloc {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .formGroupe {
+        flex: 0 0 100%;
+        margin-bottom: 3px;
+
+        &.two {
+          flex-basis: 49%;
+        }
+
+        .full-width {
+          flex: 0 0 100%;
+        }
+
+        label {
+          color: white;
+          font-weight: bold;
+          font-size: 20px;
+          transition: 0.4s ease-out;
+        }
+
+        input {
+          display: block;
+          width: 100%;
+          padding: 10px 0;
+          border: none;
+          outline: none;
+          background-color: rgb(239, 239, 239);
+          border-radius: 25px;
+          padding-left: 10px;
+          margin-top: 10px;
+          color: black;
+          font-size: 19px;
+          transition: 0.4s ease-out;
+        }
+
+        &:focus-within {
+          label {
+            color: $blue;
+          }
+
+          input {
+            border-bottom-color: $blue;
+          }
+        }
+      }
+
+      .d-flex {
+        flex: 0 0 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .links {
+        color: $blue;
+      }
     }
   }
 }

@@ -1,26 +1,29 @@
-<div data-controller="grid">
-  <%= render "shared/navbar" %>
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  
+  <div data-controller="grid">
+    <%= render "shared/navbar" %>
 
-  <div class="elevage-container enable" data-grid-target="grid">
-    <% @porcs.each do |porc| %>
-      <div class="elevage">
-        <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
-        <%= link_to "Voir détails du porc", porc_path(porc) %>
-      </div>
-    <% end %>
-  </div>
+    <div class="elevage-container enable" data-grid-target="grid">
+      <% @porcs.each do |porc| %>
+        <%= link_to porc_path(porc) do %>
+          <div class="elevage">
+            <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
-  <div class="elevage-container enable" data-grid-target="grid">
-    <% @abattages.each do |abattage| %>
-      <div class="elevage">
-        <p> Lot : <%= abattage.numéro_lot %></p>
-        <p> Lieu : <%= abattage.lieu %></p>
-        <p> Date abatoir : <%=  abattage.date %></p>
-        <%= link_to "Voir détails", abattage_path(abattage)%>
-        <%= link_to "Modifier", edit_abattage_path(abattage) %>
-      </div>
-    <% end %>
+    <div class="elevage-container" data-grid-target="grid">
+      <% @abattages.each do |abattage| %>
+        <div class="elevage">
+          <p> Lot : <%= abattage.numéro_lot %></p>
+          <p> Lieu : <%= abattage.lieu %></p>
+          <p> Date abatoir : <%=  abattage.date %></p>
+          <%= link_to "Voir détails", abattage_path(abattage)%>
+          <%= link_to "Modifier", edit_abattage_path(abattage) %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<%= link_to "Ajoutez un nouveau porc", new_porc_path %>

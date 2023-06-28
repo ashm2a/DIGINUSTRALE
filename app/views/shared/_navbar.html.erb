@@ -12,8 +12,12 @@
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
 
-      <a href="#" class="button-custom"><i class="fa-solid fa-plus"></i>&nbsp; Ajouter un porc</a>
-      <a href="/abattages/new" class="button-custom"><i class="fa-sharp fa-solid fa-share"></i>&nbsp; Passer a l'abatoire</a>
+      <%= link_to new_porc_path, class: "button-custom" do %>
+        <i class="fa-solid fa-plus"></i>&nbsp; Ajouter un porc
+      <% end %>
+      <%= link_to new_abattage_path, class: "button-custom" do %>
+        <i class="fa-sharp fa-solid fa-share"></i>&nbsp; Passer a l'abatoire
+      <% end %>
     </div>
   </div>
 </div>

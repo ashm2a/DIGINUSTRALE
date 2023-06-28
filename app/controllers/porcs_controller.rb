@@ -18,9 +18,9 @@ class PorcsController < ApplicationController
     end
   end
 
+  
   def show
     @porc = Porc.find(params[:id])
-    #@mère = Porc.find_by(boucle: @porc.boucle_mère)
   end
 
   def edit

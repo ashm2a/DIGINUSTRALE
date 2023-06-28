@@ -18,12 +18,13 @@ class PorcsController < ApplicationController
     end
   end
 
-  
+
   def show
     @porc = Porc.find(params[:id])
   end
 
   def edit
+    @porc = Porc.find(params[:id])
   end
 
   def update

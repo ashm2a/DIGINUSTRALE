@@ -1,12 +1,18 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :porcs
   has_many :prisuttus, through: :porcs
   has_many :lonzus, through: :porcs
   has_many :coppas, through: :porcs
-  validates :nom, :prénom, :EDE, :email, :encrypted_password, :adresse, :code_postal, presence: true
+
+  validates_presence_of :nom, :prénom, :EDE, :adresse, :ville, :code_postal
+  validates :password, presence: true, confirmation: true, if: :password_required?
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  private
+
+  def password_required?
+    new_record? || password.present? || password_confirmation.present?
+  end
 end

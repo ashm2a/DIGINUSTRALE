@@ -1,85 +1,86 @@
 <div class="user-container-global">
-
   <div class="background">
     <%= image_tag("background.jpg", alt: "developer picture") %>
   </div>
 
-  <div class="form-container">
-    <h2>Rejoins nous !</h2>
-
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="formBloc">
-        <%= f.error_notification %>
-
-        <div class="formGroupe two">
-          <%= f.label :nom %>
-          <%= f.text_field :nom,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "first-name" }%>
-        </div>
-        <div class="formGroupe two">
-          <%= f.label :prénom %>
-          <%= f.text_field :prénom,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "last-name" }%>
-        </div>
-        <div class="formGroupe two">
-          <%= f.label :email %>
-          <%= f.text_field :email,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" }%>
-        </div>
-        <div class="formGroupe two">
-          <%= f.label :EDE %>
-          <%= f.text_field :EDE,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="formGroupe full-width">
-          <%= f.label :adresse %>
-          <%= f.text_field :adresse,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="formGroupe two">
-          <%= f.label :code_postal %>
-          <%= f.text_field :code_postal,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="formGroupe two">
-          <%= f.label :ville %>
-          <%= f.text_field :ville,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="formGroupe">
-          <%= f.label :password %>
-          <%= f.text_field :password,
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="formGroupe">
-          <%= f.label :password_confirmation %>
-          <%= f.text_field :password_confirmation,
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="d-flex justify-content-between form-actions">
-          <div>
-            <%= render "devise/shared/links" %>
+  <div class="right-container">
+    <div class="title">
+      <h1><a href="#">Diginustrale</a></h1>
+    </div>
+    <div class="form-container">
+      <h2>Rejoins nous !</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="formBloc">
+          <div class="formGroupe two">
+            <%= f.input :nom,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre nom',
+                        validate: true,
+                        input_html: { value: f.object.nom } %>
           </div>
-          <%= f.button :submit, "S'inscrire", class: "submit-button" %>
+          <div class="formGroupe two">
+            <%= f.input :prénom,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre prénom',
+                        input_html: { value: f.object.prénom } %>
+          </div>
+          <div class="formGroupe two">
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre email',
+                        input_html: { value: f.object.email } %>
+          </div>
+          <div class="formGroupe two">
+            <%= f.input :EDE,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre numéro EDE',
+                        input_html: { value: f.object.EDE } %>
+          </div>
+          <div class="formGroupe full-width">
+            <%= f.input :adresse,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre adresse d\'exploitation',
+                        input_html: { value: f.object.adresse } %>
+          </div>
+          <div class="formGroupe two">
+            <%= f.input :code_postal,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre code postal',
+                        input_html: { value: f.object.code_postal } %>
+          </div>
+          <div class="formGroupe two">
+            <%= f.input :ville,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre ville',
+                        input_html: { value: f.object.ville } %>
+          </div>
+          <div class="formGroupe">
+            <%= f.input :password,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Entrez votre mot de passe' %>
+          </div>
+          <div class="formGroupe">
+            <%= f.input :password_confirmation,
+                        required: true,
+                        autofocus: true,
+                        placeholder: 'Veuillez confirmer le mot de passe' %>
+          </div>
+          <div class="d-flex justify-content-between form-actions">
+            <div>
+              <%= render "devise/shared/links" %>
+            </div>
+            <%= f.button :submit, "S'inscrire", class: "submit-button" %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-
 </div>

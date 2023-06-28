@@ -4,37 +4,40 @@
     <%= image_tag("background.jpg", alt: "developer picture") %>
   </div>
 
-  <div class="form-container">
-    <h2>Se connecter</h2>
+  <div class="right-container">
+    <div class="title">
+      <h1><a href="#">Diginustrale</a></h1>
+    </div>
+    <div class="form-container">
+      <h2>Se connecter</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="formBloc mt-5">
-      <%= f.error_notification %>
-        <div class="formGroupe">
-          <%= f.label :email %>
-          <%= f.text_field :email,
-                      required: false,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" } %>
-        </div>
-
-        <div class="formGroupe">
-          <%= f.label :password %>
-          <%= f.text_field :password,
-                      required: false,
-                      input_html: { autocomplete: "current-password" } %>
-        </div>
-
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-
-        <div class="d-flex justify-content-between pt-4 form-actions">
-          <div>
-            <%= render "devise/shared/links" %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="formBloc mt-5">
+          <div class="formGroupe">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        placeholder: 'Veuillez saisir votre email' %>
           </div>
-          <%= f.button :submit, "Connexion", class: "submit-button" %>
+
+          <div class="formGroupe">
+            <%= f.input :password,
+                        required: false,
+                        autofocus: true,
+                        placeholder: 'Veuillez saisir votre mot de passe' %>
+          </div>
+
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+          <div class="d-flex justify-content-between pt-4 form-actions">
+            <div>
+              <%= render "devise/shared/links" %>
+            </div>
+            <%= f.button :submit, "Connexion", class: "submit-button" %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
 </div>

@@ -75,4 +75,19 @@
       color: $blue;
     }
   }
+
+  .form-check-input.is-valid ~ .form-check-label {
+    color: black;
+    font-size: 18px;
+  }
+
+  .form-check-input.is-valid {
+    border-color: $blue;
+  }
+
+  .form-check-input:checked {
+    background-color: $blue; /* Modifier la couleur de fond lorsqu'il est checké */
+    border-color: $blue; /* Modifier la couleur de la bordure lorsqu'il est checké */
+    color: rgb(0, 0, 0); /* Modifier la couleur du texte lorsqu'il est checké */
+  }
 }

@@ -29,7 +29,7 @@
     <% else %>
       <div class="production-container" data-grid-target="grid">
         <% @abattages.each do |abattage| %>
-          <%= link_to abattage_path(abattage) do %>
+          <%= link_to edit_abattage_path(abattage) do %>
             <div class="productions">
               <p><span style="color: gray">Lot</span>&nbsp;&nbsp; <%= abattage.numéro_lot %></p>
               <p><span style="color: gray">Lieu</span>&nbsp;&nbsp; <%= abattage.lieu %></p>

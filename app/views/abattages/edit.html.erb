@@ -1,17 +1,101 @@
-<h1>edit abattage</h1>
 
-<div class="container">
-  <%= simple_form_for @abattage do |f| %>
-    <% @abattage.porcs.each do |porc| %>
-      <%= f.simple_fields_for porc do |fp| %>
-        <%= fp.input :boucle %>
-        <%= fp.input :poids_carcasse %>
-        <%= fp.input :epaisseur_lard %>
-        <%= fp.input :ph%>
-        <%= f.button :submit %>
-      <% end %>
-    <% end %>
+
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  <div class="container">
+  <% @abattage.porcs.each_with_index do |porc, index| %>
+    <div class="container d-flex justify-content-between">
+          <% if index == 0 %>
+            <%= simple_form_for porc do |fp| %>
+              <div class="w-100 d-flex">
+                <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
+                <%= fp.input :poids_carcasse, input_html: { class: 'form-control' } %>
+                <%= fp.input :epaisseur_lard, input_html: { class: 'form-control' } %>
+                <%= fp.input :ph, input_html: { class: 'form-control' }%>
+                <%= fp.button :submit, input_html: { class: 'form-control' } %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= simple_form_for porc do |fp| %>
+              <div class="w-100 d-flex">
+                <%= fp.input :boucle, label:false, input_html: { class: 'form-control' }  %>
+                <%= fp.input :poids_carcasse, label:false, input_html: { class: 'form-control' } %>
+                <%= fp.input :epaisseur_lard, label:false, input_html: { class: 'form-control' } %>
+                <%= fp.input :ph, label:false, input_html: { class: 'form-control' }%>
+                <%= fp.button :submit, input_html: { class: 'form-control' } %>
+              </div>
+            <% end %>
+          <% end %>
+    </div>
   <% end %>
-
+  </div>
 </div>
+
+<%# si tous les porcs updated, bouton envoyer en production %>
+<% counter = 0 %>
+<% @abattage.porcs.each do |porc|%>
+  <% if porc.boucle && porc.poids_carcasse && porc.epaisseur_lard && porc.ph %>
+    <% counter += 1 %>
+  <% end %>
+<% end %>
+<% if counter == @abattage.porcs.count %>
+  <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Envoyer en prod</button>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: "/coppas/create", method: :post do |form| %>
+          <div class="form-group">
+            <%= form.label :q_coppa, "Quantité de coppa: ", style: "color: black" %>
+            <%= form.number_field :q_coppa, in: 1..10%>
+            <%= form.submit "OK"%>
+          </div>
+        <% end %>
+
+        <%= form_with url: "/prisuttus/create", method: :post do |form| %>
+        <div class="form-group">
+          <%= form.label :q_prisuttu, "Quantité de prisuttu: ", style: "color: black" %>
+          <%= form.number_field :q_prisuttu, in: 1..10%>
+          <%= form.submit "OK"%>
+        </div>
+        <% end %>
+
+        <%= form_with url: "/lonzus/create", method: :post do |form| %>
+        <div class="form-group">
+          <%= form.label :q_lonzu, "Quantité de lonzu: ", style: "color: black" %>
+          <%= form.number_field :q_lonzu, in: 1..10%>
+          <%= form.submit "OK"%>
+        </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%# si valeurs OK, eligible aop %>
+
+
+
 <%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

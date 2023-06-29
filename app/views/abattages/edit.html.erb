@@ -5,7 +5,6 @@
   <div class="container">
   <% @abattage.porcs.each_with_index do |porc, index| %>
     <div class="container d-flex justify-content-between">
-
           <% if index == 0 %>
             <%= simple_form_for porc do |fp| %>
               <div class="w-100 d-flex">
@@ -31,4 +30,8 @@
   <% end %>
   </div>
 </div>
+
+
+
+
 <%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

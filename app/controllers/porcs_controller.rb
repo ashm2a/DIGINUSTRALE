@@ -43,7 +43,11 @@ class PorcsController < ApplicationController
   def update
     @porc = Porc.find(params[:id])
     if @porc.update(porc_params)
-      redirect_to porc_path(@porc)
+      if porc_params[:ph]
+        render :edit
+      else
+        redirect_to porc_path(@porc)
+      end
     else
       render :edit
     end

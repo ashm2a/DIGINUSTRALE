@@ -2,33 +2,33 @@
 
 <div class="container">
 
-  <div class="container d-flex justify-content-between">
-    <%= simple_form_for @abattage do |f| %>
-      <% @abattage.porcs.each_with_index do |porc, index| %>
-        <% if index == 0 %>
-          <%= f.simple_fields_for porc do |fp| %>
-            <div class="w-100 d-flex">
-              <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
-              <%= fp.input :poids_carcasse, input_html: { class: 'form-control' } %>
-              <%= fp.input :epaisseur_lard, input_html: { class: 'form-control' } %>
-              <%= fp.input :ph, input_html: { class: 'form-control' }%>
-              <%= f.button :submit, input_html: { class: 'form-control' } %>
-            </div>
+
+  <% @abattage.porcs.each_with_index do |porc, index| %>
+    <div class="container d-flex justify-content-between">
+
+          <% if index == 0 %>
+            <%= simple_form_for porc do |fp| %>
+              <div class="w-100 d-flex">
+                <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
+                <%= fp.input :poids_carcasse, input_html: { class: 'form-control' } %>
+                <%= fp.input :epaisseur_lard, input_html: { class: 'form-control' } %>
+                <%= fp.input :ph, input_html: { class: 'form-control' }%>
+                <%= fp.button :submit, input_html: { class: 'form-control' } %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= simple_form_for porc do |fp| %>
+              <div class="w-100 d-flex">
+                <%= fp.input :boucle, label:false, input_html: { class: 'form-control' }  %>
+                <%= fp.input :poids_carcasse, label:false, input_html: { class: 'form-control' } %>
+                <%= fp.input :epaisseur_lard, label:false, input_html: { class: 'form-control' } %>
+                <%= fp.input :ph, label:false, input_html: { class: 'form-control' }%>
+                <%= fp.button :submit, input_html: { class: 'form-control' } %>
+              </div>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= f.simple_fields_for porc do |fp| %>
-            <div class="w-100 d-flex">
-              <%= fp.input :boucle, label:false, input_html: { class: 'form-control' }  %>
-              <%= fp.input :poids_carcasse, label:false, input_html: { class: 'form-control' } %>
-              <%= fp.input :epaisseur_lard, label:false, input_html: { class: 'form-control' } %>
-              <%= fp.input :ph, label:false, input_html: { class: 'form-control' }%>
-              <%= f.button :submit, input_html: { class: 'form-control' } %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
 </div>
 <%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

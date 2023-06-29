@@ -17,12 +17,15 @@ class AbattagesController < ApplicationController
   def show
   end
 
-  def update
-    @abattage.update(abattage_params)
-    redirect_to abattage_path(@abattage)
-  end
+  def edit; end
 
-  def edit
+  def update
+    # @abattage.porcs.update(porc_params)
+    # if @abattage.porcs.update
+    #   redirect_to porcs_path
+    # else
+    #   render :edit
+    # end
   end
 
   private

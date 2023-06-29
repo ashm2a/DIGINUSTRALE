@@ -1,0 +1,17 @@
+.gestion-container {
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    width: 45%;
+  }
+
+  .separator {
+    width: 5px;
+    background-color: rgb(198, 198, 198);
+  }
+
+  .right {
+    width: 45%;
+  }
+}

@@ -38,19 +38,24 @@ class PorcsController < ApplicationController
   def show;
   end
 
+  def gestion
+    @porc = Porc.find(params[:porc_id])
+    @selected_value_mere = @porc.boucle_mère
+    @selected_value_pere = @porc.boucle_père
+  end
+
   def edit
     @selected_value_mere = @porc.boucle_mère
     @selected_value_pere = @porc.boucle_père
   end
 
   def update
-    @porc = Porc.find(params[:id])
+    if porc_params[:décès] == false
+      porc_params.delete(:date_décès)
+    end
+
     if @porc.update(porc_params)
-      if porc_params[:ph]
-        render :edit
-      else
-        redirect_to porc_path(@porc)
-      end
+      redirect_to porc_path(@porc)
     else
       render :edit
     end
@@ -59,11 +64,7 @@ class PorcsController < ApplicationController
   private
 
   def porc_params
-    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids_carcasse, :epaisseur_lard, :ph)
-  end
-
-  def porc_porc_params
-    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids_carcasse, :epaisseur_lard, :ph,)
+    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids, :vermifuge_2_mois, :vermifuge_6_mois, :vermifuge_12_mois, :décès, :date_décès, :poids_carcasse, :epaisseur_lard, :ph)
   end
 
   def set_porc

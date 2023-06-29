@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_154514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_coppas_on_porc_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_lonzus_on_porc_id"
   end
 
@@ -77,7 +79,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.boolean "vermifuge_2_mois", default: false
     t.boolean "vermifuge_6_mois", default: false
     t.boolean "vermifuge_12_mois", default: false
+    t.bigint "coppa_id"
+    t.bigint "prisuttu_id"
+    t.bigint "lonzu_id"
     t.index ["abattage_id"], name: "index_porcs_on_abattage_id"
+    t.index ["coppa_id"], name: "index_porcs_on_coppa_id"
+    t.index ["lonzu_id"], name: "index_porcs_on_lonzu_id"
+    t.index ["prisuttu_id"], name: "index_porcs_on_prisuttu_id"
     t.index ["user_id"], name: "index_porcs_on_user_id"
   end
 
@@ -95,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_prisuttus_on_porc_id"
   end
 
@@ -119,6 +128,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
   add_foreign_key "coppas", "porcs"
   add_foreign_key "lonzus", "porcs"
   add_foreign_key "porcs", "abattages"
+  add_foreign_key "porcs", "coppas"
+  add_foreign_key "porcs", "lonzus"
+  add_foreign_key "porcs", "prisuttus"
   add_foreign_key "porcs", "users"
   add_foreign_key "prisuttus", "porcs"
 end

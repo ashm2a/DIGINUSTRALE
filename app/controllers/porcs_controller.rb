@@ -2,8 +2,20 @@ class PorcsController < ApplicationController
   before_action :set_porc, only: [:edit, :show, :update]
 
   def index
-    @porcs = Porc.where(décès: false, abattu: false)
-    @abattages = Abattage.all
+    @ipg = params[:ipg]
+    @lot = params[:lot]
+
+    if @ipg.present?
+      @porcs = Porc.where(boucle: @ipg.to_i)
+    else
+      @porcs = Porc.where(décès: false, abattu: false)
+    end
+
+    if @lot.present?
+      @abattages = Abattage.where(numéro_lot: @lot.to_i)
+    else
+      @abattages = Abattage.all
+    end
   end
 
   def new

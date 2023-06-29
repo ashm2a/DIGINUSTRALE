@@ -32,11 +32,12 @@ class PorcsController < ApplicationController
     end
   end
 
-
-  def show
+  def show;
   end
 
   def edit
+    @selected_value_mere = @porc.boucle_mère
+    @selected_value_pere = @porc.boucle_père
   end
 
   def update

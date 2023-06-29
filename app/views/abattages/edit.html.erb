@@ -1,7 +1,8 @@
-<h1>edit abattage</h1>
 
-<div class="container">
 
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  <div class="container">
   <% @abattage.porcs.each_with_index do |porc, index| %>
     <div class="container d-flex justify-content-between">
 
@@ -28,6 +29,6 @@
           <% end %>
     </div>
   <% end %>
-
+  </div>
 </div>
 <%= link_to "Exit", "/porcs", class: "btn btn-primary" %>

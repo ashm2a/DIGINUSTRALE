@@ -1,14 +1,19 @@
 class AbattagesController < ApplicationController
-  before_action :set_abattage, only: [:show, :edit, :update]
+  before_action :set_abattage, only: [ :show, :edit, :update]
 
   def new
     @abattage = Abattage.new
+    @porcs = Porc.all
   end
 
   def create
     @abattage = Abattage.new(abattage_params)
     if @abattage.save!
-      redirect_to abattage_path(@abattage)
+      @porcs = Porc.find(params[:porc_id])
+      @porcs.each do |porc|
+        porc.update!(abattage: @abattage)
+      end
+    redirect_to abattage_path(@abattage)
     else
       render :new
     end
@@ -28,7 +33,7 @@ class AbattagesController < ApplicationController
   private
 
   def abattage_params
-    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard,)
+    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard)
   end
 
   def set_abattage

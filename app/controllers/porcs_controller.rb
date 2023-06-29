@@ -6,7 +6,7 @@ class PorcsController < ApplicationController
     @lot = params[:lot]
 
     if @ipg.present?
-      @porcs = Porc.where(boucle: @ipg.to_i)
+      @porcs = Porc.where("boucle ILIKE ?", "%#{@ipg}%")
     else
       @porcs = Porc.where(décès: false, abattu: false)
     end

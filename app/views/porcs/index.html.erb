@@ -1,14 +1,16 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
-  
+
   <div data-controller="grid">
     <%= render "shared/navbar" %>
 
     <div class="elevage-container enable" data-grid-target="grid">
       <% @porcs.each do |porc| %>
-        <%= link_to porc_path(porc) do %>
+        <%= link_to porc_path(porc), style: "text-decoration: none;" do %>
           <div class="elevage">
             <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
+            <p> <%= porc.sexe.capitalize %></p>
+            <p> Date de naissance: <%= porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
           </div>
         <% end %>
       <% end %>

@@ -18,7 +18,7 @@ class AbattagesController < ApplicationController
   end
 
   def update
-    @abattage.update(params[:abattage])
+    @abattage.update(abattage_params)
     redirect_to abattage_path(@abattage)
   end
 
@@ -28,7 +28,7 @@ class AbattagesController < ApplicationController
   private
 
   def abattage_params
-    params.require(:abattage).permit(:numéro_lot, :date, :lieu)
+    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard,)
   end
 
   def set_abattage

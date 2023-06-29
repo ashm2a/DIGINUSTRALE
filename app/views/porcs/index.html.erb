@@ -14,6 +14,8 @@
           <%= link_to porc_path(porc) do %>
             <div class="elevage">
               <span style="color: gray">N° IPG</span>&nbsp;&nbsp; <%= porc.user.EDE %><%= porc.boucle %>
+              <p> <%= porc.sexe.capitalize %></p>
+              <p> Date de naissance: <%= porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
             </div>
           <% end %>
         <% end %>

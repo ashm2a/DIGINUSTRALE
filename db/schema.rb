@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_085323) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,9 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_085323) do
 
   create_table "porcs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "boucle"
-    t.integer "boucle_mère"
-    t.integer "boucle_père"
+    t.string "boucle"
+    t.string "boucle_mère"
+    t.string "boucle_père"
     t.date "date_de_naissance"
     t.string "sexe"
     t.float "poids"

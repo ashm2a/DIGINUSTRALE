@@ -27,7 +27,6 @@ porc_four = { user: user, boucle: "00010", boucle_mère: "00001", boucle_père: 
 porc_five = { user: user, boucle: "00012", boucle_mère: "00001", boucle_père: "00002", date_de_naissance: Date.new(2020, 12, 10), sexe: "femelle"}
 porc_six = { user: user, boucle: "00013", boucle_mère: "00001", boucle_père: "00002", date_de_naissance: Date.new(2021, 11, 11), sexe: "femelle", abattage: porc_abattage }
 
-
 [porc_one, porc_two, porc_three, porc_four, porc_five, porc_six].each do |attributes|
   Porc.create!(attributes)
   puts "Created porcs"

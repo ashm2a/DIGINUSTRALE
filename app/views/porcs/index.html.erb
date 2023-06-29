@@ -4,7 +4,7 @@
   <div data-controller="grid">
     <%= render "shared/navbar" %>
 
-    <% if @ipg.present? && !@porcs.map { |porc| porc.boucle.to_i }.include?(@ipg.to_i) %>
+    <% if @ipg.present? && @porcs.empty? %>
       <div class="elevage-container enable" data-grid-target="grid">
         Aucune recherche correspondante..
       </div>
@@ -12,10 +12,10 @@
       <div class="elevage-container enable" data-grid-target="grid">
         <% @porcs.each do |porc| %>
           <%= link_to porc_path(porc) do %>
-            <div class="elevage">
-              <span style="color: gray">N° IPG</span>&nbsp;&nbsp; <%= porc.user.EDE %><%= porc.boucle %>
-              <p> <%= porc.sexe.capitalize %></p>
-              <p> Date de naissance: <%= porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
+            <div class="elevage d-flex flex-column">
+              <span style="color: gray">N° IPG</span><%= porc.user.EDE %><%= porc.boucle %>
+              <span style="color: gray">Né(e) le</span> <%= porc.date_de_naissance.strftime("%d/%m/%Y") %>
+              <span style="color: gray">Sexe</span> <%= porc.sexe.capitalize %>
             </div>
           <% end %>
         <% end %>

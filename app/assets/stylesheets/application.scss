@@ -25,6 +25,10 @@ body {
 .body-container {
   width: 100%;
   color: white;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .container-global {

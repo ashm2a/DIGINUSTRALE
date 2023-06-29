@@ -31,7 +31,7 @@ class AbattagesController < ApplicationController
   private
 
   def abattage_params
-    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard)
+    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard,)
   end
 
   def set_abattage

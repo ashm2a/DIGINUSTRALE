@@ -1,11 +1,7 @@
-<h1>Ajouter un nouveau porc</h1>
-
-<%= simple_form_for @porc do |f| %>
-    <%= f.input :boucle %>
-    <%= f.input :boucle_mère, collection: Porc.where(sexe: "femelle").pluck(:boucle) %>
-    <%= f.input :boucle_père, collection: Porc.where(sexe: "mâle").pluck(:boucle)  %>
-    <%= f.input :date_de_naissance, as: :date %>
-    <%= f.input :sexe, as: :radio_buttons, collection: [['femelle', 'femelle'], ['mâle', 'mâle']] %>
-    <%= f.button :submit %>
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  <div class="form-create-container mt-3">
+    <h2>Ajouter un nouveau porc</h2>
+      <%= render "form", porc: @porc %>
   </div>
-<% end %>
+</div>

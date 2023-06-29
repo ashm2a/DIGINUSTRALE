@@ -1,0 +1,93 @@
+.form-create-container {
+  width: 80%;
+  background-color: #cfcfcf;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 0 auto;
+  border-radius: 10px;
+  color: black;
+
+  h3, h2 {
+    padding-bottom: 50px;
+  }
+
+  .formBloc {
+    display: flex;
+    flex-wrap: wrap;
+
+    legend {
+      display: none;
+    }
+
+    .formGroupe {
+      flex: 0 0 100%;
+      margin-bottom: 3px;
+
+      &.two {
+        flex-basis: 49%;
+      }
+
+      .full-width {
+        flex: 0 0 100%;
+      }
+
+      label {
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.4s ease-out;
+      }
+
+      input, select {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        outline: none;
+        background-color: rgb(255, 255, 255);
+        border-radius: 25px;
+        padding-left: 10px;
+        margin-top: 10px;
+        color: black;
+        font-size: 19px;
+        transition: 0.4s ease-out;
+      }
+
+      &:focus-within {
+        label {
+          color: $blue;
+        }
+
+        input {
+          border-bottom-color: $blue;
+        }
+      }
+    }
+
+    .d-flex {
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .links {
+      color: $blue;
+    }
+  }
+
+  .form-check-input.is-valid ~ .form-check-label {
+    color: black;
+    font-size: 18px;
+  }
+
+  .form-check-input.is-valid {
+    border-color: $blue;
+  }
+
+  .form-check-input:checked {
+    background-color: $blue; /* Modifier la couleur de fond lorsqu'il est checké */
+    border-color: $blue; /* Modifier la couleur de la bordure lorsqu'il est checké */
+    color: rgb(0, 0, 0); /* Modifier la couleur du texte lorsqu'il est checké */
+  }
+}

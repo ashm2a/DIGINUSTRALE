@@ -36,31 +36,40 @@
       display: flex;
       gap: 20px;
 
-      form {
-        position: relative;
+      .search {
+        display: none;
 
-        input {
-          width: 300px;
-          background-color: white;
-          color: $gray;
-          border-radius: 25px;
-          font-size: 16px;
-          padding: 18px;
-          outline: none;
-          border: none;
-        }
 
-        button {
-          height: 100%;
-          font-size: 20px;
-          background-color: transparent;
-          border: none;
-          border-top-right-radius: 25px;
-          border-bottom-right-radius: 25px;
-          position: absolute;
-          top: 0;
-          right: 10px;
+        form {
+          position: relative;
+
+          input {
+            width: 300px;
+            background-color: white;
+            color: $gray;
+            border-radius: 25px;
+            font-size: 16px;
+            padding: 18px;
+            outline: none;
+            border: none;
+          }
+
+          button {
+            height: 100%;
+            font-size: 20px;
+            background-color: transparent;
+            border: none;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: absolute;
+            top: 0;
+            right: 10px;
+          }
         }
+      }
+
+      .active {
+        display: block;
       }
     }
   }

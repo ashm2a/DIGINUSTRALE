@@ -1,0 +1,24 @@
+<%= simple_form_for @porc do |f| %>
+  <div class="formBloc">
+    <div class="formGroupe">
+      <%= f.input :boucle %>
+    </div>
+    <div class="formGroupe">
+      <%= f.input :date_de_naissance, as: :date %>
+    </div>
+    <div class="formGroupe">
+      <%= f.input :boucle_mère, collection: Porc.where(sexe: "femelle").pluck(:boucle), selected: @selected_value_mere %>
+    </div>
+    <div class="formGroupe">
+      <%= f.input :boucle_père, collection: Porc.where(sexe: "mâle").pluck(:boucle), selected: @selected_value_pere %>
+    </div>
+    <div>
+      <span style="color: black; font-weight: bold; font-size: 20px; transition: 0.4s ease-out">Sexe</span>
+      <%= f.input :sexe, as: :radio_buttons, collection: [['mâle', 'mâle'], ['femelle', 'femelle']], input_html: { class: 'radio-button' } %>
+    </div>
+    <div class="d-flex justify-content-between form-actions">
+      <%= link_to "Annuler", porcs_path, class: "annuler-button" %>
+      <%= f.button :submit, "Ajouter", class: "submit-button" %>
+    </div>
+  </div>
+<% end %>

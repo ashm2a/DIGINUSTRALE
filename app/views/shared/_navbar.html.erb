@@ -7,10 +7,18 @@
     </div>
 
     <div class="option-right">
-      <form action="" method="get">
-        <input type="text" placeholder="N° identifiant">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </form>
+      <div class="search active" data-grid-target="form">
+        <form action="porcs" data-turbo-method="get">
+          <input type="text" placeholder="N° IPG" name="ipg" value="<%= @ipg %>" required>
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="search" data-grid-target="form">
+        <form action="porcs" data-turbo-method="get">
+          <input type="text" placeholder="N° LOT" name="lot" value="<%= @lot %>" required>
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
 
       <%= link_to new_porc_path, class: "button-custom" do %>
         <i class="fa-solid fa-plus"></i>&nbsp; Ajouter un porc

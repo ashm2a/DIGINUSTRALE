@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_152915) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_153131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_152915) do
     t.boolean "vermifuge_2_mois", default: false
     t.boolean "vermifuge_6_mois", default: false
     t.boolean "vermifuge_12_mois", default: false
+    t.integer "q_coppa", default: 0
+    t.integer "q_prisuttu", default: 0
+    t.integer "q_lonzu", default: 0
     t.index ["abattage_id"], name: "index_porcs_on_abattage_id"
     t.index ["user_id"], name: "index_porcs_on_user_id"
   end

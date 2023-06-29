@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_152915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_coppas_on_porc_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_lonzus_on_porc_id"
   end
 
@@ -95,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_102322) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantité", default: 0
     t.index ["porc_id"], name: "index_prisuttus_on_porc_id"
   end
 

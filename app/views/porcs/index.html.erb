@@ -4,28 +4,40 @@
   <div data-controller="grid">
     <%= render "shared/navbar" %>
 
-    <div class="elevage-container enable" data-grid-target="grid">
-      <% @porcs.each do |porc| %>
-        <%= link_to porc_path(porc), style: "text-decoration: none;" do %>
-          <div class="elevage">
-            <p> IPG: <%= porc.user.EDE %><%= porc.boucle %></p>
-            <p> <%= porc.sexe.capitalize %></p>
-            <p> Date de naissance: <%= porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
-          </div>
+    <% if @ipg.present? && !@porcs.map { |porc| porc.boucle.to_i }.include?(@ipg.to_i) %>
+      <div class="elevage-container enable" data-grid-target="grid">
+        Aucune recherche correspondante..
+      </div>
+    <% else %>
+      <div class="elevage-container enable" data-grid-target="grid">
+        <% @porcs.each do |porc| %>
+          <%= link_to porc_path(porc) do %>
+            <div class="elevage">
+              <span style="color: gray">N° IPG</span>&nbsp;&nbsp; <%= porc.user.EDE %><%= porc.boucle %>
+              <p> <%= porc.sexe.capitalize %></p>
+              <p> Date de naissance: <%= porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
-    <div class="elevage-container" data-grid-target="grid">
-      <% @abattages.each do |abattage| %>
-        <div class="elevage">
-          <p> Lot : <%= abattage.numéro_lot %></p>
-          <p> Lieu : <%= abattage.lieu %></p>
-          <p> Date abatoir : <%=  abattage.date %></p>
-          <%= link_to "Voir détails", abattage_path(abattage)%>
-          <%= link_to "Modifier", edit_abattage_path(abattage) %>
-        </div>
-      <% end %>
-    </div>
+    <% if @lot.present? && !@abattages.map { |abattage| abattage.numéro_lot.to_i }.include?(@lot.to_i) %>
+      <div class="elevage-container enable" data-grid-target="grid">
+        Aucune recherche correspondante..
+      </div>
+    <% else %>
+      <div class="production-container" data-grid-target="grid">
+        <% @abattages.each do |abattage| %>
+          <%= link_to abattage_path(abattage) do %>
+            <div class="productions">
+              <p><span style="color: gray">Lot</span>&nbsp;&nbsp; <%= abattage.numéro_lot %></p>
+              <p><span style="color: gray">Lieu</span>&nbsp;&nbsp; <%= abattage.lieu %></p>
+              <p><span style="color: gray">Date abattoir</span>&nbsp;&nbsp; <%= abattage.date %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

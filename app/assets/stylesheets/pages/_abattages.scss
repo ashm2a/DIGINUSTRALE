@@ -1,21 +1,25 @@
 .form-container {
   margin: 50px auto;
+  text-align: center;
+
+  .submit-btn {
+    background-color: $blue;
+    display: inline-block;
+    input {
+      color:black;
+    }
+  }
 
   .form-headers {
     justify-content: center;
-    .header{
-      text-align: center;
-    }
+    font-weight: 700;
   }
 
   .form-row{
     height: 14vh;
     justify-content: center;
 
-    &
-
     .boucle-porc{
-      text-align: center;
       padding: 0px;
       display:flex;
       flex-direction: column;

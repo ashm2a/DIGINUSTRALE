@@ -2,20 +2,49 @@
 
 <div class="container-global">
   <%= render "shared/head_bar" %>
-  <div class="container">
+
+
+<%# NAVBAR %>
+
+  <div class="nav-container">
+    <div class="head-info">
+      <div>
+        <h2 class="active">Lot d'abattage <%= @abattage.numéro_lot %></h2>
+      </div>
+
+      <div class="elevage">
+          <p>Date et lieu d'abattage</p>
+          <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-container">
   <% @abattage.porcs.each_with_index do |porc, index| %>
-    <div class="container d-flex justify-content-between">
-          <% if index == 0 %>
-            <%= simple_form_for porc do |fp| %>
-              <div class="w-100 d-flex">
-                <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
-                <%= fp.input :poids_carcasse, input_html: { class: 'form-control' } %>
-                <%= fp.input :epaisseur_lard, input_html: { class: 'form-control' } %>
-                <%= fp.input :ph, input_html: { class: 'form-control' }%>
-                <%= fp.button :submit, input_html: { class: 'form-control' } %>
-              </div>
+    <div class="porc-div container d-flex justify-content-between">
+      <% if index == 0 %>
+
+        <div class="d-flex">
+          <%= simple_form_for porc do |fp| %>
+            <div class="w-100 d-flex">
+              <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
+              <%= fp.input :poids_carcasse, :label => "Poids carcasse (kg)", input_html: { class: 'form-control' } %>
+              <%= fp.input :epaisseur_lard, :label => "Epaisseur lard (cm)", input_html: { class: 'form-control' } %>
+              <%= fp.input :ph, input_html: { class: 'form-control' }%>
+              <%= fp.button :submit, input_html: { class: 'form-control' } %>
+            </div>
+          <% end %>
+
+          <div class="envoi-prod">
+            <!-- bouton aop -->
+            <% if porc.boucle != nil && porc.poids_carcasse != nil && porc.epaisseur_lard != nil && porc.ph != nil %>
+              <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">;Production</button>
             <% end %>
-          <% else %>
+          </div>
+
+        </div>
+
+      <% else %>
             <%= simple_form_for porc do |fp| %>
               <div class="w-100 d-flex">
                 <%= fp.input :boucle, label:false, input_html: { class: 'form-control' }  %>
@@ -25,7 +54,13 @@
                 <%= fp.button :submit, input_html: { class: 'form-control' } %>
               </div>
             <% end %>
-          <% end %>
+              <div>
+                <!-- bouton aop -->
+                <% if porc.boucle != nil && porc.poids_carcasse != nil && porc.epaisseur_lard != nil && porc.ph != nil %>
+                  <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Production</button>
+                <% end %>
+              </div>
+      <% end %>
     </div>
   <% end %>
   </div>
@@ -42,12 +77,13 @@
   <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Envoyer en prod</button>
 <% end %>
 
+
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Produits du porc </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

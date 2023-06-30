@@ -1,0 +1,47 @@
+.sub-container{
+  margin: 50px auto;
+  .porc-div{
+    
+
+    .submit-button{
+      padding: 4px;
+      background-color: $blue;
+    }
+  }
+
+}
+
+
+
+.head-info {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2{
+    font-weight: 700;
+  }
+
+  .elevage {
+    line-height: normal;
+    margin-right: 64px;
+    color: black;
+    background-color: white;
+    border-radius: 25px;
+    padding: 18px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgb(126, 126, 126);
+    transition: all 0.4s ease;
+    p{
+      margin: 0;
+    }
+  }
+}
+
+
+.modal-header{
+  color: black;
+}

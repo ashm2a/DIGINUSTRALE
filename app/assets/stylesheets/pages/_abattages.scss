@@ -40,7 +40,10 @@
 
 
 
-
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
 
 .head-info {
   margin-top: 25px;

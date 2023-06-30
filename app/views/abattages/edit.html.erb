@@ -47,8 +47,8 @@
               <div class="form-input col-2">
                 <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="" data-aop-target="ph">
               </div>
-              <div class="aop form-input col-1 text-end" data-aop-target="output">
-                <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>" >
+              <div class="aop form-input col-1 text-end" data-aop-target="output" >
+                <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
                 <%= image_tag("aop.png", class: "d-none") %>
               </div>
 
@@ -56,7 +56,7 @@
 
           <% end %>
       <% end %>
-      <%= fp.button :submit, 'Mise à jour', input_html: { class: 'form-control' }, data: {
+      <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }, data: {
           insert_in_list_target: "btn-update",
           action: 'aop#clickUpdatePorcs',
          } %>
@@ -64,16 +64,16 @@
 
   </div>
 
-            <div class="porc-div container d-flex justify-content-between">
-              <div class="d-flex">
-                  <div class="w-100 d-flex">
 
-            </div>
-       </div>
-     </div>
+<div class="buttons">
 
-<%# si valeurs OK, eligible aop %>
+  <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
 
 
+      <div class="btn-decoupe" data-aop-target="decoupe">
+        <%= link_to new_abattage_path, class: "btn btn-primary d-none" do %>
+            Découpe
+        <% end %>
+      </div>
 
-<%= link_to "Exit", "/porcs", class: "btn btn-primary" %>
+</div>

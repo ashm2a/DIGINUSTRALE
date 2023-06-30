@@ -1,0 +1,39 @@
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  <div class="form-create-container mt-3">
+    <h2>Gestion du porc <%=@porc.user.EDE%><%=@porc.boucle%></h2>
+    <%= simple_form_for @porc do |f| %>
+      <div class="gestion-container">
+
+        <div class="formBloc left">
+          <div class="formGroupe">
+            <%= f.input :poids, placeholder: "Renseigner le poids à 2 mois" %>
+          </div>
+          <div class="vermifuge mb-3">
+            <span style="color: black; font-weight: bold; font-size: 20px; transition: 0.4s ease-out">Vermifuges</span>
+            <%= f.input :vermifuge_2_mois, as: :boolean, label: "Vermifuge à 2 mois", input_html: { class: "form-check-input toggle", id: "porc_vermifuge_2_mois" } %>
+            <%= f.input :vermifuge_6_mois, as: :boolean, label: "Vermifuge à 6 mois", input_html: { class: "form-check-input toggle", id: "porc_vermifuge_6_mois" } %>
+            <%= f.input :vermifuge_12_mois, as: :boolean, label: "Vermifuge à 12 mois", input_html: { class: "form-check-input toggle", id: "porc_vermifuge_12_mois" } %>
+          </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="right" data-controller="deces">
+          <span style="color: black; font-weight: bold; font-size: 20px; transition: 0.4s ease-out">Décès sur exploitation</span>
+            <%= f.input :décès, as: :boolean, label: "Je suis complètement décèdé zebi", input_html: { class: "form-check-input toggle", id: "deces", data: { action: "click->deces#toggleDateDeces", deces_target: "checkbox" } } %>
+          <div class="formBloc d-deces d-none" data-deces-target="block">
+            <div class="formGroupe">
+              <%= f.input :date_décès, as: :date %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-between form-actions">
+        <%= link_to "Annuler", porc_path(@porc), class: "annuler-button" %>
+        <%= f.button :submit, "Ajouter", class: "submit-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

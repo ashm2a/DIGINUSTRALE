@@ -23,7 +23,6 @@
     <p>Né le <%= Porc.find_by("boucle like ?", @porc.boucle_père)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
 </div>
 
-
 <div class="vermifuges">
 <h2>Carnet de santé</h2>
 <%# ajouter les conditions %>
@@ -69,3 +68,4 @@
 <% end %>
 
 <%= link_to "Modifier les infos de ce porc", edit_porc_path(@porc) %>
+<%= link_to "Gestion du porc", porc_gestion_path(@porc) %>

@@ -1,5 +1,5 @@
 .form-create-container {
-  width: 80%;
+  width: 60%;
   background-color: #cfcfcf;
   border-radius: 20px;
   padding: 25px;
@@ -76,6 +76,11 @@
     }
   }
 
+  .form-check {
+    padding-left: 0;
+    margin-top: 15px;
+  }
+
   .form-check-input.is-valid ~ .form-check-label {
     color: black;
     font-size: 18px;
@@ -89,5 +94,81 @@
     background-color: $blue; /* Modifier la couleur de fond lorsqu'il est checké */
     border-color: $blue; /* Modifier la couleur de la bordure lorsqu'il est checké */
     color: rgb(0, 0, 0); /* Modifier la couleur du texte lorsqu'il est checké */
+  }
+
+  .toggle {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .toggle + label {
+    position: relative;
+    display: inline-block;
+    padding-left: 40px;
+  }
+
+  .toggle + label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    width: 36px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: #EAEAEA;
+    border-radius: 50rem;
+  }
+
+  .toggle:checked + label::before {
+    background-color: $blue;
+  }
+
+  .toggle + label::after {
+    content: '';
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: left 0.2s ease;
+  }
+
+  .toggle:checked + label::after {
+    left: 18px;
+  }
+
+  .tag-item {
+    display: inline-block;
+  }
+
+  .tag-selector {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .tag-selector + label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.2rem;
+    border-radius: 50rem;
+    padding: 15px;
+    width: 100px;
+    text-align: center;
+    margin-top: 15px;
+    background-color: #ffffff;
+    color: $blue;
+    border: 1px solid $blue;
+    margin-right: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .tag-selector:checked + label {
+    background-color: $blue;
+    color: white;
   }
 }

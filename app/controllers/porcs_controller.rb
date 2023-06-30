@@ -50,11 +50,10 @@ class PorcsController < ApplicationController
   end
 
   def update
-    if porc_params[:décès] == false
-      porc_params.delete(:date_décès)
-    end
-
     if @porc.update(porc_params)
+      if porc_params[:décès] == "0"
+        @porc.update(date_décès: "")
+      end
       redirect_to porc_path(@porc)
     else
       render :edit

@@ -1,71 +1,94 @@
-<h1>Détails du porc <%=@porc.user.EDE%><%=@porc.boucle%></h1>
+<div class="container-global">
+  <%= render "shared/head_bar" %>
 
-<div class="infos-porc">
-  <h2>Informations du porc</h2>
-  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle%></p>
-  <p>Né.e le <%= @porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
-  <p>Sexe: <%= @porc.sexe %></p>
-  <p>Poids à 2 mois: </p>
-</div>
-
-<div class="infos-mère">
-  <h2>Mère</h2>
-  <div>
-    <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
-    <p>Née le <%= Porc.find_by("boucle like ?", @porc.boucle_mère)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
-
+  <h1>Informations du porc <%=@porc.user.EDE%><%=@porc.boucle%></h1>
+  <div class="nav-button">
+    <div>
+      <%= link_to "< Retour", porcs_path, class: "annuler-button", style: "color: white;" %>
+    </div>
+    <div class="button-action">
+      <%= link_to "Modifier", edit_porc_path(@porc), class: "button-custom" %>
+      <%= link_to "Gestion du porc", porc_gestion_path(@porc), class: "button-custom" %>
+    </div>
   </div>
 
-</div>
+  <div class="view-info">
+    <div class="grid-container">
+      <div class="card">
+        <h4>Informations générales</h4>
+        <div class="infos-porc">
+          <p><span style="color: gray; font-weight: 900;">N° IPG</span> <%=@porc.user.EDE%><%=@porc.boucle%></p>
+          <p><span style="color: gray; font-weight: 900;">Né.e le</span> <%= @porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
+          <p><span style="color: gray; font-weight: 900;">Sexe</span> <%= @porc.sexe %></p>
+          <p><span style="color: gray; font-weight: 900;">Poids à 2 mois</span> <% if @porc.poids.nil? %>Aucun poids renseigné<% else %><%= @porc.poids %>kg<% end %></p>
+        </div>
+      </div>
 
-<div class="infos-père">
-  <h2>Verrat père</h2>
-    <p>Né le <%= Porc.find_by("boucle like ?", @porc.boucle_père)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
-</div>
+      <div class="card">
+        <h4>Informations sur le vermifuges</h4>
+        <div class="vermifuges-container">
+          <div class="vermifuges">
+            <% if @porc.vermifuge_2_mois %>
+              <i class="fa-solid fa-check"></i>
+            <% else %>
+              <i class="fa-solid fa-x"></i>
+            <% end %>
+            <span style="color: gray; font-weight: 900;">Vermifuge à 2 mois</span>
+          </div>
+          <div class="vermifuges">
+            <% if @porc.vermifuge_6_mois %>
+              <i class="fa-solid fa-check"></i>
+            <% else %>
+              <i class="fa-solid fa-x"></i>
+            <% end %>
+            <span style="color: gray; font-weight: 900;">Vermifuge à 6 mois</span>
+          </div>
+          <div class="vermifuges">
+            <% if @porc.vermifuge_12_mois %>
+              <i class="fa-solid fa-check"></i>
+            <% else %>
+              <i class="fa-solid fa-x"></i>
+            <% end %>
+            <span style="color: gray; font-weight: 900;">Vermifuge à 12 mois</span>
+          </div>
+        </div>
+      </div>
 
-<div class="vermifuges">
-<h2>Carnet de santé</h2>
-<%# ajouter les conditions %>
-  <ul style="list-style-type: none">
-    <li>
-    <% if @porc.vermifuge_2_mois %>
-      <i class="fa-sharp fa-regular fa-square-check"></i>
-    <% else %>
-      <i class="fa-sharp fa-regular fa-square"></i>
-    <% end %>
-    Vermifuge à 2 mois
-    </li>
+      <div class="card">
+        <h4>Informations sur la mère</h4>
+        <div class="infos-mère">
+          <div>
+            <p><span style="color: gray; font-weight: 900;">N° IPG</span> <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
+            <p><span style="color: gray; font-weight: 900;">Née le</span> <%= Porc.find_by("boucle like ?", @porc.boucle_mère)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
+          </div>
+        </div>
+      </div>
 
-    <li>
-    <% if @porc.vermifuge_6_mois %>
-      <i class="fa-sharp fa-regular fa-square-check"></i>
-    <% else %>
-      <i class="fa-sharp fa-regular fa-square"></i>
-    <% end %>
-    Vermifuge à 6 mois
-    </li>
-
-    <li>
-    <% if @porc.vermifuge_12_mois %>
-      <i class="fa-sharp fa-regular fa-square-check"></i>
-    <% else %>
-      <i class="fa-sharp fa-regular fa-square"></i>
-    <% end %>
-    Vermifuge à 12 mois
-    </li>
-
-  </ul>
-</div>
-
-<% if @porc.décès %>
-    <div class="décès">
-      Décès sur exploitation le <%= @porc.date_décès %>
+      <div class="card">
+        <h4>Informations sur le père</h4>
+        <div class="infos-père">
+            <p><span style="color: gray; font-weight: 900;">N° IPG</span> <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
+            <p><span style="color: gray; font-weight: 900;">Né le</span> <%= Porc.find_by("boucle like ?", @porc.boucle_père)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
+        </div>
+      </div>
     </div>
-  <% elsif @porc.abattu %>
-    <div class="décès">
-      Envoyé à l'abattoir le <%= @porc.abattage.date %>
-    </div>
-<% end %>
 
-<%= link_to "Modifier les infos de ce porc", edit_porc_path(@porc) %>
-<%= link_to "Gestion du porc", porc_gestion_path(@porc) %>
+    <% if @porc.décès %>
+      <div class="deces-container">
+        <div class="card deces">
+          <% if @porc.décès %>
+            <h4>Décès sur exploitation</h4>
+            <div class="décès">
+              <span style="color: gray; font-weight: 900;">Décèdé le</span> <%= @porc.date_décès %>
+            </div>
+            <% elsif @porc.abattu %>
+            <h4>Date de passage en abattoire</h4>
+            <div class="décès">
+              <span style="color: gray; font-weight: 900;">Envoyé à l'abattoir le</span> <%= @porc.abattage.date %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

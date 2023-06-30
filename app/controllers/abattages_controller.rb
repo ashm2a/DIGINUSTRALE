@@ -3,7 +3,7 @@ class AbattagesController < ApplicationController
 
   def new
     @abattage = Abattage.new
-    @porcs = Porc.all
+    @porcs = Porc.where(décès: false, abattu: false)
   end
 
   def create
@@ -12,8 +12,9 @@ class AbattagesController < ApplicationController
       @porcs = Porc.find(params[:porc_id])
       @porcs.each do |porc|
         porc.update!(abattage: @abattage)
+        porc.update!(abattu: true)
       end
-      redirect_to abattage_path(@abattage)
+      redirect_to edit_abattage_path(@abattage)
     else
       render :new
     end

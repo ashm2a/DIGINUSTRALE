@@ -29,40 +29,40 @@
       <div class="col-1"></div>
     </div>
 
-    <%= simple_form_for @abattage do |fp| %>
+
+    <%= simple_form_for @abattage, data: { controller: 'aop' } do |fp| %>
       <% @porcs.each_with_index do |porc, index| %>
           <%= simple_fields_for porc do |p| %>
 
-            <div class="form-row row">
+            <div class="form-row row" data-aop-target="row">
               <div class="boucle-porc col-1">
                 <%= porc.boucle %>
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="">
+                <input type="text" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="" data-aop-target="poids">
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="">
+                <input type="text" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="" data-aop-target="lard">
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[ph]" id="ph" value="">
+                <input type="text" name="<%= index %>[ph]" id="ph" value="" data-aop-target="ph">
               </div>
-              <div class="aop form-input col-1 text-end">
-                <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                <%= image_tag("aop.png") %>
+              <div class="aop form-input col-1 text-end" data-aop-target="output">
+                <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>" >
+                <%= image_tag("aop.png", class: "d-none") %>
               </div>
 
             </div>
 
           <% end %>
       <% end %>
-      <%= fp.button :submit, 'Mise à jour', input_html: { class: 'form-control' } %>
+      <%= fp.button :submit, 'Mise à jour', input_html: { class: 'form-control' }, data: {
+          insert_in_list_target: "btn-update",
+          action: 'aop#clickUpdatePorcs',
+         } %>
     <% end %>
 
   </div>
-
-
-
-
 
             <div class="porc-div container d-flex justify-content-between">
               <div class="d-flex">

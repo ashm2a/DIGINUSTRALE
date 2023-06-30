@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import AopController from "./aop_controller"
+application.register("aop", AopController)
+
+import DecesController from "./deces_controller"
+application.register("deces", DecesController)
 
 import GridController from "./grid_controller"
 application.register("grid", GridController)
 
-import DecesController from "./deces_controller"
-application.register("deces", DecesController)
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)

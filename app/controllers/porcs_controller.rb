@@ -47,19 +47,25 @@ class PorcsController < ApplicationController
   def edit
     @selected_value_mere = @porc.boucle_mère
     @selected_value_pere = @porc.boucle_père
-  end
 
+  
   def update
     if @porc.update(porc_params)
-      if porc_params[:décès] == "0"
+      if porc_params[:ph]
+        render :edit
+      elsif porc_params[:décès] == "0"
         @porc.update(date_décès: "")
+        redirect_to porc_path(@porc)
       end
       redirect_to porc_path(@porc)
     else
       render :edit
     end
   end
-
+  
+  
+  
+  
   private
 
   def porc_params

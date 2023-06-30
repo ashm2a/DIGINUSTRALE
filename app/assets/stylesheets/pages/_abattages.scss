@@ -1,35 +1,37 @@
 .form-container {
   margin: 50px 60px;
 
-  .boucle-porc{
-    padding: 0px;
+  .form-headers {
+    justify-content: center;
   }
-  .form-input{
-    padding: 0px;
-  }
-  //   display: flex;
-  //   align-items: center;
-  //   gap: 10px;
 
-  //   .boucle-porc{
-  //     flex-shrink: 0;
-  //   }
-  //   .form-input{
-  //     flex-grow: 1;
-  //   }
-  // }
-
-
-
-
-  .porc-div{
-    .submit-button{
-      padding: 4px;
-      background-color: $blue;
+  .form-row{
+    height: 14vh;
+    justify-content: center;
+    .boucle-porc{
+      padding: 0px;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-input{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 
+    .aop{
+      position: relative;
+      img{
+        right: 0px;
+        position: absolute;
+        width: 56px;
+      }
+    }
 }
+
+
 
 
 

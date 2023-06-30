@@ -22,11 +22,11 @@
   <div class="form-container">
 
     <div class="form-headers row">
-      <div class="col-1">Boucle</div>
-      <div class="col-2">Poids carcasse(kg)</div>
-      <div class="col-2">Epaisseur lard (cm)</div>
-      <div class="col-2">pH</div>
-      <div class="col-1"></div>
+      <div class="header col-1">Boucle</div>
+      <div class="header col-2">Poids carcasse(kg)</div>
+      <div class="header col-2">Epaisseur lard (cm)</div>
+      <div class="header col-2">pH</div>
+      <div class="header col-1"></div>
     </div>
 
 
@@ -39,13 +39,13 @@
                 <%= porc.boucle %>
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="" data-aop-target="poids">
+                <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="" data-aop-target="poids">
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="" data-aop-target="lard">
+                <input type="number" step="0.01" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="" data-aop-target="lard">
               </div>
               <div class="form-input col-2">
-                <input type="text" name="<%= index %>[ph]" id="ph" value="" data-aop-target="ph">
+                <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="" data-aop-target="ph">
               </div>
               <div class="aop form-input col-1 text-end" data-aop-target="output">
                 <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>" >

@@ -3,11 +3,16 @@
 
   .form-headers {
     justify-content: center;
+    .header{
+      text-align: center;
+    }
   }
 
   .form-row{
     height: 14vh;
     justify-content: center;
+
+
     .boucle-porc{
       padding: 0px;
       display:flex;

@@ -1,5 +1,5 @@
 class PorcsController < ApplicationController
-  before_action :set_porc, only: [:edit, :show, :update]
+  before_action :set_porc, only: [:edit, :show]
 
   def index
     @ipg = params[:ipg]
@@ -24,6 +24,9 @@ class PorcsController < ApplicationController
 
   def create
     @porc = Porc.new(porc_params)
+    @porc.prisuttu = Prisuttu.new
+    @porc.lonzu = Lonzu.new
+    @porc.coppa = Coppa.new
     @porc.user = current_user
     if @porc.save!
       redirect_to porcs_path
@@ -41,8 +44,13 @@ class PorcsController < ApplicationController
   end
 
   def update
+    @porc = Porc.find(params[:id])
     if @porc.update(porc_params)
-      redirect_to porc_path(@porc)
+      if porc_params[:ph]
+        render :edit
+      else
+        redirect_to porc_path(@porc)
+      end
     else
       render :edit
     end
@@ -51,7 +59,11 @@ class PorcsController < ApplicationController
   private
 
   def porc_params
-    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe)
+    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids_carcasse, :epaisseur_lard, :ph)
+  end
+
+  def porc_porc_params
+    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids_carcasse, :epaisseur_lard, :ph,)
   end
 
   def set_porc

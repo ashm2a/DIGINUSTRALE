@@ -3,7 +3,7 @@
 <div class="infos-porc">
   <h2>Informations du porc</h2>
   <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle%></p>
-  <p>Né.e le <%= @porc.date_de_naissance %></p>
+  <p>Né.e le <%= @porc.date_de_naissance.strftime("%d/%m/%Y") %></p>
   <p>Sexe: <%= @porc.sexe %></p>
   <p>Poids à 2 mois: </p>
 </div>
@@ -12,15 +12,15 @@
   <h2>Mère</h2>
   <div>
     <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
-    <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_mère)&.date_de_naissance %></p>
+    <p>Née le <%= Porc.find_by("boucle like ?", @porc.boucle_mère)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
+
   </div>
 
 </div>
 
 <div class="infos-père">
   <h2>Verrat père</h2>
-  <p>IPG: <%=@porc.user.EDE%><%=@porc.boucle_père%></p>
-  <p>Né.e le <%= Porc.find_by(boucle: @porc.boucle_père)&.date_de_naissance %></p>
+    <p>Né le <%= Porc.find_by("boucle like ?", @porc.boucle_père)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
 </div>
 
 

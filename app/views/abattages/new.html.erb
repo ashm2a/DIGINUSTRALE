@@ -1,7 +1,7 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
   <div class="form-create-container mt-5">
-    <h2>Nouvelle abattage</h2>
+    <h2>Nouvelle abattage :  </h2>
 
       <%= form_with url: "/abattages"  do |f| %>
         <form accept-charset="UTF-8" method="post">
@@ -34,7 +34,5 @@
           <input type="submit" name="commit" value="Create abattage" data-disable-with="Create abattage">
         </form>
       <% end %>
-
-
   </div>
 </div>

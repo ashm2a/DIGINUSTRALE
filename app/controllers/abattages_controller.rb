@@ -3,11 +3,16 @@ class AbattagesController < ApplicationController
 
   def new
     @abattage = Abattage.new
+    @porcs = Porc.all
   end
 
   def create
     @abattage = Abattage.new(abattage_params)
     if @abattage.save!
+      @porcs = Porc.find(params[:porc_id])
+        @porcs.each do |porc|
+          porc.update!(abattage: @abattage)
+        end
       redirect_to abattage_path(@abattage)
     else
       render :new
@@ -22,9 +27,9 @@ class AbattagesController < ApplicationController
   def update
     # @abattage.porcs.update(porc_params)
     # if @abattage.porcs.update
-    #   redirect_to porcs_path
+     # redirect_to porcs_path
     # else
-    #   render :edit
+     # render :edit
     # end
   end
 

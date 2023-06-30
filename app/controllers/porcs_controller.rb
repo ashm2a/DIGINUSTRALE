@@ -1,5 +1,5 @@
 class PorcsController < ApplicationController
-  before_action :set_porc, only: [:edit, :show]
+  before_action :set_porc, only: [:edit, :show, :update]
 
   def index
     @ipg = params[:ipg]

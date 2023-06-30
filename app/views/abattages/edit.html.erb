@@ -2,7 +2,24 @@
 
 <div class="container-global">
   <%= render "shared/head_bar" %>
-  <div class="container">
+
+
+<%# NAVBAR %>
+
+  <div class="nav-container">
+    <div class="head-info">
+      <div>
+        <h2 class="active">Lot d'abattage <%= @abattage.numéro_lot %></h2>
+      </div>
+
+      <div class="elevage">
+          <p>Date et lieu d'abattage</p>
+          <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-container">
   <% @abattage.porcs.each_with_index do |porc, index| %>
     <div class="container d-flex justify-content-between">
           <% if index == 0 %>

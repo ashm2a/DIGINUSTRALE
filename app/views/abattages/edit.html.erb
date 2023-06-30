@@ -22,8 +22,8 @@
   <div class="form-container">
 
     <div class="form-headers row">
-      <div class="header col-1">Boucle</div>
-      <div class="header col-2">Poids carcasse(kg)</div>
+      <div class="header col-2">Boucle</div>
+      <div class="header col-2">Poids carcasse (kg)</div>
       <div class="header col-2">Epaisseur lard (cm)</div>
       <div class="header col-2">pH</div>
       <div class="header col-1"></div>
@@ -34,9 +34,9 @@
       <% @porcs.each_with_index do |porc, index| %>
           <%= simple_fields_for porc do |p| %>
 
-            <div class="form-row row" data-aop-target="row">
-              <div class="boucle-porc col-1">
-                <%= porc.boucle %>
+            <div class="form-row row bg-green" data-aop-target="row">
+              <div class="boucle-porc col-2">
+                <%=current_user.EDE%> <%=porc.boucle%>
               </div>
               <div class="form-input col-2">
                 <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="" data-aop-target="poids">

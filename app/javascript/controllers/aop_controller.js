@@ -10,6 +10,7 @@ export default class extends Controller {
     const rowElements = document.querySelectorAll('[data-aop-target="row"]');
 
     rowElements.forEach((rowElement) => {
+      console.log(rowElement);
       const poidsValue = parseFloat(rowElement.querySelector('[data-aop-target="poids"]').value);
       //console.log(typeof poidsValue);
 
@@ -20,7 +21,7 @@ export default class extends Controller {
       //console.log(phValue);
 
       const imgElement = rowElement.querySelector('[data-aop-target="output"]');
-      console.log(imgElement.querySelector("img"));
+      //console.log(imgElement.querySelector("img"));
 
       if(
         ((poidsValue >= 80) && (poidsValue <= 140))
@@ -28,12 +29,15 @@ export default class extends Controller {
         ((lardValue >= 4) && (lardValue <= 6))
         &&
         ((phValue >= 4) && (phValue <= 6))
-      ) {console.log("AOP OK")
+      ) {
+        //console.log("AOP OK")
         imgElement.querySelector("img").classList.remove("d-none");
+        rowElement.classList.add("bg-success");
          }
       else {
-        console.log("AOP NO")
+        //console.log("AOP NO")
         imgElement.querySelector("img").classList.add("d-none");
+        rowElement.classList.remove("bg-success");
       }
 
 

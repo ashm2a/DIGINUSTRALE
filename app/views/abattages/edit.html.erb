@@ -3,9 +3,7 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
 
-
 <%# NAVBAR %>
-
   <div class="nav-container">
     <div class="head-info">
       <div>
@@ -19,40 +17,45 @@
     </div>
   </div>
 
-  <div class="sub-container">
-        <%= simple_form_for @abattage do |fp| %>
-          <% @porcs.each_with_index do |porc, index| %>
-            <% if index == 0 %>
-              <%= simple_fields_for porc do |p| %>
-                <div class="boucle-porc">
-                  <%= porc.boucle %>
 
-                <label for="poids-carcasse">Poids carcasse</label>
+
+  <div class="form-container">
+
+    <div class="form-headers row">
+      <div class="col-3 ">Boucle</div>
+      <div class="col-3">Poids carcasse(kg)</div>
+      <div class="col-3">Epaisseur lard (cm)</div>
+      <div class="col-3">pH</div>
+    </div>
+
+    <%= simple_form_for @abattage do |fp| %>
+      <% @porcs.each_with_index do |porc, index| %>
+          <%= simple_fields_for porc do |p| %>
+
+            <div class="form-row row">
+              <div class="boucle-porc col-3">
+                <%= porc.boucle %>
+              </div>
+              <div class="form-input col-3">
                 <input type="text" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="">
-                <label for="epaisseur-lard">Epaisseur lard</label>
+              </div>
+              <div class="form-input col-3">
                 <input type="text" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="">
-                <label for="ph">PH</label>
+              </div>
+              <div class="form-input col-3">
                 <input type="text" name="<%= index %>[ph]" id="ph" value="">
+              </div>
+              <div class="form-input col-3">
                 <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                </div>
-              <% end %>
-            <% else %>
-                <%= simple_fields_for porc do |p| %>
-                  <div class="boucle-porc">
-                    <%= porc.boucle %>
+              </div>
+            </div>
 
-                  <input type="text" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="">
-                  <input type="text" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="">
-                  <input type="text" name="<%= index %>[ph]" id="ph" value="">
-                  <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                <% end %>
-                </div>
-            <% end %>
-        <% end %>
-        <%= fp.button :submit, input_html: { class: 'form-control' } %>
+          <% end %>
+      <% end %>
+      <%= fp.button :submit, input_html: { class: 'form-control' } %>
     <% end %>
 
-
+  </div>
 
 
 

@@ -1,8 +1,28 @@
-.sub-container{
-  margin: 50px auto;
-  .porc-div{
-    
+.form-container {
+  margin: 50px 60px;
 
+  .boucle-porc{
+    padding: 0px;
+  }
+  .form-input{
+    padding: 0px;
+  }
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 10px;
+
+  //   .boucle-porc{
+  //     flex-shrink: 0;
+  //   }
+  //   .form-input{
+  //     flex-grow: 1;
+  //   }
+  // }
+
+
+
+
+  .porc-div{
     .submit-button{
       padding: 4px;
       background-color: $blue;

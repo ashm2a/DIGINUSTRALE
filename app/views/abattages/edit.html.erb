@@ -21,18 +21,30 @@
 
   <div class="sub-container">
   <% @abattage.porcs.each_with_index do |porc, index| %>
-    <div class="container d-flex justify-content-between">
-          <% if index == 0 %>
-            <%= simple_form_for porc do |fp| %>
-              <div class="w-100 d-flex">
-                <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
-                <%= fp.input :poids_carcasse, :label => "Poids carcasse (kg)", input_html: { class: 'form-control' } %>
-                <%= fp.input :epaisseur_lard, :label => "Epaisseur lard (cm)", input_html: { class: 'form-control' } %>
-                <%= fp.input :ph, input_html: { class: 'form-control' }%>
-                <%= fp.button :submit, input_html: { class: 'form-control' } %>
-              </div>
+    <div class="porc-div container d-flex justify-content-between">
+      <% if index == 0 %>
+
+        <div class="d-flex">
+          <%= simple_form_for porc do |fp| %>
+            <div class="w-100 d-flex">
+              <%= fp.input :boucle, input_html: { class: 'form-control' }  %>
+              <%= fp.input :poids_carcasse, :label => "Poids carcasse (kg)", input_html: { class: 'form-control' } %>
+              <%= fp.input :epaisseur_lard, :label => "Epaisseur lard (cm)", input_html: { class: 'form-control' } %>
+              <%= fp.input :ph, input_html: { class: 'form-control' }%>
+              <%= fp.button :submit, input_html: { class: 'form-control' } %>
+            </div>
+          <% end %>
+
+          <div class="envoi-prod">
+            <!-- bouton aop -->
+            <% if porc.boucle != nil && porc.poids_carcasse != nil && porc.epaisseur_lard != nil && porc.ph != nil %>
+              <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">;Production</button>
             <% end %>
-          <% else %>
+          </div>
+
+        </div>
+
+      <% else %>
             <%= simple_form_for porc do |fp| %>
               <div class="w-100 d-flex">
                 <%= fp.input :boucle, label:false, input_html: { class: 'form-control' }  %>
@@ -42,7 +54,13 @@
                 <%= fp.button :submit, input_html: { class: 'form-control' } %>
               </div>
             <% end %>
-          <% end %>
+              <div>
+                <!-- bouton aop -->
+                <% if porc.boucle != nil && porc.poids_carcasse != nil && porc.epaisseur_lard != nil && porc.ph != nil %>
+                  <button class="submit-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Production</button>
+                <% end %>
+              </div>
+      <% end %>
     </div>
   <% end %>
   </div>

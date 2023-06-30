@@ -13,9 +13,9 @@
         <% @porcs.each do |porc| %>
           <%= link_to porc_path(porc) do %>
             <div class="elevage d-flex flex-column">
-              <span style="color: gray">N° IPG</span><%= porc.user.EDE %><%= porc.boucle %>
-              <span style="color: gray">Né(e) le</span> <%= porc.date_de_naissance.strftime("%d/%m/%Y") %>
-              <span style="color: gray">Sexe</span> <%= porc.sexe.capitalize %>
+              <span style="color: gray;">N° IPG</span><%= porc.user.EDE %><%= porc.boucle %>
+              <span style="color: gray;">Né(e) le</span> <%= porc.date_de_naissance.strftime("%d/%m/%Y") %>
+              <span style="color: gray;">Sexe</span> <%= porc.sexe.capitalize %>
             </div>
           <% end %>
         <% end %>

@@ -76,6 +76,27 @@
     }
   }
 
+  .gestion-container {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      width: 45%;
+    }
+
+    .separator {
+      width: 5px;
+      background-color: rgb(198, 198, 198);
+    }
+
+    .right {
+      width: 45%;
+    }
+  }
+
+
+  // STYLE DES BOUTON TOGGLE
+
   .form-check {
     padding-left: 0;
     margin-top: 15px;

@@ -28,7 +28,7 @@
     </div>
 
 
-    <%= simple_form_for @abattage, data: { controller: 'aop' } do |fp| %>
+    <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage) , data: { controller: 'aop' } do |fp| %>
       <% @porcs.each_with_index do |porc, index| %>
           <%= simple_fields_for porc do |p| %>
             <div class="form-row row bg-green" data-aop-target="row">

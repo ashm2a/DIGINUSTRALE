@@ -59,7 +59,13 @@
         <div class="infos-mère">
           <div>
             <p><span style="color: gray; font-weight: 900;">N° IPG</span> <%=@porc.user.EDE%><%=@porc.boucle_mère%></p>
-            <p><span style="color: gray; font-weight: 900;">Née le</span> <%= Porc.find_by("boucle like ?", @porc.boucle_mère)&.date_de_naissance.strftime("%d/%m/%Y")%></p>
+            <p><span style="color: gray; font-weight: 900;">Née le</span>
+            <% if @porc.boucle_mère %>
+             <%= Porc.find_by("boucle like ?", @porc.boucle_mère)&.date_de_naissance.strftime("%d/%m/%Y")%>
+             <% else %>
+            <p>T'es orphelin mec</p>
+            <% end %>
+            </p>
           </div>
         </div>
       </div>

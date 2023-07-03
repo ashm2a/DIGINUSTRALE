@@ -29,7 +29,7 @@
     <%= simple_form_for [@coppa], url: coppas_path do |f| %>
       <div class="form-row row bg-green" data-aop-target="row">
         <div class="col-1">
-          <%= select_tag "[porc][boucle]", options_for_select(Porc.where(décès: false, abattu: false).map(&:boucle)) %>
+          <%= select_tag "[porc][boucle]", options_for_select(Porc.where(abattu: true).map(&:boucle)) %>
         </div>
 *
         <div class="col-1">
@@ -70,5 +70,7 @@
 <div class="buttons">
 
   <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
-
+  <%= link_to new_lonzu_path, class: "btn btn-primary" do %>
+    Etape suivante
+  <% end %>
 </div>

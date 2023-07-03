@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="form-create-container" data-controller="aop">
+  <div class="form-create-container">
     <div class="formBloc">
       <table class="table">
         <thead>
@@ -26,8 +26,8 @@
             <th class="header"></th>
           </tr>
         </thead>
-        <tbody>
-          <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage) do |fp| %>
+        <tbody data-controller="aop">
+          <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage), data: { turbolinks: { track: "reload" } } do |fp| %>
             <% @porcs.each_with_index do |porc, index| %>
               <%= simple_fields_for porc do |p| %>
                 <tr class="form-row bg-green" data-aop-target="row">

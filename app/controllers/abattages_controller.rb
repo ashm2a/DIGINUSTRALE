@@ -35,7 +35,6 @@ class AbattagesController < ApplicationController
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
-
   def edit_produits_temoins
     @abattage = Abattage.find(params[:abattage_id])
     @coppa = Coppa.joins(:porc).where(porcs: { abattage: @abattage }).last

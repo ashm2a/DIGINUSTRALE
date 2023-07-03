@@ -1,7 +1,6 @@
  <div class="container-global">
   <%= render "shared/head_bar" %>
 
-  <%= link_to "retour", porcs_path, class: "annuler-button" %>
   <div class="nav-container">
       <div class="head-info">
         <div>
@@ -16,10 +15,18 @@
         </div>
       </div>
 
-    <div>
-      <%= link_to "Voir la liste des porcs", porcs_path, class: "button-custom" %>
-      <%= link_to "Voir les produits", porcs_path, class: "button-custom" %>
+    <div class="buttons" >
+      <%= link_to "Voir la liste des porcs", abattage_dashboard_path(@abattage), class: "button-custom" %>
+      <%= link_to "Voir les produits temoins du lot ", porcs_path, class: "button-custom" %>
     </div>
-
   </div>
+
+  <div class="buttons" >
+      <%= link_to "Générer les documents AOP ", porcs_path, class: "button-custom" %>
+    </div>
+  </div>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="/porcs">Exit</a>
+    </div>
 </div>

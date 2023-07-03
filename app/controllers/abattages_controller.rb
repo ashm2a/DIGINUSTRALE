@@ -29,10 +29,20 @@ class AbattagesController < ApplicationController
     @products_per_porcs = @abattage.porcs.map do |porc|
       {
         porc_id: porc.boucle,
-        lonzzus: porc.lonzu.quantité
+        lonzus: porc.lonzu.quantité,
+        coppas: porc.coppa.quantité,
+        prisuttus: porc.coppa.quantité
       }
     end
   end
+
+    # def dashboard_produits
+     # @abattage = Abattage.find(params[:abattage_id])
+      # @products_aop = @abattage.porcs.map do |porc|
+     # {
+     # }
+    # end
+
 
   def edit
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }

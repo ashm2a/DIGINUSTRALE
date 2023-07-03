@@ -24,9 +24,9 @@ class PorcsController < ApplicationController
 
   def create
     @porc = Porc.new(porc_params)
-    @porc.prisuttu = Prisuttu.new
-    @porc.lonzu = Lonzu.new
-    @porc.coppa = Coppa.new
+    @porc.build_prisuttu
+    @porc.build_lonzu
+    @porc.build_coppa
     @porc.user = current_user
     if @porc.save!
       redirect_to porcs_path
@@ -67,7 +67,7 @@ class PorcsController < ApplicationController
   private
 
   def porc_params
-    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids, :vermifuge_2_mois, :vermifuge_6_mois, :vermifuge_12_mois, :décès, :date_décès, :poids_carcasse, :epaisseur_lard, :ph)
+    params.require(:porc).permit(:boucle, :boucle_mère, :boucle_père, :date_de_naissance, :sexe, :poids, :vermifuge_2_mois, :vermifuge_6_mois, :vermifuge_12_mois, :décès, :date_décès, :poids_carcasse, :epaisseur_lard, :ph, :coppa)
   end
 
   def set_porc

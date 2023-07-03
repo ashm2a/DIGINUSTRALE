@@ -1,11 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
+import { end } from "@popperjs/core";
 
 // Connects to data-controller="aop"
 export default class extends Controller {
 
-  static targets = ["output", "poids", "lard", "ph", "row", "decoupe"]
+  static targets = ["output", "poids", "lard", "ph", "row", "decoupe", "eligible"]
   connect () {
-
   }
   clickUpdatePorcs() {
     const rowElements = document.querySelectorAll('[data-aop-target="row"]');
@@ -20,10 +20,13 @@ export default class extends Controller {
       const lardValue = parseFloat(rowElement.querySelector('[data-aop-target="lard"]').value);
       const phValue = parseFloat(rowElement.querySelector('[data-aop-target="ph"]').value);
       const imgElement = rowElement.querySelector('[data-aop-target="output"]');
+      //const eligible = rowElement.querySelector('[data-aop-target="eligible"]');
 
-      if(poidsValue != null && lardValue != null && phValue != null)
+      if(poidsValue != null && lardValue != null && phValue != null) {
         decoupeBtn.classList.remove('d-none');
+      }
         if(
+
           ((poidsValue >= 80) && (poidsValue <= 140))
           &&
           ((lardValue >= 4) && (lardValue <= 6))

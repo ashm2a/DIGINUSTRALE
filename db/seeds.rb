@@ -8,7 +8,6 @@
 puts "Cleaning database..."
 Porc.destroy_all
 User.destroy_all
-Abattage.destroy_all
 
 puts "creating user"
 user = User.create!(

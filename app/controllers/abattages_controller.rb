@@ -56,13 +56,10 @@ class AbattagesController < ApplicationController
           coppa = Coppa.create!(porc_id: porc.id)
           prisuttu = Prisuttu.create!(porc_id: porc.id)
           lonzu = Lonzu.create!(porc_id: porc.id)
-          porc.update(coppa_id: coppa.id,
-                      prisuttu_id: prisuttu.id,
-                      lonzu_id: lonzu.id)
         end
       end
     else
-      if params[counter.to_s][:coppa][:quantité] 
+      if params[counter.to_s][:coppa][:quantité]
         count.times do
           porc = Porc.find(params[counter.to_s][:id])
           porc.coppa.update(quantité: params[counter.to_s][:coppa][:quantité])

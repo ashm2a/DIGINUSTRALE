@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
 
-  resources :abattages, except: [:index] do
+  resources :abattages, except: [:index, :update] do
+    patch "/update_abattage", to: "abattages#update_abattage", as: :update_abattage
+    patch "/update_production", to: "abattages#update_production", as: :update_production
    get "edit_produits", to: "abattages#edit_produits"
   end
 

@@ -1,79 +1,73 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
 
-<%# NAVBAR %>
   <div class="nav-container">
     <div class="head-info">
       <div>
-        <h2 class="active">Lot d'abattage <%= @abattage.numéro_lot %></h2>
+        <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 1</h2>
       </div>
 
       <div class="elevage">
-          <p>Date et lieu d'abattage</p>
-          <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+        <p>Date et lieu d'abattage</p>
+        <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
       </div>
     </div>
   </div>
 
-
-
-  <div class="form-container-abattage">
-
-    <div class="form-headers row">
-      <div class="header col-2">IPG</div>
-      <div class="header col-2">Poids carcasse (kg)</div>
-      <div class="header col-2">Epaisseur lard (cm)</div>
-      <div class="header col-2">pH</div>
-      <div class="header col-1"></div>
-    </div>
-
-
-    <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage) , data: { controller: 'aop' } do |fp| %>
-      <% @porcs.each_with_index do |porc, index| %>
-          <%= simple_fields_for porc do |p| %>
-            <div class="form-row row bg-green" data-aop-target="row">
-              <div class="boucle-porc col-2">
-                <%=current_user.EDE%><%=porc.boucle%>
-              </div>
-              <div class="form-input col-2">
-                <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="<%=porc.poids_carcasse%>" data-aop-target="poids">
-              </div>
-              <div class="form-input col-2">
-                <input type="number" step="0.01" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="<%=porc.epaisseur_lard%>" data-aop-target="lard">
-              </div>
-              <div class="form-input col-2">
-                <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="<%=porc.ph%>" data-aop-target="ph">
-              </div>
-              <div class="aop form-input col-1 text-end" data-aop-target="output" >
-                <div data-aop-target="eligible"></div>
-                <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                <%= image_tag("aop.png", class: "d-none") %>
-              </div>
-
-            </div>
-
+  <div class="form-create-container" data-controller="aop">
+    <div class="formBloc">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="header">IPG</th>
+            <th class="header">Poids carcasse (kg)</th>
+            <th class="header">Epaisseur lard (cm)</th>
+            <th class="header">pH</th>
+            <th class="header"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage) do |fp| %>
+            <% @porcs.each_with_index do |porc, index| %>
+              <%= simple_fields_for porc do |p| %>
+                <tr class="form-row bg-green" data-aop-target="row">
+                  <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
+                  <td class="form-input">
+                    <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="<%= porc.poids_carcasse %>" data-aop-target="poids">
+                  </td>
+                  <td class="form-input">
+                    <input type="number" step="0.01" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="<%= porc.epaisseur_lard %>" data-aop-target="lard">
+                  </td>
+                  <td class="form-input">
+                    <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="<%= porc.ph %>" data-aop-target="ph">
+                  </td>
+                  <td class="aop form-input text-end" data-aop-target="output">
+                    <div data-aop-target="eligible"></div>
+                    <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
+                    <%= image_tag("aop.png", class: "d-none") %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <td colspan="5">
+                <%= fp.button :submit, 'Valider', class: 'submit-button', data: {
+                    insert_in_list_target: "btn-update",
+                    action: 'aop#clickUpdatePorcs',
+                  } %>
+              </td>
+            </tr>
           <% end %>
-      <% end %>
-      <div class="submit-btn">
-        <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }, data: {
-            insert_in_list_target: "btn-update",
-            action: 'aop#clickUpdatePorcs',
-          } %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between form-actions">
+        <%= link_to "Annuler", "/porcs", class: "annuler-button" %>
+        <div class="decoupe" data-aop-target="decoupe">
+          <%= link_to abattage_edit_produits_path(@abattage), style: "color: black;", class: "submit-button d-none" do %>
+            Etape suivante
+          <% end %>
+        </div>
       </div>
-    <% end %>
-
+    </div>
   </div>
-
-
-<div class="buttons">
-
-  <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
-
-
-      <div class="btn-decoupe" data-aop-target="decoupe">
-        <%= link_to abattage_edit_produits_path(@abattage), class: "btn btn-primary d-none" do %>
-            Découpe
-        <% end %>
-      </div>
-
 </div>

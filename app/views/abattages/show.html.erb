@@ -1,9 +1,25 @@
-<div class="container">
-  <h1>Show Porduction</h1>
-<h1> Information sur le lot :</h1>
+ <div class="container-global">
+  <%= render "shared/head_bar" %>
+
+
+  <div class="nav-container">
+      <div class="head-info">
+        <div>
+          <h2 class="active">Information sur le lot <%= @abattage.numéro_lot %></h2>
+        </div>
+      </div>
+
+      <div class="head-info">
+        <div class="elevage">
+            <p>Date et lieu d'abattage</p>
+            <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+        </div>
+      </div>
+
+    <div>
+      <%= link_to "Voir la liste des porcs", porcs_path, class: "button-custom" %>
+
+      <%= link_to "Voir les produits", porcs_path, class: "button-custom" %>
+    </div>
+  </div>
 </div>
-
-
-<% @abattage.porcs.each do |porc| %>
-  <%=  porc.boucle %>
-<% end %>

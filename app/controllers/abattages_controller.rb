@@ -35,6 +35,14 @@ class AbattagesController < ApplicationController
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
+ 
+  def edit_produits_temoins
+    @abattage = Abattage.find(params[:abattage_id])
+    @coppa = Coppa.joins(:porc).where(porcs: { abattage: @abattage }).last
+
+
+  end
+
   def update_abattage
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
@@ -50,9 +58,11 @@ class AbattagesController < ApplicationController
                     epaisseur_lard: params[counter.to_s][:epaisseur_lard],
                     poids_carcasse: params[counter.to_s][:poids_carcasse])
         counter += 1
+
         Coppa.create!(porc: porc) if porc.coppa.nil?
         Prisuttu.create!(porc: porc) if porc.prisuttu.nil?
         Lonzu.create!(porc: porc) if porc.lonzu.nil?
+        
       end
   end
 

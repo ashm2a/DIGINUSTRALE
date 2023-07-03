@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="form-container">
+  <div class="form-container-abattage">
 
     <div class="form-headers row">
       <div class="header col-2">IPG</div>
@@ -26,23 +26,25 @@
     </div>
 
 
+
     <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { controller: 'aop' } do |fp| %>
+
       <% @porcs.each_with_index do |porc, index| %>
           <%= simple_fields_for porc do |p| %>
-            <div class="form-row row bg-green" data-aop-target="row">
+            <div class="form-row row bg-green">
               <div class="boucle-porc col-2">
                 <%=current_user.EDE%><%=porc.boucle%>
               </div>
               <div class="form-input col-2">
-                <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%=porc.coppa.quantité%>" data-aop-target="poids">
+                <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%=porc.coppa.quantité%>">
               </div>
               <div class="form-input col-2">
-                <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%=porc.prisuttu.quantité%>" data-aop-target="lard">
+                <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%=porc.prisuttu.quantité%>">
               </div>
               <div class="form-input col-2">
-                <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%=porc.lonzu.quantité%>" data-aop-target="ph">
+                <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%=porc.lonzu.quantité%>" >
               </div>
-              <div class="aop form-input col-1 text-end" data-aop-target="output" >
+              <div class="aop form-input col-1 text-end" >
                 <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
                 <%= image_tag("aop.png", class: "d-none") %>
               </div>
@@ -51,10 +53,7 @@
           <% end %>
       <% end %>
       <div class="submit-btn">
-        <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }, data: {
-            insert_in_list_target: "btn-update",
-            action: 'aop#clickUpdatePorcs',
-          } %>
+        <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }
       </div>
     <% end %>
 
@@ -66,7 +65,7 @@
   <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
 
 
-      <div class="btn-decoupe" data-aop-target="decoupe">
+      <div class="btn-decoupe">
         <%= link_to abattage_edit_produits_path(@abattage), class: "btn btn-primary d-none" do %>
             Déclarer les produits témoins
         <% end %>

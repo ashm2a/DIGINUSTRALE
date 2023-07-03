@@ -25,10 +25,7 @@
       <div class="header col-1"></div>
     </div>
 
-
-
     <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { controller: 'aop' } do |fp| %>
-
       <% @porcs.each_with_index do |porc, index| %>
           <%= simple_fields_for porc do |p| %>
             <div class="form-row row bg-green">
@@ -63,7 +60,7 @@
         <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
 
             <div class="next-step-btn">
-              <%= link_to abattage_edit_produits_temoins_path(@abattage), class: "btn btn-primary" do %>
+              <%= link_to new_coppa_path, class: "btn btn-primary" do %>
                   Déclarer les produits témoins
               <% end %>
             </div>

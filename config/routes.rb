@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
   end
 
+  resources :prisuttus, only: [:new, :create]
+  resources :lonzus, only: [:new, :create]
+  resources :coppas, only: [:new, :create]
+
   # Defines the root path route ("/")
   # root "articles#index"
 end

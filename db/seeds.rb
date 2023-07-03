@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Cleaning database..."
 Porc.destroy_all
+Abattage.destroy_all
 User.destroy_all
 
 puts "creating user"
@@ -28,7 +29,7 @@ adam = {
   boucle: "00002",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2018, 07, 28),
+  date_de_naissance: Date.new(2018, 7, 28),
   sexe: "mâle",
 
 }
@@ -38,7 +39,7 @@ eve = {
   boucle: "00001",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2018, 07, 28),
+  date_de_naissance: Date.new(2018, 7, 28),
   sexe: "femelle",
 
 }
@@ -48,7 +49,7 @@ porc_one = {
   boucle: "00006",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 07, 28),
+  date_de_naissance: Date.new(2020, 7, 28),
   sexe: "femelle"
 }
 porc_two = {
@@ -56,7 +57,7 @@ porc_two = {
   boucle: "00007",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 07, 28),
+  date_de_naissance: Date.new(2020, 7, 28),
   sexe: "mâle"
 }
 porc_three = {
@@ -64,14 +65,15 @@ porc_three = {
   boucle: "00008",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 07, 28),
-  sexe: "femelle" }
+  date_de_naissance: Date.new(2020, 7, 28),
+  sexe: "femelle"
+}
 porc_four = {
   user: user,
   boucle: "00009",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 01, 10),
+  date_de_naissance: Date.new(2021, 1, 10),
   sexe: "mâle"
 }
 porc_five = {
@@ -79,7 +81,7 @@ porc_five = {
   boucle: "00010",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 01, 10),
+  date_de_naissance: Date.new(2021, 1, 10),
   sexe: "femelle"
 }
 porc_six = {
@@ -87,7 +89,7 @@ porc_six = {
   boucle: "00011",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 01, 10),
+  date_de_naissance: Date.new(2021, 1, 10),
   sexe: "mâle"
 }
 porc_seven = {
@@ -95,7 +97,7 @@ porc_seven = {
   boucle: "00012",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 01, 10),
+  date_de_naissance: Date.new(2021, 1, 10),
   sexe: "mâle"
 }
 porc_eight = {
@@ -103,11 +105,11 @@ porc_eight = {
   boucle: "00013",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 01, 10),
+  date_de_naissance: Date.new(2021, 1, 10),
   sexe: "femelle"
 }
 
-[adam, eve, porc_one, porc_two, porc_three, porc_four, porc_five, porc_six, porc_seven, porc_five, porc_six, porc_seven, porc_eight].each do |attributes|
+[adam, eve, porc_one, porc_two, porc_three, porc_four, porc_five, porc_six, porc_seven, porc_eight].each do |attributes|
   Porc.create!(attributes)
   puts "Created porcs"
 end

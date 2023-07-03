@@ -1,0 +1,4 @@
+<%= @abattage.porcs.length %> porcs
+<% @products_per_porcs.each do |ppp| %>
+  <p>Le cochon <%= ppp[:porc_id] %> a produit : <%= ppp[:lonzzus] %> lonzzu</p>
+<% end %>

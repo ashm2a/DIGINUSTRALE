@@ -24,6 +24,16 @@ class AbattagesController < ApplicationController
 
   def show; end
 
+  def dashboard
+    @abattage = Abattage.find(params[:abattage_id])
+    @products_per_porcs = @abattage.porcs.map do |porc|
+      {
+        porc_id: porc.boucle,
+        lonzzus: porc.lonzu.quantité
+      }
+    end
+  end
+
   def edit
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
@@ -35,7 +45,7 @@ class AbattagesController < ApplicationController
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
- 
+
   def edit_produits_temoins
     @abattage = Abattage.find(params[:abattage_id])
     @coppa = Coppa.joins(:porc).where(porcs: { abattage: @abattage }).last
@@ -62,7 +72,7 @@ class AbattagesController < ApplicationController
         Coppa.create!(porc: porc) if porc.coppa.nil?
         Prisuttu.create!(porc: porc) if porc.prisuttu.nil?
         Lonzu.create!(porc: porc) if porc.lonzu.nil?
-        
+
       end
   end
 
@@ -83,6 +93,7 @@ class AbattagesController < ApplicationController
         counter += 1
       end
   end
+
 
   private
 

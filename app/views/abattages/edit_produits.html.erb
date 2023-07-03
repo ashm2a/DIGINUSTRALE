@@ -53,22 +53,21 @@
           <% end %>
       <% end %>
       <div class="submit-btn">
-        <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }
+        <%= fp.button :submit, 'Mettre à jour', input_html: { class: 'form-control' }, data: {
+            insert_in_list_target: "btn-update",
+            action: 'aop#clickUpdatePorcs',
+          } %>
+      </div>
+      <div class="buttons">
+
+        <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
+
+            <div class="next-step-btn">
+              <%= link_to abattage_edit_produits_temoins_path(@abattage), class: "btn btn-primary" do %>
+                  Déclarer les produits témoins
+              <% end %>
+            </div>
       </div>
     <% end %>
 
   </div>
-
-
-<div class="buttons">
-
-  <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
-
-
-      <div class="btn-decoupe">
-        <%= link_to abattage_edit_produits_path(@abattage), class: "btn btn-primary d-none" do %>
-            Déclarer les produits témoins
-        <% end %>
-      </div>
-
-</div>

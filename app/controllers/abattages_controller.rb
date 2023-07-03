@@ -35,46 +35,38 @@ class AbattagesController < ApplicationController
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
- 
+
   def edit_produits_temoins
     @abattage = Abattage.find(params[:abattage_id])
     @coppa = Coppa.joins(:porc).where(porcs: { abattage: @abattage }).last
-
-
+    @lonzu = Lonzu.joins(:porc).where(porcs: { abattage: @abattage }).last
+    @prisuttu = Prisuttu.joins(:porc).where(porcs: { abattage: @abattage }).last
   end
 
   def update_abattage
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
-
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
     count = @porcs.count
-
     counter = 0
-
       count.times do
         porc = Porc.find(params[counter.to_s][:id])
         porc.update(ph: params[counter.to_s][:ph],
                     epaisseur_lard: params[counter.to_s][:epaisseur_lard],
                     poids_carcasse: params[counter.to_s][:poids_carcasse])
         counter += 1
-
         Coppa.create!(porc: porc) if porc.coppa.nil?
         Prisuttu.create!(porc: porc) if porc.prisuttu.nil?
         Lonzu.create!(porc: porc) if porc.lonzu.nil?
-        
       end
   end
 
   def update_production
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
-
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
     count = @porcs.count
-
     counter = 0
-
       count.times do
         porc = Porc.find(params[counter.to_s][:id])
         porc.coppa.update(quantité: params[counter.to_s][:coppa][:quantité])
@@ -82,6 +74,11 @@ class AbattagesController < ApplicationController
         porc.lonzu.update(quantité: params[counter.to_s][:lonzu][:quantité])
         counter += 1
       end
+  end
+
+  def update_produits
+    @abattage = Abattage.find(params[:abattage_id])
+    raise
   end
 
   private

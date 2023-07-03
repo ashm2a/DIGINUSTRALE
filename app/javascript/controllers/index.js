@@ -13,5 +13,5 @@ application.register("deces", DecesController)
 import GridController from "./grid_controller"
 application.register("grid", GridController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import SelectController from "./select_controller"
+application.register("select", SelectController)

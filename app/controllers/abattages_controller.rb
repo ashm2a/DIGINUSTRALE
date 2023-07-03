@@ -9,7 +9,9 @@ class AbattagesController < ApplicationController
   def create
     @abattage = Abattage.new(abattage_params)
     if @abattage.save!
-      @porcs = Porc.find(params[:porc_id])
+      porc_ids = params[:porc_ids].split(',')
+
+      @porcs = Porc.where(id: porc_ids)
       @porcs.each do |porc|
         porc.update!(abattage: @abattage)
         porc.update!(abattu: true)

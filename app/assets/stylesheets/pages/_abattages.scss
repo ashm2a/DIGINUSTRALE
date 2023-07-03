@@ -43,7 +43,6 @@
 }
 
 
-
 .buttons{
   display: flex;
   justify-content: space-between;
@@ -80,4 +79,31 @@
 
 .modal-header{
   color: black;
+}
+
+#list-porc {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  div {
+    background-color: $blue;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100px;
+    position: relative;
+
+    button {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-52%);
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-size: 25px;
+      color: white;
+    }
+  }
 }

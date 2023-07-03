@@ -24,9 +24,9 @@ class PorcsController < ApplicationController
 
   def create
     @porc = Porc.new(porc_params)
-    @porc.build_prisuttu
-    @porc.build_lonzu
-    @porc.build_coppa
+    # @porc.build_prisuttu
+    # @porc.build_lonzu
+    # @porc.build_coppa
     @porc.user = current_user
     if @porc.save!
       redirect_to porcs_path

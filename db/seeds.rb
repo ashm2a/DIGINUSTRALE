@@ -28,7 +28,7 @@ porc_one = {
   boucle: "00006",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 9, 28),
+  date_de_naissance: Date.new(2020, 07, 28),
   sexe: "femelle"
 }
 porc_two = {
@@ -36,7 +36,7 @@ porc_two = {
   boucle: "00007",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 9, 28),
+  date_de_naissance: Date.new(2020, 07, 28),
   sexe: "mâle"
 }
 porc_three = {
@@ -44,14 +44,14 @@ porc_three = {
   boucle: "00008",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2020, 9, 28),
+  date_de_naissance: Date.new(2020, 07, 28),
   sexe: "femelle" }
 porc_four = {
   user: user,
   boucle: "00009",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2021, 01, 10),
   sexe: "mâle"
 }
 porc_five = {
@@ -59,7 +59,7 @@ porc_five = {
   boucle: "00010",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2021, 01, 10),
   sexe: "femelle"
 }
 porc_six = {
@@ -67,7 +67,7 @@ porc_six = {
   boucle: "00011",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2021, 01, 10),
   sexe: "mâle"
 }
 porc_seven = {
@@ -75,7 +75,7 @@ porc_seven = {
   boucle: "00012",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2021, 01, 10),
   sexe: "mâle"
 }
 porc_eight = {
@@ -83,7 +83,7 @@ porc_eight = {
   boucle: "00013",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2021, 01, 10),
   sexe: "femelle"
 }
 

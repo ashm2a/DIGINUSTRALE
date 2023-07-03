@@ -27,11 +27,11 @@ export default class extends Controller {
       }
         if(
 
-          ((poidsValue >= 80) && (poidsValue <= 140))
+          ((poidsValue >= 85) && (poidsValue <= 140))
           &&
-          ((lardValue >= 4) && (lardValue <= 6))
+          ((lardValue >= 2,5) && (lardValue <= 6))
           &&
-          ((phValue >= 4) && (phValue <= 6))
+          ((phValue >= 5,2) && (phValue <= 5,7))
         ) {
           //console.log("AOP OK")
           imgElement.querySelector("img").classList.remove("d-none");

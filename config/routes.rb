@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :abattages, except: [:index] do
    get "edit_produits", to: "abattages#edit_produits"
+   get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
   end
 
   # Defines the root path route ("/")

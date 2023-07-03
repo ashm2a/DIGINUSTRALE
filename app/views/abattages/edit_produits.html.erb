@@ -1,19 +1,16 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
-
   <div class="nav-container">
     <div class="head-info">
       <div>
         <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 2</h2>
       </div>
-
       <div class="elevage">
         <p>Date et lieu d'abattage</p>
         <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
       </div>
     </div>
   </div>
-
   <div class="form-create-container" data-controller="aop">
     <div class="formBloc">
       <table class="table">

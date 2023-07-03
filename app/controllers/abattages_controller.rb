@@ -3,7 +3,7 @@ class AbattagesController < ApplicationController
 
   def new
     @abattage = Abattage.new
-    @porcs = Porc.all
+    @porcs = Porc.where(décès: false, abattu: false)
   end
 
   def create
@@ -12,8 +12,9 @@ class AbattagesController < ApplicationController
       @porcs = Porc.find(params[:porc_id])
       @porcs.each do |porc|
         porc.update!(abattage: @abattage)
+        porc.update!(abattu: true)
       end
-      redirect_to abattage_path(@abattage)
+      redirect_to edit_abattage_path(@abattage)
     else
       render :new
     end
@@ -22,21 +23,32 @@ class AbattagesController < ApplicationController
   def show
   end
 
-  def edit; end
+  def edit
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+  end
 
   def update
-    @abattage.porcs.update(porc_params)
-    if @abattage.porcs.update
-      redirect_to porcs_path
-    else
-      render :edit
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+    count = @porcs.count
+
+    counter = 0
+
+    count.times do
+      porc = Porc.find(params[counter.to_s][:id])
+      porc.update( ph: params[counter.to_s][:ph],
+        epaisseur_lard: params[counter.to_s][:epaisseur_lard],
+        poids_carcasse: params[counter.to_s][:poids_carcasse])
+      counter += 1
     end
   end
 
   private
 
   def abattage_params
-    params.require(:abattage).permit(:numéro_lot, :date, :lieu, :poids_carcasse, :ph, :epaisseur_lard,)
+    params.require(:abattage).permit(:numéro_lot, :date, :lieu)
   end
 
   def set_abattage

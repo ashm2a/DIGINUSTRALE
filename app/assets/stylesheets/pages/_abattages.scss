@@ -1,17 +1,52 @@
-.sub-container{
+.form-container {
   margin: 50px auto;
-  .porc-div{
+  text-align: center;
 
-
-    .submit-button{
-      padding: 4px;
-      background-color: $blue;
+  .submit-btn {
+    background-color: $blue;
+    display: inline-block;
+    input {
+      color:black;
     }
   }
 
+  .form-headers {
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .form-row{
+    height: 14vh;
+    justify-content: center;
+
+    .boucle-porc{
+      padding: 0px;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-input{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+    .aop{
+      position: relative;
+      img {
+        right: 0px;
+        position: absolute;
+        width: 56px;
+      }
+    }
 }
 
 
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
 
 .head-info {
   margin-top: 25px;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_03_185131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
 
   create_table "coppas", force: :cascade do |t|
     t.bigint "porc_id", null: false
-    t.integer "numéro_lot"
     t.float "poids"
     t.float "epaisseur_lard"
     t.float "ph"

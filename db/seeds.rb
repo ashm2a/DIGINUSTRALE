@@ -23,6 +23,27 @@ user = User.create!(
 )
 
 puts "Creating porcs..."
+
+adam = {
+  user: user,
+  boucle: "00002",
+  boucle_mère: "00001",
+  boucle_père: "00002",
+  date_de_naissance: Date.new(2018, 07, 28),
+  sexe: "mâle",
+
+}
+
+eve = {
+  user: user,
+  boucle: "00001",
+  boucle_mère: "00001",
+  boucle_père: "00002",
+  date_de_naissance: Date.new(2018, 07, 28),
+  sexe: "femelle",
+
+}
+
 porc_one = {
   user: user,
   boucle: "00006",
@@ -87,7 +108,7 @@ porc_eight = {
   sexe: "femelle"
 }
 
-[porc_one, porc_two, porc_three, porc_four, porc_five, porc_six, porc_seven, porc_five, porc_six, porc_seven, porc_eight].each do |attributes|
+[adam, eve, porc_one, porc_two, porc_three, porc_four, porc_five, porc_six, porc_seven, porc_five, porc_six, porc_seven, porc_eight].each do |attributes|
   Porc.create!(attributes)
   puts "Created porcs"
 end

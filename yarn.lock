@@ -72,7 +72,7 @@
 
 "@popperjs/core@^2.11.8":
   version "2.11.8"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
 "@rails/actioncable@^7.0":
@@ -256,6 +256,11 @@
   version "4.2.2"
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@yaireo/tagify@^4.17.8":
+  version "4.17.8"
+  resolved "https://registry.npmjs.org/@yaireo/tagify/-/tagify-4.17.8.tgz"
+  integrity sha512-MqU3JhE/35r8qZPgfLshXfOkTkgtFEXh2Ja8J3Nn1rPuut28yorJLtxH67jbrbanE1gFH2vCvxe6meqM6oZ8rA==
 
 acorn-import-assertions@^1.9.0:
   version "1.9.0"

@@ -2,29 +2,34 @@
   <%= render "shared/head_bar" %>
   <div class="form-create-container mt-5">
     <h2>Nouvel abattage</h2>
-      <%= form_with url: "/abattages"  do |f| %>
-        <form accept-charset="UTF-8" method="post">
-          <div class="formGroupe">
-            <label for="lot">Lot</label>
-            <input type="text" id="lot" name="abattage[numéro_lot]"/>
-          </div>
-          <% Abattage::ABATTOIRS.each do |lieu|%>
-              <div class="formGroupe">
-                <input type="radio" id="lieu" name="abattage[lieu]" value=<%= lieu %>>
-                <label for="lieu"><%= lieu %></label>
-              </div>
-          <% end %>
-          <div class="formGroupe">
-            <label for="date">Date</label>
-            <input type="date" id="date" name="abattage[date]"/>
-          </div>
+    <%= simple_form_for :abattage, url: "/abattages" do |f| %>
+    <div class="formBloc">
+      <div class="formGroupe">
+        <%= f.input :numéro_lot, placeholder: "Ecrivez le numéro de lot" %>
+      </div>
+      <div class="formGroupe">
+        <%= f.input :lieu, as: :select, collection: Abattage::ABATTOIRS %>
+      </div>
+      <div class="formGroupe">
+        <%= f.input :date, as: :date %>
+      </div>
+      <div class="formGroupe mb-3" data-controller="select">
+        <span style="color: black; font-weight: bold; font-size: 20px; transition: 0.4s ease-out">Porc abattus</span>
+        <div id="list-porc" class="d-flex justify-content-start" data-select-target="list">
+          <input type="hidden" name="porc_ids" id="porc-ids-input" value="">
+        </div>
+        <select data-select-target="select" data-action="change->select#updateList">
+          <option value="" selected>Selectionner les porcs</option>
           <% @porcs.each do |porc| %>
-            <input type="checkbox" id="<%= porc.id %>" name="porc_id[]" value="<%= porc.id %>" multiple="true">
-            <label for="<%= porc.id %>"><%= porc.boucle %></label>
+            <%= content_tag :option, porc[:boucle], value: porc[:id] %>
           <% end %>
-          <input type="submit" name="commit" value="Create abattage" data-disable-with="Create abattage">
-        </form>
-      <% end %>
+        </select>
+      </div>
+      <div class="d-flex justify-content-between form-actions">
+        <%= link_to "Annuler", porcs_path, class: "annuler-button" %>
+        <%= f.button :submit, "Ajouter", data: { disable_with: "Create abattage" }, class: "submit-button" %>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
-

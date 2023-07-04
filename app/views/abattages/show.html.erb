@@ -78,6 +78,7 @@
     </thead>
     <tbody>
       <tr>
+        <% if @coppa_temoin %>
           <td>Coppa</td>
          <td><%= @coppa_temoin.poids %></td>
           <td>N\A</td>
@@ -89,8 +90,10 @@
           <td><%= @coppa_temoin.date_entrée_affinage %></td>
           <td><%= @coppa_temoin.date_sortie_affinage_vente %></td>
       </tr>
+        <% end %>
 
       <tr>
+        <% if @lonzu_temoin %>
           <td>Lonzu</td>
           <td><%= @lonzu_temoin.poids %></td>
           <td>N\A</td>
@@ -102,8 +105,9 @@
           <td><%= @lonzu_temoin.date_entrée_affinage %></td>
           <td><%= @lonzu_temoin.date_sortie_affinage_vente %></td>
       </tr>
-
+        <% end %>
       <tr>
+         <% if @prisuttu_temoin %>
           <td>Prisuttu</td>
           <td><%= @prisuttu_temoin.poids %></td>
           <td><%= @prisuttu_temoin.epaisseur_lard %></td>
@@ -115,14 +119,12 @@
           <td><%= @prisuttu_temoin.date_entrée_affinage %></td>
           <td><%= @prisuttu_temoin.date_sortie_affinage_vente %></td>
       </tr>
+      <% end %>
   </tbody>
 </table>
 
 
-    <div class="buttons" >
-      <%= link_to "Voir la liste des porcs", abattage_dashboard_path(@abattage), class: "button-custom" %>
-      <%= link_to "Voir les produits temoins du lot ", porcs_path, class: "button-custom" %>
-    </div>
+   
   </div>
 
   <div class="buttons" >
@@ -136,3 +138,9 @@
       <a class="btn btn-primary" href="/porcs">Exit</a>
     </div>
 </div>
+
+<%= link_to "form 1 (infos abattage)", edit_abattage_path(@abattage) %>
+<%= link_to "form 2 (quantités produits)", abattage_edit_produits_path(@abattage) %>
+<%= link_to "form 3 (infos coppa)", new_coppa_path %>
+<%= link_to "form 4 (infos lonzu)", new_lonzu_path %>
+<%= link_to "form 5 (infos prisuttu)", new_prisuttu_path %>

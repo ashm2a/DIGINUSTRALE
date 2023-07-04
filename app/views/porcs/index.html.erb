@@ -2,7 +2,17 @@
   <%= render "shared/head_bar" %>
 
   <div data-controller="grid">
+
     <%= render "shared/navbar" %>
+
+  <% if !@porcs.last.vermifuge_2_mois && !@porcs.last.poids %>
+    <div class="flash flash-danger alert alert-dismissible fade show" role="alert">
+      <span><strong> Rappel:</strong> Pesée et vermifuge pour le porc <%= @porcs.last.user.EDE %><%= @porcs.last.boucle%>   </span>
+      <a data-bs-dismiss="alert" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+  <% end %>
 
     <% if @ipg.present? && @porcs.empty? %>
       <div class="elevage-container enable" data-grid-target="grid">

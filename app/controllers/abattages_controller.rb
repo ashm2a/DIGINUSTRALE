@@ -90,7 +90,9 @@ class AbattagesController < ApplicationController
     # respond_to do |format|
     #   format.html
     #   format.pdf do
-        render pdf: 'abattages/show'  # Excluding ".pdf" extension.
+        render pdf: 'abattages/show',
+                orientation: 'Landscape'
+          # Excluding ".pdf" extension.
       #end
     end
     # redirect_to @abattage

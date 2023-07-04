@@ -61,13 +61,13 @@
               <% end %>
             <% end %>
         </tbody>
-        </table>
-        <div class="d-flex justify-content-between form-actions">
-          <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
-          <div class="decoupe">
-            <%= fp.button :submit, 'Valider', class: 'submit-button' %>
-          </div>
+      </table>
+      <div class="d-flex justify-content-between form-actions">
+        <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
+        <div class="decoupe">
+          <%= fp.button :submit, 'Valider', class: 'submit-button' %>
         </div>
+      </div>
       <% end %>
     </div>
   </div>

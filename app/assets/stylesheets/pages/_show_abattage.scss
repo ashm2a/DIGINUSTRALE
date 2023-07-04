@@ -1,0 +1,58 @@
+.list-etape {
+  display: flex;
+  justify-content: space-around;
+  margin: 100px 0;
+
+  .etape {
+    background-color: rgb(174, 43, 43);
+    padding: 50px;
+    border-radius: 5px;
+
+    a {
+      display: inline-block;
+      color: black;
+      font-weight: bold;
+      transition: all 0.4s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+
+.list-tableau {
+
+  .tableau-content {
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    margin: 20px 0;
+
+    table {
+      color: black;
+      border-collapse: separate;
+
+      th, td {
+        padding: 5px;
+        border: 1px solid rgb(191, 191, 191);
+        border-radius: 5px;
+      }
+
+      thead {
+        td {
+          color: $gray;
+          font-weight: bold;
+        }
+      }
+
+      tbody {
+        td {
+          color: $blue;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

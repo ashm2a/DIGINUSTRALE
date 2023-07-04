@@ -10,21 +10,20 @@ Rails.application.routes.draw do
   end
 
   resources :abattages, except: [:index, :update] do
-    patch "update_abattage", to: "abattages#update_abattage", as: :update_abattage
     get "edit_produits", to: "abattages#edit_produits"
-    patch "/update_production", to: "abattages#update_production", as: :update_production
-    patch "/update_produits", to: "abattage#update_produits", as: :update_produits
-    get "edit_produits", to: "abattages#edit_produits"
+    get "edit_coppa", to: "abattages#edit_coppa"
+    get "edit_lonzu", to: "abattages#edit_lonzu"
+    get "edit_prisuttu", to: "abattages#edit_prisuttu"
     get "/dashboard", to: "abattages#dashboard"
     get "download", to: "abattages#download"
     get "preview", to: "abattages#preview"
+    patch "update_abattage", to: "abattages#update_abattage", as: :update_abattage
+    patch "/update_production", to: "abattages#update_production", as: :update_production
+    patch "/update_produits", to: "abattages#update_produits", as: :update_produits
+    patch "/update_coppa", to: "abattages#update_coppa", as: :update_coppa
+    patch "/update_lonzu", to: "abattages#update_lonzu", as: :update_lonzu
+    patch "/update_prisuttu", to: "abattages#update_prisuttu", as: :update_prisuttu
   end
-
-  resources :prisuttus, only: [:new, :create]
-  resources :lonzus, only: [:new, :create]
-  resources :coppas, only: [:new, :create]
-
-
   # Defines the root path route ("/")
   # root "articles#index"
 end

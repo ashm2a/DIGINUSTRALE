@@ -52,6 +52,24 @@ class AbattagesController < ApplicationController
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
+  def edit_lonzu
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+  end
+
+  def edit_coppa
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+  end
+
+  def edit_prisuttu
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+  end
+
   def update_abattage
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
@@ -88,6 +106,69 @@ class AbattagesController < ApplicationController
       redirect_to abattage_path(@abattage)
   end
 
+  def update_coppa
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+    count = @porcs.count
+    counter = 0
+    count.times do
+      porc_id = params[counter.to_s].keys.first
+      porc = Porc.find(porc_id)
+      porc.coppa.update(poids: params[counter.to_s][porc_id][:coppa][:poids])
+      porc.coppa.update(date_mise_au_sel: params[counter.to_s][porc_id][:coppa][:date_mise_au_sel])
+      porc.coppa.update(date_sortie_de_sel: params[counter.to_s][porc_id][:coppa][:date_sortie_de_sel])
+      porc.coppa.update(durée_fumage: params[counter.to_s][porc_id][:coppa][:durée_fumage])
+      porc.coppa.update(poids_sortie_sèche: params[counter.to_s][porc_id][:coppa][:poids_sortie_sèche])
+      porc.coppa.update(date_entrée_affinage: params[counter.to_s][porc_id][:coppa][:date_entrée_affinage])
+      porc.coppa.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:coppa][:date_sortie_affinage_vente])
+      counter += 1
+    end
+    redirect_to abattage_path(@abattage)
+  end
+
+  def update_lonzu
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+    count = @porcs.count
+    counter = 0
+    count.times do
+      porc_id = params[counter.to_s].keys.first
+      porc = Porc.find(porc_id)
+      porc.lonzu.update(poids: params[counter.to_s][porc_id][:lonzu][:poids])
+      porc.lonzu.update(date_mise_au_sel: params[counter.to_s][porc_id][:lonzu][:date_mise_au_sel])
+      porc.lonzu.update(date_sortie_de_sel: params[counter.to_s][porc_id][:lonzu][:date_sortie_de_sel])
+      porc.lonzu.update(durée_fumage: params[counter.to_s][porc_id][:lonzu][:durée_fumage])
+      porc.lonzu.update(poids_sortie_sèche: params[counter.to_s][porc_id][:lonzu][:poids_sortie_sèche])
+      porc.lonzu.update(date_entrée_affinage: params[counter.to_s][porc_id][:lonzu][:date_entrée_affinage])
+      porc.lonzu.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:lonzu][:date_sortie_affinage_vente])
+      counter += 1
+    end
+    redirect_to abattage_path(@abattage)
+  end
+
+  def update_prisuttu
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+    count = @porcs.count
+    counter = 0
+    count.times do
+      porc_id = params[counter.to_s].keys.first
+      porc = Porc.find(porc_id)
+      porc.prisuttu.update(poids: params[counter.to_s][porc_id][:prisuttu][:poids])
+      porc.prisuttu.update(date_mise_au_sel: params[counter.to_s][porc_id][:prisuttu][:date_mise_au_sel])
+      porc.prisuttu.update(date_sortie_de_sel: params[counter.to_s][porc_id][:prisuttu][:date_sortie_de_sel])
+      porc.prisuttu.update(durée_fumage: params[counter.to_s][porc_id][:prisuttu][:durée_fumage])
+      porc.prisuttu.update(poids_sortie_sèche: params[counter.to_s][porc_id][:prisuttu][:poids_sortie_sèche])
+      porc.prisuttu.update(date_entrée_affinage: params[counter.to_s][porc_id][:prisuttu][:date_entrée_affinage])
+      porc.prisuttu.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:prisuttu][:date_sortie_affinage_vente])
+      counter += 1
+    end
+    redirect_to abattage_path(@abattage)
+  end
+
   def download
     @abattage = Abattage.find(params[:abattage_id])
     @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
@@ -106,10 +187,9 @@ class AbattagesController < ApplicationController
     # respond_to do |format|
     #   format.html
     #   format.pdf do
-        render pdf: 'abattages/show'  # Excluding ".pdf" extension.
-      #end
-    end
-    # redirect_to @abattage
+    render pdf: 'abattages/show' # Excluding ".pdf" extension.
+    #end
+  end
 
   private
 

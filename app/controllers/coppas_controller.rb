@@ -15,11 +15,9 @@ class CoppasController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
   private
 
@@ -30,5 +28,4 @@ class CoppasController < ApplicationController
   def set_coppa
     @porc = Coppa.find(params[:id])
   end
-
 end

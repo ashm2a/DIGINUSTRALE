@@ -26,7 +26,7 @@
     </div>
 
 
-    <%= simple_form_for [@lonzu], url: lonzus_path do |f| %>
+    <%= simple_form_for [@lonzu], data: {turbo: "false"} do |f| %>
       <div class="form-row row bg-green" data-aop-target="row">
         <div class="col-1">
           <%= select_tag "[porc][boucle]", options_for_select(Porc.where(abattu: true).map(&:boucle)) %>

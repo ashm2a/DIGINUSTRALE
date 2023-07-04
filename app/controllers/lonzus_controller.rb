@@ -24,7 +24,7 @@ class LonzusController < ApplicationController
   private
 
   def lonzu_params
-    params.require(:lonzu).permit(:poids, :epaisseur_lard, :ph, :date_mise_au_sel, :date_sortie_de_sel, :durée_fumage, :poids_sortie_sèche, :date_entrée_affinage, :date_sortie_affinage_vente)
+    params.require(:lonzu).permit(:poids, :date_mise_au_sel, :date_sortie_de_sel, :durée_fumage, :poids_sortie_sèche, :date_entrée_affinage, :date_sortie_affinage_vente)
   end
 
   def set_lonzu

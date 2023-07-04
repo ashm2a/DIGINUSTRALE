@@ -22,7 +22,11 @@ class AbattagesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    @lonzu_temoin = Lonzu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+  end
 
   def dashboard
     @abattage = Abattage.find(params[:abattage_id])

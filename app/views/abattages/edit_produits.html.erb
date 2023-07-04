@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="form-create-container" data-controller="aop">
+  <div class="form-create-container" data-controller="checkable">
     <div class="formBloc">
       <table class="table">
         <thead>
@@ -25,25 +25,23 @@
             <th class="header"></th>
           </tr>
         </thead>
-        <tbody data-controller="aop">
-          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
+        <tbody>
+          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm" }, method: :patch do |fp| %>
             <% @porcs.each_with_index do |porc, index| %>
               <%= simple_fields_for porc do |p| %>
-                <tr class="form-row bg-green" data-aop-target="row">
+                <tr class="form-row">
                   <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.nil? ? 0 : porc.coppa.quantité %>" data-aop-target="poids">
+                    <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité %>" data-checkable-target="checkable">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.nil? ? 0 : porc.prisuttu.quantité %>" data-aop-target="lard">
+                    <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité %>" data-checkable-target="checkable">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.nil? ? 0 : porc.lonzu.quantité %>" data-aop-target="ph">
+                    <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité %>" data-checkable-target="checkable">
                   </td>
-                  <td class="aop form-input text-end" data-aop-target="output">
-                    <div data-aop-target="eligible"></div>
-                    <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                    <%= image_tag("aop.png", class: "d-none") %>
+                  <td class="aop form-input text-end">
+                  <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
                   </td>
                 </tr>
               <% end %>
@@ -52,7 +50,7 @@
         </table>
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
-          <div class="decoupe" data-aop-target="decoupe">
+          <div class="decoupe d-none" data-checkable-target="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>
         </div>

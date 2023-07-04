@@ -1,7 +1,7 @@
 class CreateCoppas < ActiveRecord::Migration[7.0]
   def change
     create_table :coppas do |t|
-      t.references :porc, null: false, foreign_key: true
+      t.references :porc, foreign_key: true
       t.integer :numéro_lot
       t.float :poids
       t.float :epaisseur_lard

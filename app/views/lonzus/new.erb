@@ -1,0 +1,76 @@
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+
+<%# NAVBAR %>
+  <div class="nav-container">
+    <div class="head-info">
+      <div>
+        <h2 class="active">Lonzu témoin</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container-abattage">
+
+    <div class="form-headers row">
+      <div class="header col-1">IPG du porc</div>
+      <div class="header col-1">Poids(kg)</div>
+      <div class="header col-1">Epaisseur du lard (cm)</div>
+      <div class="header col-1">pH</div>
+      <div class="header col-1">Date mise au sel</div>
+      <div class="header col-1">Date sortie de sel</div>
+      <div class="header col-1">Durée de fumage (jours)</div>
+      <div class="header col-1">Poids sortie de sèche (kg)</div>
+      <div class="header col-1">Date entrée affinage</div>
+      <div class="header col-1">Date sortie affinage vente</div>
+    </div>
+
+
+    <%= simple_form_for [@lonzu], data: {turbo: "false"} do |f| %>
+      <div class="form-row row bg-green" data-aop-target="row">
+        <div class="col-1">
+          <%= select_tag "[porc][boucle]", options_for_select(Porc.where(abattu: true).map(&:boucle)) %>
+        </div>
+*
+        <div class="col-1">
+          <%= f.input :poids, label: false, as: :float %>
+        </div>
+        <div class="col-1">
+          <%= f.input :epaisseur_lard, label: false, as: :float %>
+        </div>
+        <div class="col-1">
+          <%= f.input :ph, label: false, as: :float %>
+        </div>
+        <div class="col-1">
+          <%= f.input :date_mise_au_sel, label: false, as: :date, html5: true %>
+        </div>
+        <div class="col-1">
+          <%= f.input :date_sortie_de_sel, label: false, as: :date, html5: true %>
+        </div>
+        <div class="col-1">
+          <%= f.input :durée_fumage, label: false, input_html: { type: :number }%>
+        </div>
+        <div class="col-1">
+          <%= f.input :poids_sortie_sèche, label: false, input_html: { type: :number } %>
+        </div>
+        <div class="col-1">
+          <%= f.input :date_entrée_affinage, label: false, as: :date, html5: true %>
+        </div>
+        <div class="col-1">
+          <%= f.input :date_sortie_affinage_vente, label: false, as: :date, html5: true %>
+        </div>
+      </div>
+      <div class="col-1">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
+
+  </div>
+<div class="buttons">
+
+  <%= link_to "Exit", "/porcs", class: "btn btn-primary"%>
+  <%= link_to new_prisuttu_path, class: "btn btn-primary" do %>
+    Etape suivante
+  <% end %>
+</div>

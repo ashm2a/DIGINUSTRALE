@@ -15,19 +15,40 @@
         </div>
       </div>
 
-    <h1>Infos des porcs</h1>
+<h1>Infos des porcs</h1>
 
-<% @abattage.porcs.each do |porc|%>
-  <%= link_to porc_path(porc) do %>
-    <%= porc.user.EDE %><%= porc.boucle %>
-  <% end %>
-  <%= porc.poids_carcasse%>
-  <%= porc.epaisseur_lard%>
-  <%= porc.ph%>
-  <%= porc.coppa.quantité%>
-  <%= porc.lonzu.quantité%>
-  <%= porc.prisuttu.quantité%>
-<% end %>
+<table>
+  <tbody style="border: "1px solid black">
+    <% @abattage.porcs.each do |porc|%>
+      <tr>
+        <td>
+          <%= link_to porc_path(porc) do %>
+            <%= porc.user.EDE %><%= porc.boucle %>
+          <% end %>
+        </td>
+        <td>
+         <%= porc.poids_carcasse%>
+        </td>
+        <td>
+          <%= porc.epaisseur_lard%>
+        </td>
+        <td>
+          <%= porc.ph%>
+        </td>
+        <td>
+          <%= porc.coppa.quantité%>
+        </td>
+        <td>
+          <%= porc.lonzu.quantité%>
+        </td>
+        <td>
+          <%= porc.prisuttu.quantité%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
     <h1>Infos des produits</h1>
     <h2>Coppa</h2>
       <% @abattage.porcs.each do |porc|%>

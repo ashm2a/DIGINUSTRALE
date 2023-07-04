@@ -2,7 +2,7 @@
   <%= render "shared/head_bar" %>
   <div class="form-create-container mt-5">
     <h2>Nouvel abattage</h2>
-    <%= simple_form_for :abattage, url: "/abattages" do |f| %>
+    <%= simple_form_for :abattage, url: "/abattages", data: { turbo: "false" } do |f| %>
     <div class="formBloc">
       <div class="formGroupe">
         <%= f.input :numéro_lot, placeholder: "Ecrivez le numéro de lot" %>

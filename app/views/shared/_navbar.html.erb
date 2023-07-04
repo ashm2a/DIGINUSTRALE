@@ -23,7 +23,7 @@
       <%= link_to new_porc_path, class: "button-custom" do %>
         <i class="fa-solid fa-plus"></i>&nbsp; Ajouter un porc
       <% end %>
-      <%= link_to new_abattage_path, class: "button-custom" do %>
+      <%= link_to new_abattage_path, class: "button-custom", data: { turbo: "false" } do %>
         <i class="fa-sharp fa-solid fa-share"></i>&nbsp; Passer a l'abattoir
       <% end %>
     </div>

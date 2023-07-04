@@ -64,6 +64,7 @@ class AbattagesController < ApplicationController
       Prisuttu.create!(porc: porc) if porc.prisuttu.nil?
       Lonzu.create!(porc: porc) if porc.lonzu.nil?
     end
+    redirect_to abattage_path(@abattage)
   end
 
   def update_production
@@ -79,8 +80,8 @@ class AbattagesController < ApplicationController
         porc.lonzu.update(quantité: params[counter.to_s][:lonzu][:quantité])
         counter += 1
       end
+      redirect_to abattage_path(@abattage)
   end
-
 
   private
 

@@ -4,46 +4,32 @@ import { end } from "@popperjs/core";
 // Connects to data-controller="aop"
 export default class extends Controller {
 
-  static targets = ["output", "poids", "lard", "ph", "row", "decoupe", "eligible"]
-  connect () {
+  static targets = ["bg", "poids", "lard", "ph", "eligible"]
+
+  connect() {
+    this.labelAop();
   }
-  clickUpdatePorcs() {
-    const rowElements = document.querySelectorAll('[data-aop-target="row"]');
-    //const btnDecoupeElement = document.querySelector('[data-aop-target="btn-decoupe"]');
-    const decoupeBtn = document.querySelector(".decoupe a");
-    //console.log(decoupeBtn);
 
-    //decoupeBtn.classList.remove("d-none");
+  labelAop() {
 
-    rowElements.forEach((rowElement) => {
-      const poidsValue = parseFloat(rowElement.querySelector('[data-aop-target="poids"]').value);
-      const lardValue = parseFloat(rowElement.querySelector('[data-aop-target="lard"]').value);
-      const phValue = parseFloat(rowElement.querySelector('[data-aop-target="ph"]').value);
-      const imgElement = rowElement.querySelector('[data-aop-target="output"]');
-      //const eligible = rowElement.querySelector('[data-aop-target="eligible"]');
+    const img = this.eligibleTarget;
+    const bg = this.bgTarget;
 
-      if(poidsValue != null && lardValue != null && phValue != null) {
-        decoupeBtn.classList.remove('d-none');
-      }
-        if(
+    const poidsValue = parseFloat(this.poidsTarget.value);
+    const lardValue = parseFloat(this.lardTarget.value);
+    const phValue = parseFloat(this.phTarget.value);
 
-          ((poidsValue >= 85) && (poidsValue <= 140))
-          &&
-          ((lardValue >= 2,5) && (lardValue <= 6))
-          &&
-          ((phValue >= 5,2) && (phValue <= 5,7))
-        ) {
-          //console.log("AOP OK")
-          imgElement.querySelector("img").classList.remove("d-none");
-          rowElement.classList.add("bg-success");
-          }
-        else {
-          //console.log("AOP NO")
-          imgElement.querySelector("img").classList.add("d-none");
-          rowElement.classList.remove("bg-success");
-        }
-        end
-      end
-    });
-  }
+    if (
+      (poidsValue >= 85 && poidsValue <= 140) &&
+      (lardValue >= 2.5 && lardValue <= 6) &&
+      (phValue >= 5.2 && phValue <= 5.7)
+    ) {
+        img.classList.remove("d-none");
+        bg.classList.add("bg-success");
+      } else {
+        img.classList.add("d-none");
+        bg.classList.remove("bg-success");
+    }
+    end
+  };
 }

@@ -1,52 +1,39 @@
-.form-container-abattage {
-  margin: 50px auto;
-  text-align: center;
+tbody {
+  color: black!important;
 
-  .submit-btn {
-    background-color: $blue;
-    display: inline-block;
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    padding-left: 10px;
+    margin-top: 10px;
+    color: black;
+    font-size: 19px;
+    transition: 0.4s ease-out;
+  }
+
+  &:focus-within {
     input {
-      color:black;
+      border-bottom-color: $blue;
     }
   }
-
-  .form-headers {
-    justify-content: center;
-    font-weight: 700;
-  }
-
-  .form-row{
-    height: 14vh;
-    justify-content: center;
-
-    .boucle-porc{
-      padding: 0px;
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .form-input{
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  }
-
-    .aop{
-      position: relative;
-      img {
-        right: 0px;
-        position: absolute;
-        width: 56px;
-      }
-    }
 }
 
-
-.buttons{
+.boucle-porc {
+  padding: 0px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
 }
+
+img {
+  width: 56px;
+}
+
 
 .head-info {
   margin-top: 25px;
@@ -54,7 +41,7 @@
   align-items: center;
   justify-content: space-between;
 
-  h2{
+  h2 {
     font-weight: 700;
   }
 
@@ -70,15 +57,50 @@
     font-size: 16px;
     box-shadow: 0 0 10px rgb(126, 126, 126);
     transition: all 0.4s ease;
-    p{
+    p {
       margin: 0;
     }
   }
 }
 
-
-.modal-header{
+.table {
+  width: 100%;
+  margin-bottom: 1.5rem;
   color: black;
+
+  .header {
+    color: black;
+    height: 50px;
+  }
+
+  tbody tr {
+    color: black;
+  }
+
+  td {
+    height: 80px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    padding-left: 10px;
+    margin-top: 10px;
+    color: black;
+    font-size: 19px;
+    transition: 0.4s ease-out;
+  }
+
+  tbody:focus-within {
+    input {
+      border-bottom-color: $blue;
+    }
+  }
 }
 
 #list-porc {

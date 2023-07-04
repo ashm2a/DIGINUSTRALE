@@ -61,12 +61,13 @@
 </table>
 
     <h1>Infos des produits</h1>
-
-
 <table style="border: 1px solid white">
     <thead>
       <tr>
         <td>Produit</td>
+        <td>Poids</td>
+        <td>Epaisseur du lard (cm)</td>
+        <td>pH</td>
         <td>Date mise au sel</td>
         <td>Date sortie de sel</td>
         <td>Durée de fumage (jours)</td>
@@ -77,52 +78,46 @@
     </thead>
     <tbody>
       <tr>
-        <% @abattage.porcs.each do |porc|%>
           <td>Coppa</td>
-          <td><%= Coppa.find_by(porc: porc).poids %></td>
-          <td><%= Coppa.find_by(porc: porc).epaisseur_lard %></td>
-          <td><%= Coppa.find_by(porc: porc).ph %></td>
-          <td><%= Coppa.find_by(porc: porc).date_mise_au_sel %></td>
-          <td><%= Coppa.find_by(porc: porc).date_sortie_de_sel %></td>
-          <td><%= Coppa.find_by(porc: porc).durée_fumage %></td>
-          <td><%= Coppa.find_by(porc: porc).poids_sortie_sèche %></td>
-          <td><%= Coppa.find_by(porc: porc).date_entrée_affinage %></td>
-          <td><%= Coppa.find_by(porc: porc).date_sortie_affinage_vente %></td>
-        <% end %>
+         <td><%= @coppa_temoin.poids %></td>
+          <td>N\A</td>
+          <td>N\A</td>
+          <td><%= @coppa_temoin.date_mise_au_sel %></td>
+          <td><%= @coppa_temoin.date_sortie_de_sel %></td>
+          <td><%= @coppa_temoin.durée_fumage %></td>
+          <td><%= @coppa_temoin.poids_sortie_sèche %></td>
+          <td><%= @coppa_temoin.date_entrée_affinage %></td>
+          <td><%= @coppa_temoin.date_sortie_affinage_vente %></td>
       </tr>
-    <h2>Lonzu</h2>
+      
       <tr>
-        <% @abattage.porcs.each do |porc|%>
           <td>Lonzu</td>
-          <td><%= Lonzu.find_by(porc: porc).poids %></td>
-          <td><%= Lonzu.find_by(porc: porc).epaisseur_lard %></td>
-          <td><%= Lonzu.find_by(porc: porc).ph %></td>
-          <td><%= Lonzu.find_by(porc: porc).date_mise_au_sel %></td>
-          <td><%= Lonzu.find_by(porc: porc).date_sortie_de_sel %></td>
-          <td><%= Lonzu.find_by(porc: porc).durée_fumage %></td>
-          <td><%= Lonzu.find_by(porc: porc).poids_sortie_sèche %></td>
-          <td><%= Lonzu.find_by(porc: porc).date_entrée_affinage %></td>
-          <td><%= Lonzu.find_by(porc: porc).date_sortie_affinage_vente %></td>
-        <% end %>
+          <td><%= @lonzu_temoin.poids %></td>
+          <td>N\A</td>
+          <td>N\A</td>
+          <td><%= @lonzu_temoin.date_mise_au_sel %></td>
+          <td><%= @lonzu_temoin.date_sortie_de_sel %></td>
+          <td><%= @lonzu_temoin.durée_fumage %></td>
+          <td><%= @lonzu_temoin.poids_sortie_sèche %></td>
+          <td><%= @lonzu_temoin.date_entrée_affinage %></td>
+          <td><%= @lonzu_temoin.date_sortie_affinage_vente %></td>
       </tr>
 
-    <h2>Prisuttu</h2>
       <tr>
-        <% @abattage.porcs.each do |porc|%>
           <td>Prisuttu</td>
-          <td><%= Prisuttu.find_by(porc: porc).poids %></td>
-          <td><%= Prisuttu.find_by(porc: porc).epaisseur_lard %></td>
-          <td><%= Prisuttu.find_by(porc: porc).ph %></td>
-          <td><%= Prisuttu.find_by(porc: porc).date_mise_au_sel %></td>
-          <td><%= Prisuttu.find_by(porc: porc).date_sortie_de_sel %></td>
-          <td><%= Prisuttu.find_by(porc: porc).durée_fumage %></td>
-          <td><%= Prisuttu.find_by(porc: porc).poids_sortie_sèche %></td>
-          <td><%= Prisuttu.find_by(porc: porc).date_entrée_affinage %></td>
-          <td><%= Prisuttu.find_by(porc: porc).date_sortie_affinage_vente %></td>
-        <% end %>
+          <td><%= @prisuttu_temoin.poids %></td>
+          <td><%= @prisuttu_temoin.epaisseur_lard %></td>
+          <td><%= @prisuttu_temoin.ph %></td>
+          <td><%= @prisuttu_temoin.date_mise_au_sel %></td>
+          <td><%= @prisuttu_temoin.date_sortie_de_sel %></td>
+          <td><%= @prisuttu_temoin.durée_fumage %></td>
+          <td><%= @prisuttu_temoin.poids_sortie_sèche %></td>
+          <td><%= @prisuttu_temoin.date_entrée_affinage %></td>
+          <td><%= @prisuttu_temoin.date_sortie_affinage_vente %></td>
       </tr>
   </tbody>
 </table>
+
 
     <div class="buttons" >
       <%= link_to "Voir la liste des porcs", abattage_dashboard_path(@abattage), class: "button-custom" %>

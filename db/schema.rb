@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
   end
 
   create_table "coppas", force: :cascade do |t|
-    t.bigint "porc_id"
+    t.bigint "porc_id", null: false
     t.integer "numéro_lot"
     t.float "poids"
     t.float "epaisseur_lard"

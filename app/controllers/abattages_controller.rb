@@ -36,14 +36,6 @@ class AbattagesController < ApplicationController
     end
   end
 
-    # def dashboard_produits
-     # @abattage = Abattage.find(params[:abattage_id])
-      # @products_aop = @abattage.porcs.map do |porc|
-     # {
-     # }
-    # end
-
-
   def edit
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))

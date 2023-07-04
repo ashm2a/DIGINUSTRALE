@@ -16,7 +16,6 @@ Rails.application.routes.draw do
    get "edit_produits", to: "abattages#edit_produits"
    get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
    get "/dashboard", to: "abattages#dashboard"
-   get "/dashboard_produits", to: "abattages#dashboard_produits"
   end
 
   # Defines the root path route ("/")

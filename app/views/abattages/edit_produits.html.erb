@@ -25,8 +25,8 @@
             <th class="header"></th>
           </tr>
         </thead>
-        <tbody>
-          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), method: :patch do |fp| %>
+        <tbody data-controller="aop">
+          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
             <% @porcs.each_with_index do |porc, index| %>
               <%= simple_fields_for porc do |p| %>
                 <tr class="form-row bg-green" data-aop-target="row">
@@ -48,32 +48,15 @@
                 </tr>
               <% end %>
             <% end %>
-            <tr>
-              <td colspan="5">
-                <%= fp.button :submit, 'Valider', class: 'submit-button', data: {
-                    insert_in_list_target: "btn-update",
-                    action: 'aop#clickUpdatePorcs',
-                  } %>
-              </td>
-            </tr>
-          <% end %>
         </tbody>
-      </table>
-      <div class="d-flex justify-content-between form-actions">
-        <%= link_to "Etape précedente", edit_abattage_path(@abattage), class: "annuler-button" %>
-        <div class="decoupe" data-aop-target="decoupe">
-          <%= link_to abattage_edit_produits_path(@abattage), style: "color: black;", class: "submit-button d-none" do %>
-            Etape suivante
-          <% end %>
+        </table>
+        <div class="d-flex justify-content-between form-actions">
+          <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
+          <div class="decoupe" data-aop-target="decoupe">
+            <%= fp.button :submit, 'Valider', class: 'submit-button' %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
-
-   <div class="next-step-btn">
-              <%= link_to new_coppa_path, class: "btn btn-primary" do %>
-                  Déclarer les produits témoins
-              <% end %>
-            </div>
-

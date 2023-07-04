@@ -33,13 +33,13 @@
                 <tr class="form-row bg-green" data-aop-target="row">
                   <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité.nil? ? 0 : porc.coppa.quantité %>" data-aop-target="poids">
+                    <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.nil? ? 0 : porc.coppa.quantité %>" data-aop-target="poids">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité.nil? ? 0 : porc.prisuttu.quantité %>" data-aop-target="lard">
+                    <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.nil? ? 0 : porc.prisuttu.quantité %>" data-aop-target="lard">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité.nil? ? 0 : porc.lonzu.quantité %>" data-aop-target="ph">
+                    <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.nil? ? 0 : porc.lonzu.quantité %>" data-aop-target="ph">
                   </td>
                   <td class="aop form-input text-end" data-aop-target="output">
                     <div data-aop-target="eligible"></div>

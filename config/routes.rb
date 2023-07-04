@@ -14,8 +14,10 @@ Rails.application.routes.draw do
     patch "/update_abattage", to: "abattages#update_abattage", as: :update_abattage
     get "edit_produits", to: "abattages#edit_produits"
     patch "/update_production", to: "abattages#update_production", as: :update_production
-    get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
-    end
+   get "edit_produits", to: "abattages#edit_produits"
+   get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
+   get "/dashboard", to: "abattages#dashboard"
+  end
 
   # Defines the root path route ("/")
   # root "articles#index"

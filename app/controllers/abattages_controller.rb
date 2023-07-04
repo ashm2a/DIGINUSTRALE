@@ -24,6 +24,18 @@ class AbattagesController < ApplicationController
 
   def show; end
 
+  def dashboard
+    @abattage = Abattage.find(params[:abattage_id])
+    @products_per_porcs = @abattage.porcs.map do |porc|
+      {
+        porc_id: porc.boucle,
+        lonzus: porc.lonzu.quantité,
+        coppas: porc.coppa.quantité,
+        prisuttus: porc.coppa.quantité
+      }
+    end
+  end
+
   def edit
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
@@ -77,6 +89,7 @@ class AbattagesController < ApplicationController
         counter += 1
       end
   end
+
 
   private
 

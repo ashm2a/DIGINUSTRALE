@@ -105,7 +105,7 @@ porc_eight = {
   boucle: "00013",
   boucle_mère: "00001",
   boucle_père: "00002",
-  date_de_naissance: Date.new(2021, 1, 10),
+  date_de_naissance: Date.new(2023, 5, 6),
   sexe: "femelle"
 }
 

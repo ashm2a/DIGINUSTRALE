@@ -29,18 +29,6 @@ class AbattagesController < ApplicationController
     @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
   end
 
-  def dashboard
-    @abattage = Abattage.find(params[:abattage_id])
-    @products_per_porcs = @abattage.porcs.map do |porc|
-      {
-        porc_id: porc.boucle,
-        lonzus: porc.lonzu.quantité,
-        coppas: porc.coppa.quantité,
-        prisuttus: porc.coppa.quantité
-      }
-    end
-  end
-
   def edit
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))

@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     patch "/update_production", to: "abattages#update_production", as: :update_production
     patch "/update_produits", to: "abattage#update_produits", as: :update_produits
     get "edit_produits", to: "abattages#edit_produits"
-    get "/dashboard", to: "abattages#dashboard"
     get "download", to: "abattages#download"
     get "preview", to: "abattages#preview"
   end

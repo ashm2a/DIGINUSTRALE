@@ -10,7 +10,7 @@ export default class extends Controller {
   clickUpdatePorcs() {
     const rowElements = document.querySelectorAll('[data-aop-target="row"]');
     //const btnDecoupeElement = document.querySelector('[data-aop-target="btn-decoupe"]');
-    const decoupeBtn = document.querySelector(".btn-decoupe a");
+    const decoupeBtn = document.querySelector(".decoupe a");
     //console.log(decoupeBtn);
 
     //decoupeBtn.classList.remove("d-none");

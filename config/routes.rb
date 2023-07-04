@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 
   resources :abattages, except: [:index, :update] do
     patch "/update_abattage", to: "abattages#update_abattage", as: :update_abattage
+    get "edit_produits", to: "abattages#edit_produits"
     patch "/update_production", to: "abattages#update_production", as: :update_production
     patch "/update_produits", to: "abattage#update_produits", as: :update_produits
-    get "edit_produits", to: "abattages#edit_produits"
-    get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
+   get "edit_produits", to: "abattages#edit_produits"
+   get "edit_produits_temoins", to: "abattages#edit_produits_temoins"
+   get "/dashboard", to: "abattages#dashboard"
   end
 
   resources :prisuttus, only: [:new, :create]

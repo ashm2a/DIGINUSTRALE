@@ -1,0 +1,74 @@
+
+<div class="container-global">
+  <%= render "shared/head_bar" %>
+  <div class="nav-container">
+    <div class="head-info">
+      <div>
+        <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 3 | Prisuttu</h2>
+      </div>
+
+      <div class="elevage">
+        <p>Date et lieu d'abattage</p>
+        <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-create-container">
+    <div class="formBloc">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="header">IPG du porc</th>
+            <th class="header">Poids(kg)</th>
+            <th class="header">Date mise au sel</th>
+            <th class="header">Date sortie de sel</th>
+            <th class="header">Durée de fumage (jours)</th>
+            <th class="header">Poids sortie de sèche (kg)</th>
+            <th class="header">Date entrée affinage</th>
+            <th class="header">Date sortie affinage vente</th>
+            <th class="header"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= simple_form_for @abattage, url: abattage_update_prisuttu_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
+            <% @porcs.each_with_index do |porc, index| %>
+              <%= simple_fields_for porc do |p| %>
+                <tr class="form-row">
+                  <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
+                  <td class="form-input">
+                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][poids]" value="<%= porc.prisuttu.poids %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][date_mise_au_sel]" value="<%= porc.prisuttu.date_mise_au_sel %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][date_sortie_de_sel]" value="<%= porc.prisuttu.date_sortie_de_sel %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][durée_fumage]" value="<%= porc.prisuttu.durée_fumage %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][poids_sortie_sèche]" value="<%= porc.prisuttu.poids_sortie_sèche %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][date_entrée_affinage]" value="<%= porc.prisuttu.date_entrée_affinage %>">
+                  </td>
+                  <td class="form-input">
+                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][prisuttu][date_sortie_affinage_vente]" value="<%= porc.prisuttu.date_sortie_affinage_vente %>">
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+        </tbody>
+        </table>
+        <div class="d-flex justify-content-between form-actions">
+          <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
+          <div class="decoupe">
+            <%= fp.button :submit, 'Valider', class: 'submit-button' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -107,44 +107,52 @@
             </tr>
           </thead>
           <tbody>
+            <% @abattage.porcs.each do |porc|%>
+            <% if porc.coppa %>
             <tr>
                 <td>Coppa</td>
-              <td><%= @coppa_temoin.poids %></td>
+              <td><%= porc.coppa.poids %></td>
                 <td>N\A</td>
                 <td>N\A</td>
-                <td><%= @coppa_temoin.date_mise_au_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @coppa_temoin.date_sortie_de_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @coppa_temoin.durée_fumage %></td>
-                <td><%= @coppa_temoin.poids_sortie_sèche %></td>
-                <td><%= @coppa_temoin.date_entrée_affinage.strftime("%d/%m/%Y") %></td>
-                <td><%= @coppa_temoin.date_sortie_affinage_vente.strftime("%d/%m/%Y") %></td>
+                <td><%= porc.coppa.date_mise_au_sel %></td>
+                <td><%= porc.coppa.date_sortie_de_sel %></td>
+                <td><%= porc.coppa.durée_fumage %></td>
+                <td><%= porc.coppa.poids_sortie_sèche %></td>
+                <td><%= porc.coppa.date_entrée_affinage %></td>
+                <td><%= porc.coppa.date_sortie_affinage_vente %></td>
             </tr>
+            <% end %>
 
+            <% if porc.lonzu %>
             <tr>
                 <td>Lonzu</td>
-                <td><%= @lonzu_temoin.poids %></td>
+                <td><%= porc.lonzu.poids %></td>
                 <td>N\A</td>
                 <td>N\A</td>
-                <td><%= @lonzu_temoin.date_mise_au_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @lonzu_temoin.date_sortie_de_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @lonzu_temoin.durée_fumage %></td>
-                <td><%= @lonzu_temoin.poids_sortie_sèche %></td>
-                <td><%= @lonzu_temoin.date_entrée_affinage.strftime("%d/%m/%Y") %></td>
-                <td><%= @lonzu_temoin.date_sortie_affinage_vente.strftime("%d/%m/%Y") %></td>
+                <td><%= porc.lonzu.date_mise_au_sel %></td>
+                <td><%= porc.lonzu.date_sortie_de_sel %></td>
+                <td><%= porc.lonzu.durée_fumage %></td>
+                <td><%= porc.lonzu.poids_sortie_sèche %></td>
+                <td><%= porc.lonzu.date_entrée_affinage %></td>
+                <td><%= porc.lonzu.date_sortie_affinage_vente %></td>
             </tr>
+            <% end %>
 
+            <% if porc.prisuttu %>
             <tr>
                 <td>Prisuttu</td>
-                <td><%= @prisuttu_temoin.poids %></td>
-                <td><%= @prisuttu_temoin.epaisseur_lard %></td>
-                <td><%= @prisuttu_temoin.ph %></td>
-                <td><%= @prisuttu_temoin.date_mise_au_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @prisuttu_temoin.date_sortie_de_sel.strftime("%d/%m/%Y") %></td>
-                <td><%= @prisuttu_temoin.durée_fumage %></td>
-                <td><%= @prisuttu_temoin.poids_sortie_sèche %></td>
-                <td><%= @prisuttu_temoin.date_entrée_affinage.strftime("%d/%m/%Y") %></td>
-                <td><%= @prisuttu_temoin.date_sortie_affinage_vente.strftime("%d/%m/%Y") %></td>
+                <td><%= porc.prisuttu.poids %></td>
+                <td><%= porc.prisuttu.epaisseur_lard %></td>
+                <td><%= porc.prisuttu.ph %></td>
+                <td><%= porc.prisuttu.date_mise_au_sel %></td>
+                <td><%= porc.prisuttu.date_sortie_de_sel %></td>
+                <td><%= porc.prisuttu.durée_fumage %></td>
+                <td><%= porc.prisuttu.poids_sortie_sèche %></td>
+                <td><%= porc.prisuttu.date_entrée_affinage %></td>
+                <td><%= porc.prisuttu.date_sortie_affinage_vente %></td>
             </tr>
+            <% end %>
+          <% end %>
           </tbody>
         </table>
 

@@ -1,4 +1,4 @@
- <div class="container-global">
+<div class="container-global">
   <%= render "shared/head_bar" %>
 
   <div class="nav-container">
@@ -6,141 +6,159 @@
         <div>
           <h2 class="active">Information sur le lot <%= @abattage.numéro_lot %></h2>
         </div>
-      </div>
-
-      <div class="head-info">
         <div class="elevage">
             <p>Date et lieu d'abattage</p>
             <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
         </div>
       </div>
+  </div>
 
-<h1>Infos des porcs</h1>
+  <div class="nav-button">
+    <div>
+      <%= link_to "< Retour", porcs_path, class: "annuler-button", style: "color: white;" %>
+    </div>
+    <div class="button-action">
+      <%= link_to "Télécharger PDF", abattage_download_path(@abattage), target: '_blank', class: "button-custom" %>
+    </div>
+  </div>
 
-<table style="border: 1px solid white">
-    <thead>
-      <tr>
-        <td>IPG du porc</td>
-        <td>Poids carcasse(kg)</td>
-        <td>Epaisseur du lard (cm)</td>
-        <td>pH</td>
-        <td>Quantité coppa</td>
-        <td>Quantité lonzu</td>
-        <td>Quantité prisuttu</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @abattage.porcs.each do |porc|%>
-        <tr>
-          <td>
-            <%= link_to porc_path(porc) do %>
-              <%= porc.user.EDE %><%= porc.boucle %>
+  <div class="list-etape">
+    <div class="etape">
+      <%= link_to "Etape abattage", edit_abattage_path(@abattage), data: { turbo: "false" } %>
+    </div>
+    <div class="etape">
+      <%= link_to "Etape produits", abattage_edit_produits_path(@abattage), data: { turbo: "false" } %>
+    </div>
+    <div class="etape">
+      <%= link_to "Etape coppa", abattage_edit_coppa_path(@abattage), data: { turbo: "false" } %>
+    </div>
+    <div class="etape">
+      <%= link_to "Etape lonzu", abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } %>
+    </div>
+    <div class="etape">
+      <%= link_to "Etape prisuttu", abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } %>
+    </div>
+  </div>
+
+  <div class="list-tableau">
+    <h2>Infos des porcs</h2>
+    <div class="tableau-content">
+      <table style="table">
+          <thead>
+            <tr>
+              <td>IPG du porc</td>
+              <td>Poids carcasse(kg)</td>
+              <td>Epaisseur du lard (cm)</td>
+              <td>pH</td>
+              <td>Quantité coppa</td>
+              <td>Quantité lonzu</td>
+              <td>Quantité prisuttu</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @abattage.porcs.each do |porc|%>
+              <tr class="form-row">
+                <td class="boucle-porc">
+                  <%= link_to porc_path(porc) do %>
+                    <%= porc.user.EDE %><%= porc.boucle %>
+                  <% end %>
+                </td>
+                <td class="form-input">
+                <%= porc.poids_carcasse%>
+                </td>
+                <td class="form-input">
+                  <%= porc.epaisseur_lard%>
+                </td>
+                <td class="form-input">
+                  <%= porc.ph%>
+                </td>
+                <td class="form-input">
+                  <%= porc.coppa.quantité%>
+                </td>
+                <td class="form-input">
+                  <%= porc.lonzu.quantité%>
+                </td>
+                <td class="form-input">
+                  <%= porc.prisuttu.quantité%>
+                </td>
+              </tr>
             <% end %>
-          </td>
-          <td>
-          <%= porc.poids_carcasse%>
-          </td>
-          <td>
-            <%= porc.epaisseur_lard%>
-          </td>
-          <td>
-            <%= porc.ph%>
-          </td>
-          <td>
-            <%= porc.coppa.quantité%>
-          </td>
-          <td>
-            <%= porc.lonzu.quantité%>
-          </td>
-          <td>
-            <%= porc.prisuttu.quantité%>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-</table>
-
-    <h1>Infos des produits</h1>
-<table style="border: 1px solid white">
-    <thead>
-      <tr>
-        <td>Produit</td>
-        <td>Poids</td>
-        <td>Epaisseur du lard (cm)</td>
-        <td>pH</td>
-        <td>Date mise au sel</td>
-        <td>Date sortie de sel</td>
-        <td>Durée de fumage (jours)</td>
-        <td>Poids sortie de sèche (kg)</td>
-        <td>Date entrée affinage</td>
-        <td>Date sortie affinage vente</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <% if @coppa_temoin %>
-          <td>Coppa</td>
-         <td><%= @coppa_temoin.poids %></td>
-          <td>N\A</td>
-          <td>N\A</td>
-          <td><%= @coppa_temoin.date_mise_au_sel %></td>
-          <td><%= @coppa_temoin.date_sortie_de_sel %></td>
-          <td><%= @coppa_temoin.durée_fumage %></td>
-          <td><%= @coppa_temoin.poids_sortie_sèche %></td>
-          <td><%= @coppa_temoin.date_entrée_affinage %></td>
-          <td><%= @coppa_temoin.date_sortie_affinage_vente %></td>
-      </tr>
-        <% end %>
-
-      <tr>
-        <% if @lonzu_temoin %>
-          <td>Lonzu</td>
-          <td><%= @lonzu_temoin.poids %></td>
-          <td>N\A</td>
-          <td>N\A</td>
-          <td><%= @lonzu_temoin.date_mise_au_sel %></td>
-          <td><%= @lonzu_temoin.date_sortie_de_sel %></td>
-          <td><%= @lonzu_temoin.durée_fumage %></td>
-          <td><%= @lonzu_temoin.poids_sortie_sèche %></td>
-          <td><%= @lonzu_temoin.date_entrée_affinage %></td>
-          <td><%= @lonzu_temoin.date_sortie_affinage_vente %></td>
-      </tr>
-        <% end %>
-      <tr>
-         <% if @prisuttu_temoin %>
-          <td>Prisuttu</td>
-          <td><%= @prisuttu_temoin.poids %></td>
-          <td><%= @prisuttu_temoin.epaisseur_lard %></td>
-          <td><%= @prisuttu_temoin.ph %></td>
-          <td><%= @prisuttu_temoin.date_mise_au_sel %></td>
-          <td><%= @prisuttu_temoin.date_sortie_de_sel %></td>
-          <td><%= @prisuttu_temoin.durée_fumage %></td>
-          <td><%= @prisuttu_temoin.poids_sortie_sèche %></td>
-          <td><%= @prisuttu_temoin.date_entrée_affinage %></td>
-          <td><%= @prisuttu_temoin.date_sortie_affinage_vente %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-
-
-   
-  </div>
-
-  <div class="buttons" >
-      <i class="fa-solid fa-file"></i>
-      <%= link_to " Générer les documents AOP", abattage_download_path(@abattage), target: '_blank', class: "button-custom" %>
-
+          </tbody>
+      </table>
     </div>
   </div>
 
-    <div class="buttons">
-      <a class="btn btn-primary" href="/porcs">Exit</a>
+  <div class="list-tableau">
+    <h2>Infos des produits</h2>
+    <div class="tableau-content">
+      <% @abattage.porcs.each do |porc|%>
+      <table style="table">
+        <thead>
+          <tr>
+          <th><%= porc.boucle %></th>
+            <td>Produit</td>
+            <td>Poids</td>
+            <td>Epaisseur du lard (cm)</td>
+            <td>pH</td>
+            <td>Date mise au sel</td>
+            <td>Date sortie de sel</td>
+            <td>Durée de fumage (jours)</td>
+            <td>Poids sortie de sèche (kg)</td>
+            <td>Date entrée affinage</td>
+            <td>Date sortie affinage vente</td>
+          </tr>
+        </thead>
+        <tbody>
+            <% if porc.coppa %>
+              <tr>
+                <td class="form-input"></td>
+                <th>Coppa</th>
+                <td class="form-input"><%= porc.coppa.poids %></td>
+                <td class="form-input">N/A</td>
+                <td class="form-input">N/A</td>
+                <td class="form-input"><%= porc.coppa.date_mise_au_sel %></td>
+                <td class="form-input"><%= porc.coppa.date_sortie_de_sel %></td>
+                <td class="form-input"><%= porc.coppa.durée_fumage %></td>
+                <td class="form-input"><%= porc.coppa.poids_sortie_sèche %></td>
+                <td class="form-input"><%= porc.coppa.date_entrée_affinage %></td>
+                <td class="form-input"><%= porc.coppa.date_sortie_affinage_vente %></td>
+              </tr>
+            <% end %>
+
+            <% if porc.lonzu %>
+              <tr>
+                <td class="form-input"></td>
+                <th>Lonzu</th>
+                <td class="form-input"><%= porc.lonzu.poids %></td>
+                <td class="form-input">N/A</td>
+                <td class="form-input">N/A</td>
+                <td class="form-input"><%= porc.lonzu.date_mise_au_sel %></td>
+                <td class="form-input"><%= porc.lonzu.date_sortie_de_sel %></td>
+                <td class="form-input"><%= porc.lonzu.durée_fumage %></td>
+                <td class="form-input"><%= porc.lonzu.poids_sortie_sèche %></td>
+                <td class="form-input"><%= porc.lonzu.date_entrée_affinage %></td>
+                <td class="form-input"><%= porc.lonzu.date_sortie_affinage_vente %></td>
+              </tr>
+            <% end %>
+
+            <% if porc.prisuttu %>
+              <tr>
+                <td class="form-input"></td>
+                <th>Prisuttu</th>
+                <td class="form-input"><%= porc.prisuttu.poids %></td>
+                <td class="form-input"><%= porc.prisuttu.epaisseur_lard %></td>
+                <td class="form-input"><%= porc.prisuttu.ph %></td>
+                <td class="form-input"><%= porc.prisuttu.date_mise_au_sel %></td>
+                <td class="form-input"><%= porc.prisuttu.date_sortie_de_sel %></td>
+                <td class="form-input"><%= porc.prisuttu.durée_fumage %></td>
+                <td class="form-input"><%= porc.prisuttu.poids_sortie_sèche %></td>
+                <td class="form-input"><%= porc.prisuttu.date_entrée_affinage %></td>
+                <td class="form-input"><%= porc.prisuttu.date_sortie_affinage_vente %></td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+      <% end %>
     </div>
+  </div>
 </div>
-
-<%= link_to "form 1 (infos abattage)", edit_abattage_path(@abattage) %>
-<%= link_to "form 2 (quantités produits)", abattage_edit_produits_path(@abattage) %>
-<%= link_to "form 3 (infos coppa)", new_coppa_path %>
-<%= link_to "form 4 (infos lonzu)", new_lonzu_path %>
-<%= link_to "form 5 (infos prisuttu)", new_prisuttu_path %>

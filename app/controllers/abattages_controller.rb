@@ -1,6 +1,6 @@
 class AbattagesController < ApplicationController
   before_action :set_abattage, only: [:show, :edit]
-  before_action :set_abattage_id, only: []
+  before_action :set_abattage_id, only: [:edit_produits, :update_abattage, :update_production, :download]
 
   def new
     @abattage = Abattage.new
@@ -35,13 +35,11 @@ class AbattagesController < ApplicationController
   end
 
   def edit_produits
-    @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
 
   def update_abattage
-    @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
     count = @porcs.count
@@ -61,7 +59,6 @@ class AbattagesController < ApplicationController
   end
 
   def update_production
-    @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
     count = @porcs.count
@@ -77,7 +74,6 @@ class AbattagesController < ApplicationController
   end
 
   def download
-    @abattage = Abattage.find(params[:abattage_id])
     @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
     @lonzu_temoin = Lonzu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
     @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first

@@ -14,9 +14,9 @@
     </div>
   </div>
 
-  <div class="form-create-container" data-controller="aop">
-    <div class="formBloc">
-      <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
+  <div class="form-create-container" data-controller="checkable">
+    <div class="formBloc" style="display: block;">
+      <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm" }, method: :patch do |fp| %>
         <table class="table">
           <thead>
             <tr>
@@ -30,21 +30,20 @@
           <tbody>
             <% @porcs.each_with_index do |porc, index| %>
               <%= simple_fields_for porc do |p| %>
-                <tr class="form-row bg-green" data-aop-target="row">
+                <tr class="form-row" data-controller="aop" data-aop-target="bg">
                   <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
-                  <td class="form-input">
-                    <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="<%= porc.poids_carcasse %>" data-aop-target="poids">
+                  <td class="form-input" >
+                    <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="<%= porc.poids_carcasse %>" data-action="keyup->aop#labelAop" data-aop-target="poids" data-checkable-target="checkable">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="0.01" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="<%= porc.epaisseur_lard %>" data-aop-target="lard">
+                    <input type="number" step="0.01" name="<%= index %>[epaisseur_lard]" id="epaisseur-lard" value="<%= porc.epaisseur_lard %>" data-action="keyup->aop#labelAop" data-aop-target="lard" data-checkable-target="checkable">
                   </td>
                   <td class="form-input">
-                    <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="<%= porc.ph %>" data-aop-target="ph">
+                    <input type="number" step="0.01" name="<%= index %>[ph]" id="ph" value="<%= porc.ph %>" data-action="keyup->aop#labelAop" data-aop-target="ph" data-checkable-target="checkable">
                   </td>
-                  <td class="aop form-input text-end" data-aop-target="output">
-                    <div data-aop-target="eligible"></div>
-                    <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
-                    <%= image_tag("aop.png", class: "d-none") %>
+                  <td class="aop form-input text-end">
+                  <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
+                  <%= image_tag("aop.png", data: { aop_target: "eligible" }, class: "d-none") %>
                   </td>
                 </tr>
               <% end %>
@@ -53,7 +52,7 @@
         </table>
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
-          <div class="decoupe" data-aop-target="decoupe">
+          <div class="decoupe d-none" data-aop-target="decoupe" data-checkable-target="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>
         </div>

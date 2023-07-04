@@ -79,9 +79,9 @@ class AbattagesController < ApplicationController
     counter = 0
       count.times do
         porc = Porc.find(params[counter.to_s][:id])
-        porc.coppa.update(quantité: params[counter.to_s][:coppa][:quantité])
-        porc.prisuttu.update(quantité: params[counter.to_s][:prisuttu][:quantité])
-        porc.lonzu.update(quantité: params[counter.to_s][:lonzu][:quantité])
+        porc.coppa.update(quantité: params[counter.to_s][:coppa][:quantité], numéro_lot: @abattage.id)
+        porc.prisuttu.update(quantité: params[counter.to_s][:prisuttu][:quantité], numéro_lot: @abattage.id)
+        porc.lonzu.update(quantité: params[counter.to_s][:lonzu][:quantité], numéro_lot: @abattage.id)
         counter += 1
       end
       redirect_to abattage_path(@abattage)

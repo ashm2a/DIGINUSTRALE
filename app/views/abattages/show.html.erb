@@ -124,10 +124,7 @@
 </table>
 
 
-    <div class="buttons" >
-      <%= link_to "Voir la liste des porcs", abattage_dashboard_path(@abattage), class: "button-custom" %>
-      <%= link_to "Voir les produits temoins du lot ", porcs_path, class: "button-custom" %>
-    </div>
+   
   </div>
 
   <div class="buttons" >
@@ -141,3 +138,9 @@
       <a class="btn btn-primary" href="/porcs">Exit</a>
     </div>
 </div>
+
+<%= link_to "form 1 (infos abattage)", edit_abattage_path(@abattage) %>
+<%= link_to "form 2 (quantités produits)", abattage_edit_produits_path(@abattage) %>
+<%= link_to "form 3 (infos coppa)", new_coppa_path %>
+<%= link_to "form 4 (infos lonzu)", new_lonzu_path %>
+<%= link_to "form 5 (infos prisuttu)", new_prisuttu_path %>

@@ -15,8 +15,6 @@
     <div class="form-headers row">
       <div class="header col-1">IPG du porc</div>
       <div class="header col-1">Poids(kg)</div>
-      <div class="header col-1">Epaisseur du lard (cm)</div>
-      <div class="header col-1">pH</div>
       <div class="header col-1">Date mise au sel</div>
       <div class="header col-1">Date sortie de sel</div>
       <div class="header col-1">Durée de fumage (jours)</div>
@@ -34,12 +32,6 @@
 *
         <div class="col-1">
           <%= f.input :poids, label: false, as: :float %>
-        </div>
-        <div class="col-1">
-          <%= f.input :epaisseur_lard, label: false, as: :float %>
-        </div>
-        <div class="col-1">
-          <%= f.input :ph, label: false, as: :float %>
         </div>
         <div class="col-1">
           <%= f.input :date_mise_au_sel, label: false, as: :date, html5: true %>

@@ -1,5 +1,6 @@
 class AbattagesController < ApplicationController
   before_action :set_abattage, only: [:show, :edit]
+  before_action :set_abattage_id, only: []
 
   def new
     @abattage = Abattage.new
@@ -87,6 +88,29 @@ class AbattagesController < ApplicationController
       redirect_to abattage_path(@abattage)
   end
 
+  def download
+    @abattage = Abattage.find(params[:abattage_id])
+    @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    @lonzu_temoin = Lonzu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    # html_content = render_to_string(template: 'abattages/download')
+    # pdf = WickedPdf.new.pdf_from_string(html_content)
+    # send_data(pdf,
+    #           filename: 'document_aop.pdf',
+    #           type: 'application/pdf',
+    #           disposition: 'attachment')
+    # save_path = Rails.root.join('pdfs','doc_aop.pdf')
+    # File.open(save_path, 'wb') do |file|
+    #   file << pdf
+    # end
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+        render pdf: 'abattages/show'  # Excluding ".pdf" extension.
+      #end
+    end
+    # redirect_to @abattage
+
   private
 
   def abattage_params
@@ -95,5 +119,9 @@ class AbattagesController < ApplicationController
 
   def set_abattage
     @abattage = Abattage.find(params[:id])
+  end
+
+  def set_abattage_id
+    @abattage = Abattage.find(params[:abattage_id])
   end
 end

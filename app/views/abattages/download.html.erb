@@ -1,0 +1,140 @@
+ <div class="container-global">
+  <%= render "shared/head_bar" %>
+
+  <div class="nav-container">
+      <div class="head-info">
+        <div>
+          <h2 class="active">Information sur le lot <%= @abattage.numéro_lot %></h2>
+        </div>
+      </div>
+
+      <div class="head-info">
+        <div class="elevage">
+            <p>Date et lieu d'abattage</p>
+            <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+        </div>
+      </div>
+
+<h1>Infos des porcs</h1>
+
+<table style="border: 1px solid white">
+    <thead>
+      <tr>
+        <td>IPG du porc</td>
+        <td>Poids carcasse(kg)</td>
+        <td>Epaisseur du lard (cm)</td>
+        <td>pH</td>
+        <td>Quantité coppa</td>
+        <td>Quantité lonzu</td>
+        <td>Quantité prisuttu</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @abattage.porcs.each do |porc|%>
+        <tr>
+          <td>
+            <%= link_to porc_path(porc) do %>
+              <%= porc.user.EDE %><%= porc.boucle %>
+            <% end %>
+          </td>
+          <td>
+          <%= porc.poids_carcasse%>
+          </td>
+          <td>
+            <%= porc.epaisseur_lard%>
+          </td>
+          <td>
+            <%= porc.ph%>
+          </td>
+          <td>
+            <%= porc.coppa.quantité%>
+          </td>
+          <td>
+            <%= porc.lonzu.quantité%>
+          </td>
+          <td>
+            <%= porc.prisuttu.quantité%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+    <h1>Infos des produits</h1>
+<table style="border: 1px solid white">
+    <thead>
+      <tr>
+        <td>Produit</td>
+        <td>Poids</td>
+        <td>Epaisseur du lard (cm)</td>
+        <td>pH</td>
+        <td>Date mise au sel</td>
+        <td>Date sortie de sel</td>
+        <td>Durée de fumage (jours)</td>
+        <td>Poids sortie de sèche (kg)</td>
+        <td>Date entrée affinage</td>
+        <td>Date sortie affinage vente</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>Coppa</td>
+         <td><%= @coppa_temoin.poids %></td>
+          <td>N\A</td>
+          <td>N\A</td>
+          <td><%= @coppa_temoin.date_mise_au_sel %></td>
+          <td><%= @coppa_temoin.date_sortie_de_sel %></td>
+          <td><%= @coppa_temoin.durée_fumage %></td>
+          <td><%= @coppa_temoin.poids_sortie_sèche %></td>
+          <td><%= @coppa_temoin.date_entrée_affinage %></td>
+          <td><%= @coppa_temoin.date_sortie_affinage_vente %></td>
+      </tr>
+
+      <tr>
+          <td>Lonzu</td>
+          <td><%= @lonzu_temoin.poids %></td>
+          <td>N\A</td>
+          <td>N\A</td>
+          <td><%= @lonzu_temoin.date_mise_au_sel %></td>
+          <td><%= @lonzu_temoin.date_sortie_de_sel %></td>
+          <td><%= @lonzu_temoin.durée_fumage %></td>
+          <td><%= @lonzu_temoin.poids_sortie_sèche %></td>
+          <td><%= @lonzu_temoin.date_entrée_affinage %></td>
+          <td><%= @lonzu_temoin.date_sortie_affinage_vente %></td>
+      </tr>
+
+      <tr>
+          <td>Prisuttu</td>
+          <td><%= @prisuttu_temoin.poids %></td>
+          <td><%= @prisuttu_temoin.epaisseur_lard %></td>
+          <td><%= @prisuttu_temoin.ph %></td>
+          <td><%= @prisuttu_temoin.date_mise_au_sel %></td>
+          <td><%= @prisuttu_temoin.date_sortie_de_sel %></td>
+          <td><%= @prisuttu_temoin.durée_fumage %></td>
+          <td><%= @prisuttu_temoin.poids_sortie_sèche %></td>
+          <td><%= @prisuttu_temoin.date_entrée_affinage %></td>
+          <td><%= @prisuttu_temoin.date_sortie_affinage_vente %></td>
+      </tr>
+  </tbody>
+</table>
+
+
+    <div class="buttons" >
+      <%= link_to "Voir la liste des porcs", abattage_dashboard_path(@abattage), class: "button-custom" %>
+      <%= link_to "Voir les produits temoins du lot ", porcs_path, class: "button-custom" %>
+    </div>
+  </div>
+
+  <div class="buttons" >
+      <i class="fa-solid fa-file"></i>
+      <h1>Générer les documents AOP</h1>
+      <%= link_to " Télécharger", abattage_download_path(@abattage), class: "button-custom" %>
+      <%= link_to "Aperçu", abattage_preview_path(@abattage), class: "button-custom" %>
+
+    </div>
+  </div>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="/porcs">Exit</a>
+    </div>
+</div>

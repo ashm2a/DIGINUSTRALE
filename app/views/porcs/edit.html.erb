@@ -1,7 +1,8 @@
 <div class="container-global">
   <%= render "shared/head_bar" %>
   <div class="form-create-container mt-3">
-    <h2>Modifier le porc <%=@porc.user.EDE%><%=@porc.boucle%></h2>
+    <h2>MODIFICATION DU PORC <%=@porc.user.EDE%><%=@porc.boucle%></h2>
+    <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
       <%= simple_form_for @porc do |f| %>
         <div class="formBloc">
           <div class="formGroupe">
@@ -26,7 +27,7 @@
           </div>
           <div class="d-flex justify-content-between form-actions">
             <%= link_to "Annuler", porc_path(@porc), class: "annuler-button" %>
-            <%= f.button :submit, "Ajouter", class: "submit-button" %>
+            <%= f.button :submit, "Valider", class: "submit-button" %>
           </div>
         </div>
       <% end %>

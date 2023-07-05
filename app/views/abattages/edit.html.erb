@@ -4,7 +4,7 @@
   <div class="nav-container">
     <div class="head-info">
       <div>
-        <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 1</h2>
+        <h2 class="active">GESTION DU LOT N° <%= @abattage.numéro_lot %></h2>
       </div>
 
       <div class="elevage">
@@ -15,6 +15,8 @@
   </div>
 
   <div class="form-create-container" data-controller="checkable">
+    <h2>Saisi des données</h2>
+    <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
     <div class="formBloc" style="display: block;">
       <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm" }, method: :patch do |fp| %>
         <table class="table">

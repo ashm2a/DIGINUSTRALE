@@ -41,6 +41,9 @@ class AbattagesController < ApplicationController
       prisuttu&.poids&.positive?
     end
     @prisuttu_temoin = prisuttus_with_weight.first
+
+    @etape_un_rempli = etape_un_rempli?(@abattage.porcs)
+    @etape_deux_rempli = etape_deux_rempli?(@abattage.porcs)
   end
 
   def edit
@@ -239,5 +242,24 @@ class AbattagesController < ApplicationController
 
   def set_abattage_id
     @abattage = Abattage.find(params[:abattage_id])
+  end
+
+  def etape_un_rempli?(porcs)
+    porcs.all? do |porc|
+      porc.poids_carcasse.present? &&
+      porc.epaisseur_lard.present? &&
+      porc.ph.present? &&
+      porc.poids_carcasse != 0 &&
+      porc.epaisseur_lard != 0 &&
+      porc.ph != 0
+    end
+  end
+
+  def etape_deux_rempli?(porcs)
+    porcs.all? do |porc|
+      porc.coppa.present? &&
+      porc.lonzu.present? &&
+      porc.prisuttu.present?
+    end
   end
 end

@@ -17,6 +17,7 @@
         border-collapse: collapse;
         width: 100%;
         font-size: 18px;
+        text-align: center;
       }
       thead {
         font-weight: bold;
@@ -46,7 +47,7 @@
 
     <div class="container-global">
       <div class="head-info">
-          <h1 class="active">Information sur le lot <%= @abattage.numéro_lot %></h1>
+          <h1 class="active">Lot n°<%= @abattage.numéro_lot %></h1>
             <p>Date et lieu d'abattage</p>
             <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
       </div>
@@ -57,7 +58,7 @@
           <thead>
             <tr>
               <td>IPG du porc</td>
-              <td>Poids carcasse(kg)</td>
+              <td>Poids carcasse (kg)</td>
               <td>Epaisseur du lard (cm)</td>
               <td>pH</td>
               <td>Quantité coppa</td>

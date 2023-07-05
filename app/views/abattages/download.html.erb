@@ -66,9 +66,6 @@
             </tr>
           </thead>
           <tbody>
-          <% sum_poids = 0 %>
-          <% sum_epaisseur = 0 %>
-          <% sum_ph = 0 %>
           <% sum_coppa = 0 %>
           <% sum_lonzu = 0 %>
           <% sum_prisuttu = 0 %>
@@ -81,15 +78,12 @@
                 </td>
                 <td>
                 <%= porc.poids_carcasse%>
-                <% sum_poids += porc.poids_carcasse  %>
                 </td>
                 <td>
                   <%= porc.epaisseur_lard%>
-                  <% sum_epaisseur = porc.epaisseur_lard %>
                 </td>
                 <td>
                   <%= porc.ph%>
-                  <% sum_ph = porc.ph%>
                 </td>
                 <td>
                   <%= porc.coppa.quantité%>
@@ -108,10 +102,7 @@
           </tbody>
           <tfoot>
             <tr>
-            <td colspan="1">Total:</td>
-            <td> <%= sum_poids %> </td>
-            <td><%= sum_epaisseur%></td>
-            <td><%= sum_ph %></td>
+            <td colspan="4" style="text-align: right">Total des produits:&nbsp;&nbsp;</td>
             <td><%= sum_coppa %></td>
             <td><%= sum_lonzu %></td>
             <td><%= sum_prisuttu %></td>

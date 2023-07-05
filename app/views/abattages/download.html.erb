@@ -10,6 +10,20 @@
         font-family: Arial, sans-serif;
         font-size: 22px;
       }
+      .header h1 {
+        color: #09A3FA;
+        font-weight: bold;
+        font-size: 40px; /* Modifier la taille de police selon vos préférences */
+      }
+      .header div:nth-child(2) {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      {
+        color: blue;
+        font-size: 25px;
+      }
       head-info{
         font-size: 14px;
       }
@@ -44,7 +58,15 @@
   </head>
 
   <body>
-
+    <div class="header">
+      <h1>DIGINUSTRALE</h1>
+      <div>
+        <%= current_user.nom %>
+        <%= current_user.prénom %>,
+        <%= current_user.EDE %>
+      </div>
+    </div>
+    <br><br>
     <div class="container-global">
       <div class="head-info">
           <h1 class="active">Lot n°<%= @abattage.numéro_lot %></h1>
@@ -52,134 +74,108 @@
             <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
       </div>
       <div class="tableau">
-        <h1>Infos des porcs</h1>
-
-        <table style="border: 1px solid black">
-          <thead>
-            <tr>
-              <td>IPG du porc</td>
-              <td>Poids carcasse (kg)</td>
-              <td>Epaisseur du lard (cm)</td>
-              <td>pH</td>
-              <td>Quantité coppa</td>
-              <td>Quantité lonzu</td>
-              <td>Quantité prisuttu</td>
-            </tr>
-          </thead>
-          <tbody>
-          <% sum_coppa = 0 %>
-          <% sum_lonzu = 0 %>
-          <% sum_prisuttu = 0 %>
-            <% @abattage.porcs.each do |porc|%>
+        <h2>Informations des porcs</h2>
+        <table style="table">
+            <thead>
               <tr>
-                <td>
-                  <%= link_to porc_path(porc) do %>
-                    <%= porc.user.EDE %><%= porc.boucle %>
-                  <% end %>
-                </td>
-                <td>
-                <%= porc.poids_carcasse%>
-                </td>
-                <td>
-                  <%= porc.epaisseur_lard%>
-                </td>
-                <td>
-                  <%= porc.ph%>
-                </td>
-                <td>
-                  <%= porc.coppa.quantité%>
-                  <% sum_coppa = porc.coppa.quantité %>
-                </td>
-                <td>
-                  <%= porc.lonzu.quantité%>
-                  <% sum_lonzu = porc.lonzu.quantité %>
-                </td>
-                <td>
-                  <%= porc.prisuttu.quantité%>
-                  <% sum_prisuttu = porc.prisuttu.quantité %>
-                </td>
+                <td>IPG du porc</td>
+                <td>Poids carcasse(kg)</td>
+                <td>Epaisseur du lard (cm)</td>
+                <td>pH</td>
+                <td>Quantité coppa</td>
+                <td>Quantité lonzu</td>
+                <td>Quantité prisuttu</td>
               </tr>
-            <% end %>
-          </tbody>
-          <tfoot>
-            <tr>
-            <td colspan="4" style="text-align: right">Total des produits:&nbsp;&nbsp;</td>
-            <td><%= sum_coppa %></td>
-            <td><%= sum_lonzu %></td>
-            <td><%= sum_prisuttu %></td>
-          </tfoot>
+            </thead>
+            <tbody>
+              <% @abattage.porcs.each do |porc|%>
+                <tr class="form-row">
+                  <td class="boucle-porc">
+                    <%= link_to porc_path(porc) do %>
+                      <%= porc.user.EDE %><%= porc.boucle %>
+                    <% end %>
+                  </td>
+                  <td class="form-input">
+                  <%= porc&.poids_carcasse%>
+                  </td>
+                  <td class="form-input">
+                    <%= porc&.epaisseur_lard%>
+                  </td>
+                  <td class="form-input">
+                    <%= porc&.ph%>
+                  </td>
+                  <td class="form-input">
+                    <%= porc&.coppa&.quantité%>
+                  </td>
+                  <td class="form-input">
+                    <%= porc&.lonzu&.quantité%>
+                  </td>
+                  <td class="form-input">
+                    <%= porc&.prisuttu&.quantité%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
         </table>
 
-          <h1>Infos des produits</h1>
-        <table style="border: 1px solid black">
+        <h2>Produits témoins</h2>
+        <table style="table">
           <thead>
             <tr>
               <td>Produit</td>
-              <td>Poids (kg)</td>
-              <td>Epaisseur <br>du lard (cm)</td>
+              <td>Poids</td>
+              <td>Epaisseur du lard (cm)</td>
               <td>pH</td>
               <td>Date mise au sel</td>
               <td>Date sortie de sel</td>
               <td>Durée de fumage (jours)</td>
-              <td>Poids sortie <br> de sèche (kg)</td>
+              <td>Poids sortie de sèche (kg)</td>
               <td>Date entrée affinage</td>
-              <td>Date sortie <br> affinage vente</td>
+              <td>Date sortie affinage vente</td>
             </tr>
           </thead>
           <tbody>
-            <% @abattage.porcs.each do |porc|%>
-            <% if porc.coppa %>
-            <tr>
-                <td>Coppa</td>
-              <td><%= porc.coppa.poids %></td>
-                <td>N\A</td>
-                <td>N\A</td>
-                <td><%= porc.coppa.date_mise_au_sel %></td>
-                <td><%= porc.coppa.date_sortie_de_sel %></td>
-                <td><%= porc.coppa.durée_fumage %></td>
-                <td><%= porc.coppa.poids_sortie_sèche %></td>
-                <td><%= porc.coppa.date_entrée_affinage %></td>
-                <td><%= porc.coppa.date_sortie_affinage_vente %></td>
-            </tr>
-            <% end %>
+                <tr>
+                  <th>Coppa</th>
+                  <td class="form-input"><%= @coppa_temoin&.poids %></td>
+                  <td class="form-input">N/A</td>
+                  <td class="form-input">N/A</td>
+                  <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @coppa_temoin&.durée_fumage %></td>
+                  <td class="form-input"><%= @coppa_temoin&.poids_sortie_sèche %></td>
+                  <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
+                </tr>
 
-            <% if porc.lonzu %>
-            <tr>
-                <td>Lonzu</td>
-                <td><%= porc.lonzu.poids %></td>
-                <td>N\A</td>
-                <td>N\A</td>
-                <td><%= porc.lonzu.date_mise_au_sel %></td>
-                <td><%= porc.lonzu.date_sortie_de_sel %></td>
-                <td><%= porc.lonzu.durée_fumage %></td>
-                <td><%= porc.lonzu.poids_sortie_sèche %></td>
-                <td><%= porc.lonzu.date_entrée_affinage %></td>
-                <td><%= porc.lonzu.date_sortie_affinage_vente %></td>
-            </tr>
-            <% end %>
+                <tr>
+                  <th>Lonzu</th>
+                  <td class="form-input"><%= @lonzu_temoin&.poids %></td>
+                  <td class="form-input">N/A</td>
+                  <td class="form-input">N/A</td>
+                  <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @lonzu_temoin&.durée_fumage %></td>
+                  <td class="form-input"><%= @lonzu_temoin&.poids_sortie_sèche %></td>
+                  <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
+                </tr>
 
-            <% if porc.prisuttu %>
-            <tr>
-                <td>Prisuttu</td>
-                <td><%= porc.prisuttu.poids %></td>
-                <td><%= porc.prisuttu.epaisseur_lard %></td>
-                <td><%= porc.prisuttu.ph %></td>
-                <td><%= porc.prisuttu.date_mise_au_sel %></td>
-                <td><%= porc.prisuttu.date_sortie_de_sel %></td>
-                <td><%= porc.prisuttu.durée_fumage %></td>
-                <td><%= porc.prisuttu.poids_sortie_sèche %></td>
-                <td><%= porc.prisuttu.date_entrée_affinage %></td>
-                <td><%= porc.prisuttu.date_sortie_affinage_vente %></td>
-            </tr>
-            <% end %>
-          <% end %>
+                <tr>
+                  <th>Prisuttu</th>
+                  <td class="form-input"><%= @prisuttu_temoin&.poids %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.epaisseur_lard %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.ph %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.durée_fumage %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.poids_sortie_sèche %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                  <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
+                </tr>
           </tbody>
         </table>
-
-
       </div>
-
     </div>
-
   </body>
 </html>

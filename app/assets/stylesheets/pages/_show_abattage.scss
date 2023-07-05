@@ -1,10 +1,10 @@
 .list-etape {
   display: flex;
   justify-content: space-around;
-  margin: 100px 0;
+  margin: 60px 0;
 
   .etape {
-    background-color: rgb(174, 43, 43);
+    background-color: rgb(206, 206, 206);
     padding: 50px;
     border-radius: 5px;
 
@@ -25,19 +25,17 @@
 .list-tableau {
 
   .tableau-content {
-    padding: 20px;
-    background-color: rgb(238, 238, 238);
     border-radius: 10px;
-    margin: 20px 0;
 
     table {
       color: black;
       border-collapse: separate;
 
       th, td {
-        padding: 5px;
+        padding: 10px;
         border: 1px solid rgb(191, 191, 191);
         border-radius: 5px;
+        background-color: rgb(238, 238, 238);
       }
 
       thead {

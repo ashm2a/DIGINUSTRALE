@@ -24,23 +24,23 @@
 
   <div class="list-etape">
     <div class="etape">
-      <%= link_to "Etape abattage", edit_abattage_path(@abattage), data: { turbo: "false" } %>
+      <%= link_to "Saisir donnée de l'abattage", edit_abattage_path(@abattage), data: { turbo: "false" } %>
     </div>
     <div class="etape">
-      <%= link_to "Etape produits", abattage_edit_produits_path(@abattage), data: { turbo: "false" } %>
+      <%= link_to "Saisir le nombre de produits", abattage_edit_produits_path(@abattage), data: { turbo: "false" } %>
     </div>
     <div class="etape">
-      <%= link_to "Etape coppa", abattage_edit_coppa_path(@abattage), data: { turbo: "false" } %>
+      <%= link_to "Saisir le témoin Coppa", abattage_edit_coppa_path(@abattage), data: { turbo: "false" } %>
     </div>
     <div class="etape">
-      <%= link_to "Etape lonzu", abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } %>
+      <%= link_to "Saisir le témoin Lonzu", abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } %>
     </div>
     <div class="etape">
-      <%= link_to "Etape prisuttu", abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } %>
+      <%= link_to "Saisir le témoin Prisuttu", abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } %>
     </div>
   </div>
 
-  <div class="list-tableau">
+  <div class="list-tableau mb-5">
     <h2>Infos des porcs</h2>
     <div class="tableau-content">
       <table style="table">
@@ -64,22 +64,22 @@
                   <% end %>
                 </td>
                 <td class="form-input">
-                <%= porc.poids_carcasse%>
+                <%= porc&.poids_carcasse%>
                 </td>
                 <td class="form-input">
-                  <%= porc.epaisseur_lard%>
+                  <%= porc&.epaisseur_lard%>
                 </td>
                 <td class="form-input">
-                  <%= porc.ph%>
+                  <%= porc&.ph%>
                 </td>
                 <td class="form-input">
-                  <%= porc.coppa.quantité%>
+                  <%= porc&.coppa&.quantité%>
                 </td>
                 <td class="form-input">
-                  <%= porc.lonzu.quantité%>
+                  <%= porc&.lonzu&.quantité%>
                 </td>
                 <td class="form-input">
-                  <%= porc.prisuttu.quantité%>
+                  <%= porc&.prisuttu&.quantité%>
                 </td>
               </tr>
             <% end %>
@@ -88,7 +88,7 @@
     </div>
   </div>
 
-  <div class="list-tableau">
+  <div class="list-tableau mb-5">
     <h2>Produits témoin</h2>
     <div class="tableau-content">
       <table style="table">
@@ -112,12 +112,12 @@
                 <td class="form-input"><%= @coppa_temoin&.poids %></td>
                 <td class="form-input">N/A</td>
                 <td class="form-input">N/A</td>
-                <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel %></td>
-                <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
                 <td class="form-input"><%= @coppa_temoin&.durée_fumage %></td>
                 <td class="form-input"><%= @coppa_temoin&.poids_sortie_sèche %></td>
-                <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage %></td>
-                <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
               </tr>
 
               <tr>
@@ -125,12 +125,12 @@
                 <td class="form-input"><%= @lonzu_temoin&.poids %></td>
                 <td class="form-input">N/A</td>
                 <td class="form-input">N/A</td>
-                <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel %></td>
-                <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
                 <td class="form-input"><%= @lonzu_temoin&.durée_fumage %></td>
                 <td class="form-input"><%= @lonzu_temoin&.poids_sortie_sèche %></td>
-                <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage %></td>
-                <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
               </tr>
 
               <tr>
@@ -138,12 +138,12 @@
                 <td class="form-input"><%= @prisuttu_temoin&.poids %></td>
                 <td class="form-input"><%= @prisuttu_temoin&.epaisseur_lard %></td>
                 <td class="form-input"><%= @prisuttu_temoin&.ph %></td>
-                <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel %></td>
-                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
                 <td class="form-input"><%= @prisuttu_temoin&.durée_fumage %></td>
                 <td class="form-input"><%= @prisuttu_temoin&.poids_sortie_sèche %></td>
-                <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage %></td>
-                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
               </tr>
         </tbody>
       </table>

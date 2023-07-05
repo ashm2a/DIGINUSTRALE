@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { beforeMain } from "@popperjs/core";
 
 // Connects to data-controller="aop"
 export default class extends Controller {
@@ -25,6 +26,7 @@ export default class extends Controller {
     ) {
         img.classList.remove("d-none");
         bg.classList.add("bg-success");
+
       } else {
         img.classList.add("d-none");
         bg.classList.remove("bg-success");

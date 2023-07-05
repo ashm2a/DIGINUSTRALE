@@ -21,7 +21,7 @@
 
         <div class="right" data-controller="deces">
           <span style="color: black; font-weight: bold; font-size: 20px; transition: 0.4s ease-out">Décès sur exploitation</span>
-            <%= f.input :décès, as: :boolean, label: "Je suis complètement décèdé zebi", input_html: { class: "form-check-input toggle", id: "deces", data: { action: "click->deces#toggleDateDeces", deces_target: "checkbox" } } %>
+            <%= f.input :décès, as: :boolean, label: "Décès sur l'exploitation", input_html: { class: "form-check-input toggle", id: "deces", data: { action: "click->deces#toggleDateDeces", deces_target: "checkbox" } } %>
           <div class="formBloc d-deces d-none" data-deces-target="block">
             <div class="formGroupe">
               <%= f.input :date_décès, as: :date %>

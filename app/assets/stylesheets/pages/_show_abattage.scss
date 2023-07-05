@@ -7,8 +7,6 @@
     background-color: rgb(206, 206, 206);
     padding: 50px;
     border-radius: 5px;
-
-    a {
       display: inline-block;
       color: black;
       font-weight: bold;
@@ -17,7 +15,6 @@
       &:hover {
         transform: scale(1.1);
       }
-    }
   }
 }
 

@@ -1,8 +1,8 @@
 <div class="nav-container">
   <div class="option-bar">
     <div class="option-left">
-      <p class="active" data-grid-target="button" data-action="click->grid#toggle">Mon élevage</p>
-      <p data-grid-target="button" data-action="click->grid#toggle">Mes productions </p>
+      <p class="active" data-grid-target="button" data-action="click->grid#toggle">MON CHEPTEL</p>
+      <p data-grid-target="button" data-action="click->grid#toggle">MES LOTS</p>
       <span class="active-indicator" data-grid-target="bar"> </span>
     </div>
 
@@ -21,10 +21,10 @@
       </div>
 
       <%= link_to new_porc_path, class: "button-custom" do %>
-        <i class="fa-solid fa-plus"></i>&nbsp; Ajouter un porc
+        <i class="fa-solid fa-plus"></i>&nbsp; AJOUTER UN ANIMAL
       <% end %>
       <%= link_to new_abattage_path, class: "button-custom", data: { turbo: "false" } do %>
-        <i class="fa-sharp fa-solid fa-share"></i>&nbsp; Passer a l'abattoir
+        <i class="fa-sharp fa-solid fa-share"></i>&nbsp; ABATTAGE
       <% end %>
     </div>
   </div>

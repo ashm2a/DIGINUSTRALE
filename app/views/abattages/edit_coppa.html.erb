@@ -32,34 +32,36 @@
         </thead>
         <tbody>
           <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
-            <% @porcs.each_with_index do |porc, index| %>
-              <%= simple_fields_for porc do |p| %>
-                <tr class="form-row">
-                  <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
-                  <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][coppa][poids]" value="<%= porc.coppa.poids %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][coppa][date_mise_au_sel]" value="<%= porc.coppa.date_mise_au_sel %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][coppa][date_sortie_de_sel]" value="<%= porc.coppa.date_sortie_de_sel %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][coppa][durée_fumage]" value="<%= porc.coppa.durée_fumage %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="number" step="1" name="<%= index %>[<%= porc.id %>][coppa][poids_sortie_sèche]" value="<%= porc.coppa.poids_sortie_sèche %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][coppa][date_entrée_affinage]" value="<%= porc.coppa.date_entrée_affinage %>">
-                  </td>
-                  <td class="form-input">
-                    <input type="date" step="1" name="<%= index %>[<%= porc.id %>][coppa][date_sortie_affinage_vente]" value="<%= porc.coppa.date_sortie_affinage_vente %>">
-                  </td>
-                </tr>
-              <% end %>
-            <% end %>
+            <tr class="form-row">
+              <td class="boucle-porc">
+                <select name="ipg">
+                  <% @abattage.porcs.each do |porc| %>
+                    <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %>><%= porc.boucle %></option>
+                  <% end %>
+                </select>
+              </td>
+              <td class="form-input">
+                <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_mise_au_sel" value="<%= @coppa_temoin&.date_mise_au_sel %>">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>">
+              </td>
+              <td class="form-input">
+                <input type="number" step="1" name="durée_fumage" value="<%= @coppa_temoin&.durée_fumage %>">
+              </td>
+              <td class="form-input">
+                <input type="number" step="1" name="poids_sortie_sèche" value="<%= @coppa_temoin&.poids_sortie_sèche %>">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_entrée_affinage" value="<%= @coppa_temoin&.date_entrée_affinage %>">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>">
+              </td>
+            </tr>
         </tbody>
       </table>
       <div class="d-flex justify-content-between form-actions">

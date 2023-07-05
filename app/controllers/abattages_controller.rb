@@ -24,9 +24,23 @@ class AbattagesController < ApplicationController
   end
 
   def show
-    @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
-    @lonzu_temoin = Lonzu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
-    @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+    
+    coppas_with_weight = @porcs.map(&:coppa).select do |coppa|
+      coppa.poids&.positive?
+    end
+    @coppa_temoin = coppas_with_weight.first
+
+    lonzus_with_weight = @porcs.map(&:lonzu).select do |lonzu|
+      lonzu.poids&.positive?
+    end
+    @lonzu_temoin = lonzus_with_weight.first
+
+    prisuttus_with_weight = @porcs.map(&:prisuttu).select do |prisuttu|
+      prisuttu.poids&.positive?
+    end
+    @prisuttu_temoin = prisuttus_with_weight.first
   end
 
   def edit
@@ -35,6 +49,7 @@ class AbattagesController < ApplicationController
   end
 
   def edit_produits
+    @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
   end
@@ -43,18 +58,33 @@ class AbattagesController < ApplicationController
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+
+    lonzus_with_weight = @porcs.map(&:lonzu).select do |lonzu|
+      lonzu.poids&.positive?
+    end
+    @lonzu_temoin = lonzus_with_weight.first
   end
 
   def edit_coppa
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+
+    coppas_with_weight = @porcs.map(&:coppa).select do |coppa|
+      coppa.poids&.positive?
+    end
+    @coppa_temoin = coppas_with_weight.first
   end
 
   def edit_prisuttu
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+
+    prisuttus_with_weight = @porcs.map(&:prisuttu).select do |prisuttu|
+      prisuttu.poids&.positive?
+    end
+    @prisuttu_temoin = prisuttus_with_weight.first
   end
 
   def update_abattage
@@ -93,88 +123,93 @@ class AbattagesController < ApplicationController
 
   def update_coppa
     @abattage = Abattage.find(params[:abattage_id])
-    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
-    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
-    count = @porcs.count
-    counter = 0
-    count.times do
-      porc_id = params[counter.to_s].keys.first
-      porc = Porc.find(porc_id)
-      porc.coppa.update(poids: params[counter.to_s][porc_id][:coppa][:poids])
-      porc.coppa.update(date_mise_au_sel: params[counter.to_s][porc_id][:coppa][:date_mise_au_sel])
-      porc.coppa.update(date_sortie_de_sel: params[counter.to_s][porc_id][:coppa][:date_sortie_de_sel])
-      porc.coppa.update(durée_fumage: params[counter.to_s][porc_id][:coppa][:durée_fumage])
-      porc.coppa.update(poids_sortie_sèche: params[counter.to_s][porc_id][:coppa][:poids_sortie_sèche])
-      porc.coppa.update(date_entrée_affinage: params[counter.to_s][porc_id][:coppa][:date_entrée_affinage])
-      porc.coppa.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:coppa][:date_sortie_affinage_vente])
-      counter += 1
-    end
-    redirect_to abattage_path(@abattage)
-  end
+    ipg = params[:ipg]
+    porc = Porc.find_by(boucle: ipg)
 
-  def update_lonzu
-    @abattage = Abattage.find(params[:abattage_id])
-    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
-    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
-    count = @porcs.count
-    counter = 0
-    count.times do
-      porc_id = params[counter.to_s].keys.first
-      porc = Porc.find(porc_id)
-      porc.lonzu.update(poids: params[counter.to_s][porc_id][:lonzu][:poids])
-      porc.lonzu.update(date_mise_au_sel: params[counter.to_s][porc_id][:lonzu][:date_mise_au_sel])
-      porc.lonzu.update(date_sortie_de_sel: params[counter.to_s][porc_id][:lonzu][:date_sortie_de_sel])
-      porc.lonzu.update(durée_fumage: params[counter.to_s][porc_id][:lonzu][:durée_fumage])
-      porc.lonzu.update(poids_sortie_sèche: params[counter.to_s][porc_id][:lonzu][:poids_sortie_sèche])
-      porc.lonzu.update(date_entrée_affinage: params[counter.to_s][porc_id][:lonzu][:date_entrée_affinage])
-      porc.lonzu.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:lonzu][:date_sortie_affinage_vente])
-      counter += 1
+    @abattage.porcs.each do |p|
+      p.coppa.update(poids: nil)
+      p.coppa.update(date_mise_au_sel: nil)
+      p.coppa.update(date_sortie_de_sel: nil)
+      p.coppa.update(durée_fumage: nil)
+      p.coppa.update(poids_sortie_sèche: nil)
+      p.coppa.update(date_entrée_affinage: nil)
+      p.coppa.update(date_sortie_affinage_vente: nil)
     end
+
+    porc.coppa.update(poids: params[:poids])
+    porc.coppa.update(date_mise_au_sel: params[:date_mise_au_sel])
+    porc.coppa.update(date_sortie_de_sel: params[:date_sortie_de_sel])
+    porc.coppa.update(durée_fumage: params[:durée_fumage])
+    porc.coppa.update(poids_sortie_sèche: params[:poids_sortie_sèche])
+    porc.coppa.update(date_entrée_affinage: params[:date_entrée_affinage])
+    porc.coppa.update(date_sortie_affinage_vente: params[:date_sortie_affinage_vente])
+
     redirect_to abattage_path(@abattage)
   end
 
   def update_prisuttu
     @abattage = Abattage.find(params[:abattage_id])
-    porcs_abattage = @abattage.porcs.flat_map { |porc| porc }
-    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
-    count = @porcs.count
-    counter = 0
-    count.times do
-      porc_id = params[counter.to_s].keys.first
-      porc = Porc.find(porc_id)
-      porc.prisuttu.update(poids: params[counter.to_s][porc_id][:prisuttu][:poids])
-      porc.prisuttu.update(date_mise_au_sel: params[counter.to_s][porc_id][:prisuttu][:date_mise_au_sel])
-      porc.prisuttu.update(date_sortie_de_sel: params[counter.to_s][porc_id][:prisuttu][:date_sortie_de_sel])
-      porc.prisuttu.update(durée_fumage: params[counter.to_s][porc_id][:prisuttu][:durée_fumage])
-      porc.prisuttu.update(poids_sortie_sèche: params[counter.to_s][porc_id][:prisuttu][:poids_sortie_sèche])
-      porc.prisuttu.update(date_entrée_affinage: params[counter.to_s][porc_id][:prisuttu][:date_entrée_affinage])
-      porc.prisuttu.update(date_sortie_affinage_vente: params[counter.to_s][porc_id][:prisuttu][:date_sortie_affinage_vente])
-      counter += 1
+    ipg = params[:ipg]
+    porc = Porc.find_by(boucle: ipg)
+
+    @abattage.porcs.each do |p|
+      p.prisuttu.update(poids: nil)
+      p.prisuttu.update(epaisseur_lard: nil)
+      p.prisuttu.update(ph: nil)
+      p.prisuttu.update(date_mise_au_sel: nil)
+      p.prisuttu.update(date_sortie_de_sel: nil)
+      p.prisuttu.update(durée_fumage: nil)
+      p.prisuttu.update(poids_sortie_sèche: nil)
+      p.prisuttu.update(date_entrée_affinage: nil)
+      p.prisuttu.update(date_sortie_affinage_vente: nil)
     end
+
+    porc.prisuttu.update(poids: params[:poids])
+    porc.prisuttu.update(epaisseur_lard: params[:epaisseur_lard])
+    porc.prisuttu.update(ph: params[:ph])
+    porc.prisuttu.update(date_mise_au_sel: params[:date_mise_au_sel])
+    porc.prisuttu.update(date_sortie_de_sel: params[:date_sortie_de_sel])
+    porc.prisuttu.update(durée_fumage: params[:durée_fumage])
+    porc.prisuttu.update(poids_sortie_sèche: params[:poids_sortie_sèche])
+    porc.prisuttu.update(date_entrée_affinage: params[:date_entrée_affinage])
+    porc.prisuttu.update(date_sortie_affinage_vente: params[:date_sortie_affinage_vente])
+
+    redirect_to abattage_path(@abattage)
+  end
+
+  def update_lonzu
+    @abattage = Abattage.find(params[:abattage_id])
+    ipg = params[:ipg]
+    porc = Porc.find_by(boucle: ipg)
+
+    @abattage.porcs.each do |p|
+      p.lonzu.update(poids: nil)
+      p.lonzu.update(date_mise_au_sel: nil)
+      p.lonzu.update(date_sortie_de_sel: nil)
+      p.lonzu.update(durée_fumage: nil)
+      p.lonzu.update(poids_sortie_sèche: nil)
+      p.lonzu.update(date_entrée_affinage: nil)
+      p.lonzu.update(date_sortie_affinage_vente: nil)
+    end
+
+    porc.lonzu.update(poids: params[:poids])
+    porc.lonzu.update(date_mise_au_sel: params[:date_mise_au_sel])
+    porc.lonzu.update(date_sortie_de_sel: params[:date_sortie_de_sel])
+    porc.lonzu.update(durée_fumage: params[:durée_fumage])
+    porc.lonzu.update(poids_sortie_sèche: params[:poids_sortie_sèche])
+    porc.lonzu.update(date_entrée_affinage: params[:date_entrée_affinage])
+    porc.lonzu.update(date_sortie_affinage_vente: params[:date_sortie_affinage_vente])
+
     redirect_to abattage_path(@abattage)
   end
 
   def download
-    @coppa_temoin = Coppa.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
-    @lonzu_temoin = Lonzu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
-    @prisuttu_temoin = Prisuttu.joins(:porc).where.not(date_mise_au_sel: nil).where(porcs: { abattage: @abattage }).first
-    # html_content = render_to_string(template: 'abattages/download')
-    # pdf = WickedPdf.new.pdf_from_string(html_content)
-    # send_data(pdf,
-    #           filename: 'document_aop.pdf',
-    #           type: 'application/pdf',
-    #           disposition: 'attachment')
-    # save_path = Rails.root.join('pdfs','doc_aop.pdf')
-    # File.open(save_path, 'wb') do |file|
-    #   file << pdf
-    # end
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-     render pdf: 'abattages/show',
-            orientation: 'Landscape'
-    # Excluding ".pdf" extension.
-    #end
+    @abattage = Abattage.find(params[:abattage_id])
+    porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
+    @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+
+    render pdf: 'abattages/show',
+           orientation: 'Landscape'
   end
 
   private

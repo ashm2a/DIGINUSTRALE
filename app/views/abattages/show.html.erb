@@ -89,13 +89,11 @@
   </div>
 
   <div class="list-tableau">
-    <h2>Infos des produits</h2>
+    <h2>Produits témoin</h2>
     <div class="tableau-content">
-      <% @abattage.porcs.each do |porc|%>
       <table style="table">
         <thead>
           <tr>
-          <th><%= porc.boucle %></th>
             <td>Produit</td>
             <td>Poids</td>
             <td>Epaisseur du lard (cm)</td>
@@ -109,56 +107,46 @@
           </tr>
         </thead>
         <tbody>
-            <% if porc.coppa %>
               <tr>
-                <td class="form-input"></td>
                 <th>Coppa</th>
-                <td class="form-input"><%= porc.coppa.poids %></td>
+                <td class="form-input"><%= @coppa_temoin&.poids %></td>
                 <td class="form-input">N/A</td>
                 <td class="form-input">N/A</td>
-                <td class="form-input"><%= porc.coppa.date_mise_au_sel %></td>
-                <td class="form-input"><%= porc.coppa.date_sortie_de_sel %></td>
-                <td class="form-input"><%= porc.coppa.durée_fumage %></td>
-                <td class="form-input"><%= porc.coppa.poids_sortie_sèche %></td>
-                <td class="form-input"><%= porc.coppa.date_entrée_affinage %></td>
-                <td class="form-input"><%= porc.coppa.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @coppa_temoin&.durée_fumage %></td>
+                <td class="form-input"><%= @coppa_temoin&.poids_sortie_sèche %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente %></td>
               </tr>
-            <% end %>
 
-            <% if porc.lonzu %>
               <tr>
-                <td class="form-input"></td>
                 <th>Lonzu</th>
-                <td class="form-input"><%= porc.lonzu.poids %></td>
+                <td class="form-input"><%= @lonzu_temoin&.poids %></td>
                 <td class="form-input">N/A</td>
                 <td class="form-input">N/A</td>
-                <td class="form-input"><%= porc.lonzu.date_mise_au_sel %></td>
-                <td class="form-input"><%= porc.lonzu.date_sortie_de_sel %></td>
-                <td class="form-input"><%= porc.lonzu.durée_fumage %></td>
-                <td class="form-input"><%= porc.lonzu.poids_sortie_sèche %></td>
-                <td class="form-input"><%= porc.lonzu.date_entrée_affinage %></td>
-                <td class="form-input"><%= porc.lonzu.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @lonzu_temoin&.durée_fumage %></td>
+                <td class="form-input"><%= @lonzu_temoin&.poids_sortie_sèche %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente %></td>
               </tr>
-            <% end %>
 
-            <% if porc.prisuttu %>
               <tr>
-                <td class="form-input"></td>
                 <th>Prisuttu</th>
-                <td class="form-input"><%= porc.prisuttu.poids %></td>
-                <td class="form-input"><%= porc.prisuttu.epaisseur_lard %></td>
-                <td class="form-input"><%= porc.prisuttu.ph %></td>
-                <td class="form-input"><%= porc.prisuttu.date_mise_au_sel %></td>
-                <td class="form-input"><%= porc.prisuttu.date_sortie_de_sel %></td>
-                <td class="form-input"><%= porc.prisuttu.durée_fumage %></td>
-                <td class="form-input"><%= porc.prisuttu.poids_sortie_sèche %></td>
-                <td class="form-input"><%= porc.prisuttu.date_entrée_affinage %></td>
-                <td class="form-input"><%= porc.prisuttu.date_sortie_affinage_vente %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.poids %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.epaisseur_lard %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.ph %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.durée_fumage %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.poids_sortie_sèche %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente %></td>
               </tr>
-            <% end %>
         </tbody>
       </table>
-      <% end %>
     </div>
   </div>
 </div>

@@ -17,7 +17,7 @@ class AbattagesController < ApplicationController
         porc.update!(abattage: @abattage)
         porc.update!(abattu: true)
       end
-      redirect_to edit_abattage_path(@abattage)
+      redirect_to abattage_path(@abattage)
     else
       render :new
     end
@@ -26,19 +26,19 @@ class AbattagesController < ApplicationController
   def show
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
-    
+
     coppas_with_weight = @porcs.map(&:coppa).select do |coppa|
-      coppa.poids&.positive?
+      coppa&.poids&.positive?
     end
     @coppa_temoin = coppas_with_weight.first
 
     lonzus_with_weight = @porcs.map(&:lonzu).select do |lonzu|
-      lonzu.poids&.positive?
+      lonzu&.poids&.positive?
     end
     @lonzu_temoin = lonzus_with_weight.first
 
     prisuttus_with_weight = @porcs.map(&:prisuttu).select do |prisuttu|
-      prisuttu.poids&.positive?
+      prisuttu&.poids&.positive?
     end
     @prisuttu_temoin = prisuttus_with_weight.first
   end
@@ -207,6 +207,21 @@ class AbattagesController < ApplicationController
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
+
+    coppas_with_weight = @porcs.map(&:coppa).select do |coppa|
+      coppa&.poids&.positive?
+    end
+    @coppa_temoin = coppas_with_weight.first
+
+    lonzus_with_weight = @porcs.map(&:lonzu).select do |lonzu|
+      lonzu&.poids&.positive?
+    end
+    @lonzu_temoin = lonzus_with_weight.first
+
+    prisuttus_with_weight = @porcs.map(&:prisuttu).select do |prisuttu|
+      prisuttu&.poids&.positive?
+    end
+    @prisuttu_temoin = prisuttus_with_weight.first
 
     render pdf: 'abattages/show',
            orientation: 'Landscape'

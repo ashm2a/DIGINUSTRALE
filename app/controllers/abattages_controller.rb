@@ -58,7 +58,6 @@ class AbattagesController < ApplicationController
     @abattage = Abattage.find(params[:abattage_id])
     porcs_abattage = @abattage.porcs.flat_map {|porc| porc }
     @porcs = Porc.where(id: porcs_abattage.pluck(:id))
-
     lonzus_with_weight = @porcs.map(&:lonzu).select do |lonzu|
       lonzu.poids&.positive?
     end

@@ -14,6 +14,17 @@
     display: flex;
     flex-wrap: wrap;
 
+
+    #eligible-alert{
+      color: rgb(19, 183, 19);
+      font-weight: bold;
+      font-size: small;
+      border-top: 2px solid #cfcfcf;
+      padding: 0px;
+      height: 10px;
+      margin: 0;
+    }
+
     legend {
       display: none;
     }

@@ -4,7 +4,7 @@ import { beforeMain } from "@popperjs/core";
 // Connects to data-controller="aop"
 export default class extends Controller {
 
-  static targets = ["bg", "poids", "lard", "ph", "eligible"]
+  static targets = ["bg", "poids", "lard", "ph", "eligible", "boucle"]
 
   connect() {
     this.labelAop();

@@ -23,21 +23,27 @@
   </div>
 
   <div class="list-etape">
-    <div class="etape">
-      <%= link_to "Saisir donnée de l'abattage", edit_abattage_path(@abattage), data: { turbo: "false" } %>
-    </div>
-    <div class="etape">
-      <%= link_to "Saisir le nombre de produits", abattage_edit_produits_path(@abattage), data: { turbo: "false" } %>
-    </div>
-    <div class="etape">
-      <%= link_to "Saisir le témoin Coppa", abattage_edit_coppa_path(@abattage), data: { turbo: "false" } %>
-    </div>
-    <div class="etape">
-      <%= link_to "Saisir le témoin Lonzu", abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } %>
-    </div>
-    <div class="etape">
-      <%= link_to "Saisir le témoin Prisuttu", abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } %>
-    </div>
+
+      <%= link_to edit_abattage_path(@abattage), data: { turbo: "false" } do %>
+        <div class="etape">Saisir les données de l'abattage</div>
+      <% end %>
+
+      <%= link_to abattage_edit_produits_path(@abattage), data: { turbo: "false" } do %>
+        <div class="etape">Saisir le nombre de produits</div>
+      <% end %>
+
+      <%= link_to abattage_edit_coppa_path(@abattage), data: { turbo: "false" } do %>
+        <div class="etape">Saisir la Coppa témoin</div>
+      <% end %>
+
+      <%= link_to abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } do %>
+        <div class="etape">Saisir le Lonzu témoin</div>
+      <% end %>
+
+      <%= link_to abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } do %>
+        <div class="etape">Saisir le Prisuttu témoin </div>
+      <% end %>
+
   </div>
 
   <div class="list-tableau mb-5">
@@ -47,7 +53,7 @@
           <thead>
             <tr>
               <td>IPG du porc</td>
-              <td>Poids carcasse(kg)</td>
+              <td>Poids carcasse (kg)</td>
               <td>Epaisseur du lard (cm)</td>
               <td>pH</td>
               <td>Quantité coppa</td>

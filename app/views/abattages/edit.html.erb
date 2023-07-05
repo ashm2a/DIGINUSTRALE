@@ -51,7 +51,7 @@
           </tbody>
         </table>
         <div class="d-flex justify-content-between form-actions">
-          <%= link_to "Annuler", "/porcs", class: "annuler-button", data: { turbo: "false" } %>
+          <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
           <div class="decoupe d-none" data-aop-target="decoupe" data-checkable-target="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>

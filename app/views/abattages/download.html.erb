@@ -17,6 +17,13 @@
         border-collapse: collapse;
         width: 100%;
         font-size: 18px;
+        text-align: center;
+      }
+      thead {
+        font-weight: bold;
+      }
+      tfoot {
+        font-weight: bold;
       }
       /* Additional styling for specific elements */
       h1 {
@@ -40,7 +47,7 @@
 
     <div class="container-global">
       <div class="head-info">
-          <h1 class="active">Information sur le lot <%= @abattage.numéro_lot %></h1>
+          <h1 class="active">Lot n°<%= @abattage.numéro_lot %></h1>
             <p>Date et lieu d'abattage</p>
             <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
       </div>
@@ -51,7 +58,7 @@
           <thead>
             <tr>
               <td>IPG du porc</td>
-              <td>Poids carcasse(kg)</td>
+              <td>Poids carcasse (kg)</td>
               <td>Epaisseur du lard (cm)</td>
               <td>pH</td>
               <td>Quantité coppa</td>
@@ -60,6 +67,9 @@
             </tr>
           </thead>
           <tbody>
+          <% sum_coppa = 0 %>
+          <% sum_lonzu = 0 %>
+          <% sum_prisuttu = 0 %>
             <% @abattage.porcs.each do |porc|%>
               <tr>
                 <td>
@@ -78,16 +88,26 @@
                 </td>
                 <td>
                   <%= porc.coppa.quantité%>
+                  <% sum_coppa = porc.coppa.quantité %>
                 </td>
                 <td>
                   <%= porc.lonzu.quantité%>
+                  <% sum_lonzu = porc.lonzu.quantité %>
                 </td>
                 <td>
                   <%= porc.prisuttu.quantité%>
+                  <% sum_prisuttu = porc.prisuttu.quantité %>
                 </td>
               </tr>
             <% end %>
           </tbody>
+          <tfoot>
+            <tr>
+            <td colspan="4" style="text-align: right">Total des produits:&nbsp;&nbsp;</td>
+            <td><%= sum_coppa %></td>
+            <td><%= sum_lonzu %></td>
+            <td><%= sum_prisuttu %></td>
+          </tfoot>
         </table>
 
           <h1>Infos des produits</h1>

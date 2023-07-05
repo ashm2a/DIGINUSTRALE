@@ -4,63 +4,195 @@
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+@import url("https://fonts.googleapis.com/css?family=Shadows+Into+Light");
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+@maincolor: white;
+@secondarycolor: #000;
+
+html {
+  font-size: 16px;
+  font-family: "Shadows Into Light", cursive;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: black;
+  color: white;
+}
+.a-title {
+  font-size: 10rem;
+  text-align: center;
+}
+.a-message {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.o-cat {
+  width: 35vh;
+  margin: auto;
+  padding: 3rem;
+}
+.m-ear,
+.m-eye {
+  background-color: white;
+}
+.m-ears {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 1vh 0.5vh;
+  z-index: 1;
+}
+.m-ear {
+  height: 14vh;
+  width: 10vh;
+  border-radius: 40% 70% 10% 10% e("/") 100% 100% 10% 10%;
+  position: relative;
+
+  &.-left {
+    transform: rotateZ(15deg);
+  }
+  &.-right {
+    transform: rotateY(180deg) rotateZ(15deg);
+  }
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    background-color: black;
+    bottom: 0;
+    right: 70%;
+    border-radius: 50%;
+  }
+  &:after {
+    height: 40%;
+    transform: rotate(15deg);
+  }
+  &:before {
+    height: 35%;
+    transform: rotate(-15deg);
+  }
+}
+.m-face {
+  position: relative;
+  background-color: black;
+  border-radius: 100% 100% 0 0;
+  margin: -8vh auto 0;
+  padding: 8vh 0 6vh;
+  width: 90%;
+}
+.m-eyes {
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+}
+.m-eye {
+  width: 10vh;
+  height: 8vh;
+  border-radius: 70%;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 50%;
+    left: -2vh;
+    right: -2vh;
+    background-color: black;
+    border-radius: 0 0 35% 35%;
+    z-index: 2;
+    animation: eyes 5s ease infinite;
+  }
+  &:after {
+    content: "";
+    width: 10%;
+    height: 15%;
+    border-radius: 50%;
     background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    position: absolute;
+    top: 40%;
+  }
+  &.-left:after {
+    right: -5%;
+  }
+  &.-right:after {
+    left: -5%;
+  }
+}
+.a-eyePupil {
+  background-color: black;
+  width: 30%;
+  left: 35%;
+  &,
+  &:after {
+    position: absolute;
+
+    height: 50%;
+    border-radius: 50%;
+    top: 25%;
   }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+  &:after {
+    content: "";
+    background-color: white;
+    width: 20%;
+    left: 20%;
   }
+}
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+.m-nose {
+  border-radius: 50% 50% 50% 50% e("/") 30% 30% 70% 70%;
+  background-color: white;
+  width: 4vh;
+  height: 2vh;
+  margin: auto;
+}
+
+@keyframes eyes {
+  0%,
+  5%,
+  100% {
+    height: 50%;
   }
+  2% {
+    height: 110%;
+  }
+}
+
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
+  <div class="o-404">
+    <h1 class="a-title">500</h1>
+    <p class="a-message">
+      You came to the wrong neighborhood
+    </p>
+    <div class="o-cat">
+      <div class="m-ears">
+        <div class="m-ear -right"></div>
+        <div class="m-ear -left"></div>
+
+      </div>
+      <div class="m-face">
+        <div class="m-eyes">
+          <div class="m-eye -left">
+            <div class="a-eyePupil"></div>
+          </div>
+          <div class="m-eye -right">
+            <div class="a-eyePupil"></div>
+          </div>
+        </div>
+        <div class="m-nose"></div>
+      </div>
+
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

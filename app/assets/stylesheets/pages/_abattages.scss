@@ -24,10 +24,16 @@ tbody {
 }
 
 .boucle-porc {
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 100%;
+  margin-top: 10px;
+
+  select {
+    padding: 10px;
+    border: none;
+    font-size: 19px;
+    border-radius: 25px;
+    height: 77%;
+  }
 }
 
 img {

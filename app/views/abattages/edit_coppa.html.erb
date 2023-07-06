@@ -14,75 +14,83 @@
     </div>
   </div>
 
-  <div class="form-create-container">
-    <h2>Saisi de la coppa témoin</h2>
-    <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
-    <div class="formBloc d-block">
-      <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
+  <div class="form-create-container" data-controller="checkable">
+  <h2>Saisie de la coppa témoin</h2>
+      <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
+         <div class="formBloc d-bloc">
+          <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
+          <div data-produit-target="abattage"><%= @abattage.date %></div>
         <table class="table">
-          <thead>
-            <tr>
-              <th class="header">IPG du porc</th>
-              <th class="header">Poids(kg)</th>
-              <th class="header">Date mise au sel</th>
-              <th class="header">Date sortie de sel</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr class="form-row">
-                <td class="boucle-porc">
-                  <select name="ipg">
-                    <% @abattage.porcs.each do |porc| %>
-                      <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %>><%= porc.boucle %></option>
-                    <% end %>
+        <thead>
+          <tr>
+            <th class="header">Boucle porc</th>
+            <th class="header">Poids (kg)</th>
+            <th class="header">Date mise au sel</th>
+            <th class="header">Date sortie de sel</th>
+          </tr>
+        </thead>
+        <tbody data-controller="produit", data-action= "keyup->produit#produitAop">
+            <tr class="form-row" data-produit-target="bg">
+              <td>
+                <div class="boucle-porc">
+                  <select name="ipg" data-action="change->produit#porcAop" data-produit-target="porc">
+                      <% @abattage.porcs.each do |porc| %>
+                        <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"> <%= porc.boucle %></option>
+                      <% end %>
                   </select>
-                </td>
-                <td class="form-input">
-                  <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>">
-                </td>
-                <td class="form-input">
-                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @coppa_temoin&.date_mise_au_sel %>">
-                </td>
-                <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>">
-                </td>
-              </tr>
-          </tbody>
-        </table>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="header">Durée de fumage (jours)</th>
-              <th class="header">Poids sortie de sèche (kg)</th>
-              <th class="header">Date entrée affinage</th>
-              <th class="header">Date sortie affinage vente</th>
+                </div>
+              </td>
+              <td class="form-input">
+                <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>" data-checkable-target="checkable" data-produit-target="poids">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_mise_au_sel" value="<%= @coppa_temoin&.date_mise_au_sel %>" data-checkable-target="checkable" data-produit-target="misesel" date-abattage="<%= @abattage.date%>">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortiesel">
+              </td>
+        </tbody>
+      </table>
+       
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="header">Durée de fumage (jours)</th>
+            <th class="header">Poids sortie de sèche (kg)</th>
+            <th class="header">Date entrée affinage</th>
+            <th class="header">Date sortie affinage vente</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr class="form-row">
+              <td class="form-input">
+                <input type="number" step="1" name="durée_fumage" value="<%= @coppa_temoin&.durée_fumage %>" data-checkable-target="checkable" data-produit-target="fumage">
+              </td>
+              <td class="form-input">
+                <input type="number" step="1" name="poids_sortie_sèche" value="<%= @coppa_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable" data-produit-target="sortieseche">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_entrée_affinage" value="<%= @coppa_temoin&.date_entrée_affinage %>" data-checkable-target="checkable" data-produit-target="entreeaffinage">
+              </td>
+              <td class="form-input">
+                <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortieaffinage">
+              </td>
+                <td class="aop form-input text-end">
+                  <input type="hidden">
+                    <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
+                  </td>
             </tr>
-          </thead>
-          <tbody>
-              <tr class="form-row">
-                <td class="form-input">
-                  <input type="number" step="1" name="durée_fumage" value="<%= @coppa_temoin&.durée_fumage %>">
-                </td>
-                <td class="form-input">
-                  <input type="number" step="1" name="poids_sortie_sèche" value="<%= @coppa_temoin&.poids_sortie_sèche %>">
-                </td>
-                <td class="form-input">
-                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @coppa_temoin&.date_entrée_affinage %>">
-                </td>
-                <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>">
-                </td>
-              </tr>
-          </tbody>
-        </table>
+            <tr  data-produit-target="alert" class="d-none">
+             <td colspan="8" id="eligible-alert">Porc eligible AOP</td>
+            </tr>
+        </tbody>
+      </table>
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
           <div class="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
   </div>
 </div>

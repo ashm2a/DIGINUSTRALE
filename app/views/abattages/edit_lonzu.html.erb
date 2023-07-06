@@ -14,11 +14,11 @@
     </div>
   </div>
 
-  <div class="form-create-container">
-    <h2>Saisi du lonzu témoin</h2>
+  <div class="form-create-container" data-controller="checkable">
+    <h2>Saisie du lonzu témoin</h2>
     <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
     <div class="formBloc d-block">
-      <%= simple_form_for @abattage, url: abattage_update_lonzu_path(@abattage), data: { turbo: "false" }, method: :patch do |fp| %>
+      <%= simple_form_for @abattage, url: abattage_update_lonzu_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
         <table class="table">
           <thead>
             <tr>
@@ -38,13 +38,13 @@
                   </select>
                 </td>
                 <td class="form-input">
-                  <input type="number" step="1" name="poids" value="<%= @lonzu_temoin&.poids %>">
+                  <input type="number" step="1" name="poids" value="<%= @lonzu_temoin&.poids %>" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @lonzu_temoin&.date_mise_au_sel %>">
+                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @lonzu_temoin&.date_mise_au_sel %>" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_de_sel" value="<%= @lonzu_temoin&.date_sortie_de_sel %>">
+                  <input type="date" step="1" name="date_sortie_de_sel" value="<%= @lonzu_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable">
                 </td>
               </tr>
           </tbody>
@@ -65,20 +65,20 @@
                   <input type="number" step="1" name="durée_fumage" value="<%= @lonzu_temoin&.durée_fumage %>">
                 </td>
                 <td class="form-input">
-                  <input type="number" step="1" name="poids_sortie_sèche" value="<%= @lonzu_temoin&.poids_sortie_sèche %>">
+                  <input type="number" step="1" name="poids_sortie_sèche" value="<%= @lonzu_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @lonzu_temoin&.date_entrée_affinage %>">
+                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @lonzu_temoin&.date_entrée_affinage %>" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @lonzu_temoin&.date_sortie_affinage_vente %>">
+                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @lonzu_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable">
                 </td>
               </tr>
           </tbody>
         </table>
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
-          <div class="decoupe">
+          <div class="decoupe d-none" data-checkable-target="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>
         </div>

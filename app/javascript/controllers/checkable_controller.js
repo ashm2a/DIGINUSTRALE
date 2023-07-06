@@ -9,14 +9,22 @@ export default class extends Controller {
   }
 
   validateForm() {
+    //console.log(this.checkableTargets);
+    // this.checkableTargets.forEach((target) => {
+    //   console.log(target);
+    //   console.log(target.value.length);
+    // })
+
     const formIsValid = this.checkableTargets.every((target) => {
       return target.value.length > 0
     })
     console.log(formIsValid)
     if (formIsValid) {
       this.decoupeTarget.classList.remove('d-none');
+      //console.log("form is full");
     } else {
       this.decoupeTarget.classList.add('d-none');
+      //console.log("some fields left");
     }
   }
 }

@@ -48,7 +48,7 @@
                   <input type="number" step="1" name="ph" value="<%= @prisuttu_temoin&.ph %>" data-action="keyup->checkable#validateForm" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @prisuttu_temoin&.date_mise_au_sel %>" data-action="keyup->checkable#validateForm" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @prisuttu_temoin&.date_mise_au_sel %>" data-action="change->checkable#validateForm" data-checkable-target="checkable">
                 </td>
               </tr>
           </tbody>
@@ -76,10 +76,10 @@
                   <input type="number" step="1" name="poids_sortie_sèche" value="<%= @prisuttu_temoin&.poids_sortie_sèche %>" data-action="keyup->checkable#validateForm" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @prisuttu_temoin&.date_entrée_affinage %>" data-action="keyup->checkable#validateForm" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @prisuttu_temoin&.date_entrée_affinage %>" data-action="change->checkable#validateForm" data-checkable-target="checkable">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @prisuttu_temoin&.date_sortie_affinage_vente %>" data-action="keyup->checkable#validateForm" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @prisuttu_temoin&.date_sortie_affinage_vente %>" data-action="change->checkable#validateForm" data-checkable-target="checkable">
                 </td>
               </tr>
               <tr data-produit-target="alert" class="d-none">

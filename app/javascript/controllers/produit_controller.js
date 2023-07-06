@@ -8,6 +8,7 @@ export default class extends Controller {
   connect() {
     this.porcAop()
     this.produitAop()
+    console.log("produit connected")
   }
 
   porcAop() {

@@ -4,7 +4,7 @@
   <div class="nav-container">
     <div class="head-info">
       <div>
-        <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 3 | Coppa</h2>
+        <h2 class="active">GESTION DU LOT N° <%= @abattage.numéro_lot %></h2>
       </div>
 
       <div class="elevage">
@@ -15,7 +15,9 @@
   </div>
 
   <div class="form-create-container" data-controller="checkable">
-    <div class="formBloc">
+  <h2>Saisie de la coppa témoin</h2>
+      <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
+         <div class="formBloc d-bloc">
           <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
           <div data-produit-target="abattage"><%= @abattage.date %></div>
         <table class="table">
@@ -25,24 +27,18 @@
             <th class="header">Poids (kg)</th>
             <th class="header">Date mise au sel</th>
             <th class="header">Date sortie de sel</th>
-            <th class="header">Durée de fumage (jours)</th>
-            <th class="header">Poids sortie de sèche (kg)</th>
-            <th class="header">Date entrée affinage</th>
-            <th class="header">Date sortie affinage vente</th>
-            <th class="header"></th>
           </tr>
         </thead>
         <tbody data-controller="produit", data-action= "keyup->produit#produitAop">
             <tr class="form-row" data-produit-target="bg">
-              <td >
-              <div class="boucle-porc">
-                <select name="ipg" data-action="change->produit#porcAop" data-produit-target="porc">
-                    <% @abattage.porcs.each do |porc| %>
-                      <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"> <%= porc.boucle %></option>
-                    <% end %>
-                </select>
-              </div>
-
+              <td>
+                <div class="boucle-porc">
+                  <select name="ipg" data-action="change->produit#porcAop" data-produit-target="porc">
+                      <% @abattage.porcs.each do |porc| %>
+                        <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"> <%= porc.boucle %></option>
+                      <% end %>
+                  </select>
+                </div>
               </td>
               <td class="form-input">
                 <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>" data-checkable-target="checkable" data-produit-target="poids">
@@ -53,6 +49,20 @@
               <td class="form-input">
                 <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortiesel">
               </td>
+        </tbody>
+      </table>
+       
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="header">Durée de fumage (jours)</th>
+            <th class="header">Poids sortie de sèche (kg)</th>
+            <th class="header">Date entrée affinage</th>
+            <th class="header">Date sortie affinage vente</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr class="form-row">
               <td class="form-input">
                 <input type="number" step="1" name="durée_fumage" value="<%= @coppa_temoin&.durée_fumage %>" data-checkable-target="checkable" data-produit-target="fumage">
               </td>
@@ -69,22 +79,18 @@
                   <input type="hidden">
                     <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
                   </td>
-
-
-
             </tr>
             <tr  data-produit-target="alert" class="d-none">
              <td colspan="8" id="eligible-alert">Porc eligible AOP</td>
             </tr>
         </tbody>
       </table>
-      <div class="d-flex justify-content-between form-actions">
-        <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
-        <div class="decoupe" data-checkable-target="decoupe">
-          <%= fp.button :submit, 'Valider', class: 'submit-button' %>
-        </div>
+        <div class="d-flex justify-content-between form-actions">
+          <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
+          <div class="decoupe">
+            <%= fp.button :submit, 'Valider', class: 'submit-button' %>
+          </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
   </div>
 </div>

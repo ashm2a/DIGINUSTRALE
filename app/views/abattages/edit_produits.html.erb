@@ -4,7 +4,7 @@
   <div class="nav-container">
     <div class="head-info">
       <div>
-        <h2 class="active">Lot n° <%= @abattage.numéro_lot %> - Etape 2</h2>
+        <h2 class="active">GESTION DU LOT N° <%= @abattage.numéro_lot %></h2>
       </div>
 
       <div class="elevage">
@@ -13,7 +13,9 @@
       </div>
     </div>
   </div>
-  <div class="form-create-container">
+  <div class="form-create-container" data-controller="checkable">
+    <h2>Saisi des produits</h2>
+    <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
     <div class="formBloc">
       <table class="table">
         <thead>

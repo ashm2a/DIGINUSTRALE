@@ -18,6 +18,7 @@ export default class extends Controller {
     const formIsValid = this.checkableTargets.every((target) => {
       return target.value.length > 0
     })
+    console.log(formIsValid)
     if (formIsValid) {
       this.decoupeTarget.classList.remove('d-none');
       //console.log("form is full");

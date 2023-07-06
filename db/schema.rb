@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantité", default: 0
+    t.integer "quantité"
     t.index ["porc_id"], name: "index_coppas_on_porc_id"
   end
 
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantité", default: 0
+    t.integer "quantité"
     t.index ["porc_id"], name: "index_lonzus_on_porc_id"
   end
 
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090548) do
     t.date "date_sortie_affinage_vente"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantité", default: 0
+    t.integer "quantité"
     t.index ["porc_id"], name: "index_prisuttus_on_porc_id"
   end
 

@@ -7,8 +7,8 @@
       <%= link_to "< Retour", porcs_path, class: "annuler-button", style: "color: white;" %>
     </div>
     <div class="button-action">
-      <%= link_to "Modifier", edit_porc_path(@porc), class: "button-custom" %>
-      <%= link_to "Gestion du porc", porc_gestion_path(@porc), class: "button-custom" %>
+      <%= link_to "MODIFIER", edit_porc_path(@porc), class: "button-custom" %>
+      <%= link_to "GESTION ANIMAL", porc_gestion_path(@porc), class: "button-custom" %>
     </div>
   </div>
 
@@ -25,7 +25,7 @@
       </div>
 
       <div class="card">
-        <h4>Informations sur le vermifuges</h4>
+        <h4>Informations sur le vermifuge</h4>
         <div class="vermifuges-container">
           <div class="vermifuges">
             <% if @porc.vermifuge_2_mois %>
@@ -85,7 +85,7 @@
           <% if @porc.décès %>
             <h4>Décès sur exploitation</h4>
             <div class="décès">
-              <span style="color: gray; font-weight: 900;">Décèdé le</span> <%= @porc.date_décès %>
+              <span style="color: gray; font-weight: 900;">Décédé le</span> <%= @porc.date_décès %>
             </div>
             <% elsif @porc.abattu %>
             <h4>Date de passage en abattoire</h4>

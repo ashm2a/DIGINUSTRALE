@@ -8,16 +8,29 @@
       </div>
 
       <div class="elevage">
-        <p>Date et lieu d'abattage</p>
-        <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+          <p><span style="color: gray; font-weight: 900;">Date</span> <%= @abattage.date.strftime("%d/%m/%Y") %></p>
+          <p><span style="color: gray; font-weight: 900;">Lieu d'abattage</span> <%= @abattage.lieu %></p>
       </div>
     </div>
   </div>
 
   <div class="form-create-container" data-controller="checkable">
-    <h2>Saisie de la coppa témoin</h2>
+    <div class="d-flex justify-content-between">
+      <h2>Saisie de la coppa témoin</h2>
+
+      <div>
+        <input type="hidden">
+        <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
+        <div class="aop form-input text-end">
+          <div data-produit-target="alert" class="d-none">
+            <p id="eligible-alert">Porc eligible AOP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
-         <div class="formBloc d-bloc" data-controller="produit", data-action= "keyup->produit#produitAop">
+         <div class="formBloc d-block" data-controller="produit", data-action= "keyup->produit#produitAop">
           <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
           <table class="table" data-produit-target="bg">
           <thead>
@@ -30,14 +43,12 @@
           </thead>
           <tbody>
               <tr class="form-row">
-                <td>
-                  <div class="boucle-porc">
+                <td class="boucle-porc">
                     <select name="ipg" data-action="change->produit#porcAop" data-produit-target="porc">
                         <% @abattage.porcs.each do |porc| %>
                           <option value="<%= porc.boucle %>" <%= "selected" if @coppa_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"> <%= porc.boucle %></option>
                         <% end %>
                     </select>
-                  </div>
                 </td>
                 <td class="form-input">
                   <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>" data-checkable-target="checkable" data-produit-target="poids">
@@ -48,6 +59,7 @@
                 <td class="form-input">
                   <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortiesel">
                 </td>
+              </tr>
           </tbody>
         </table>
 
@@ -74,16 +86,10 @@
                 <td class="form-input">
                   <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortieaffinage">
                 </td>
-                <td class="aop form-input text-end">
-                  <input type="hidden">
-                    <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
-                </td>
-              </tr>
-              <tr  data-produit-target="alert" class="d-none">
-                <td colspan="8" id="eligible-alert">Porc eligible AOP</td>
               </tr>
           </tbody>
         </table>
+
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
             <div class="decoupe" data-checkable-target = "decoupe">

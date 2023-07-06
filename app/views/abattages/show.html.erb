@@ -25,11 +25,11 @@
   <h2>Gestion des informations des porcs</h2>
   <div class="list-etape">
       <%= link_to edit_abattage_path(@abattage), data: { turbo: "false" } do %>
-        <div class="etape" style="<%= @etape_un_rempli ? 'background-color: rgb(41, 143, 41);' : '' %>">Saisir les données de l'abattage</div>
+        <div class="etape" style="<%= @etape_un_rempli ? 'background-color: #0089d8;' : '' %>">Saisir les données de l'abattage</div>
       <% end %>
 
       <%= link_to abattage_edit_produits_path(@abattage), data: { turbo: "false" } do %>
-        <div class="etape" style="<%= @etape_deux_rempli ? 'background-color: rgb(41, 143, 41);' : '' %>">Saisir le nombre de produits</div>
+        <div class="etape" style="<%= @etape_deux_rempli ? 'background-color: #0089d8;' : '' %>">Saisir le nombre de produits</div>
       <% end %>
   </div>
 
@@ -81,15 +81,15 @@
   <h2>Gestion des produits témoin</h2>
   <div class="list-etape">
         <%= link_to abattage_edit_coppa_path(@abattage), data: { turbo: "false" } do %>
-        <div class="etape" style="<%= @coppa_temoin ? 'background-color: rgb(41, 143, 41);' : '' %>">Saisir la Coppa témoin</div>
+        <div class="etape" style="<%= @coppa_temoin ? 'background-color: #0089d8;' : '' %>">Saisir la Coppa témoin</div>
       <% end %>
 
       <%= link_to abattage_edit_lonzu_path(@abattage), data: { turbo: "false" } do %>
-        <div class="etape" style="<%= @lonzu_temoin ? 'background-color: rgb(41, 143, 41);' : '' %>">Saisir le Lonzu témoin</div>
+        <div class="etape" style="<%= @lonzu_temoin ? 'background-color: #0089d8;' : '' %>">Saisir le Lonzu témoin</div>
       <% end %>
 
       <%= link_to abattage_edit_prisuttu_path(@abattage), data: { turbo: "false" } do %>
-        <div class="etape" style="<%= @prisuttu_temoin ? 'background-color: rgb(41, 143, 41);' : '' %>">Saisir le Prisuttu témoin </div>
+        <div class="etape" style="<%= @prisuttu_temoin ? 'background-color: #0089d8;' : '' %>">Saisir le Prisuttu témoin </div>
       <% end %>
   </div>
 

@@ -44,16 +44,16 @@ export default class extends Controller {
   console.log(condiAffinage);
 
   //vérifier les crtières et ajouter la condition du porc
-  if (condiMiseSel && condiSortieSel && condiFumage && condiSortieseche && condiAffinage && (!this.alertTarget.classList.contains("d-none"))) {
-  //appliquer le style
-  {
-    img.classList.remove("d-none");
-    bg.classList.add("bg-success");
+  // if (condiMiseSel && condiSortieSel && condiFumage && condiSortieseche && condiAffinage && (!this.alertTarget.classList.contains("d-none"))) {
+  // //appliquer le style
+  // {
+  //   img.classList.remove("d-none");
+  //   bg.classList.add("bg-success");
 
-  } else {
-    img.classList.add("d-none");
-    bg.classList.remove("bg-success");
-    }
+  // } else {
+  //   img.classList.add("d-none");
+  //   bg.classList.remove("bg-success");
+  //   }
 
 // }
 

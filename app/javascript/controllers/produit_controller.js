@@ -30,23 +30,23 @@ export default class extends Controller {
     //mise au sel max 3 jours après abattage
     const dateAbattage = this.miseselTarget.attributes[6].value;
     const condiMiseSel = (new Date(this.miseselTarget.value) - new Date(dateAbattage)) / (24 * 60 * 60 * 1000) <= 3;
-    console.log("mise sel", condiMiseSel);
+    //console.log("mise sel", condiMiseSel);
 
     //1.5 à 2 jours de salage
     const condiSortieSel = (new Date(this.sortieselTarget.value) - new Date(this.miseselTarget.value)) / (24 * 60 * 60 * 1000) >= 1.5 && (new Date(this.sortieselTarget.value) - new Date(this.miseselTarget.value)) / (24 * 60 * 60 * 1000) <= 2;
-    console.log("sortie sel", condiSortieSel);
+    //console.log("sortie sel", condiSortieSel);
 
     //max 7j de fumage
     const condiFumage = this.fumageTarget.value <= 7
-  console.log("fumage", condiFumage);
+    //console.log("fumage", condiFumage);
 
     //poids sortie sèche doit avoir diminué de 25% par rapport au poids frais
     const condiSortieseche = (this.sortiesecheTarget.value <= (0.75 * this.poidsTarget.value))
-    console.log("poids après sèche", condiSortieseche);
+    //console.log("poids après sèche", condiSortieseche);
 
     //au moins 2 mois d'affinage
     const condiAffinage = (new Date(this.sortieaffinageTarget.value) - new Date(this.entreeaffinageTarget.value)) / (24 * 60 * 60 * 1000) >= 60;
-    console.log("durée affinage", condiAffinage);
+    //console.log("durée affinage", condiAffinage);
 
     //vérifier les crtières et ajouter la condition du porc
     if (condiMiseSel && condiSortieSel && condiFumage && condiSortieseche && condiAffinage && (!this.alertTarget.classList.contains("d-none"))) {

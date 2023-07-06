@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="produit-aop"
 export default class extends Controller {
-  static targets = ["porc", "alert", "poids", "mise-sel", "sortie-sel", "fumage", "sortie-seche", "entree-affinage", "sortie-affinage", "img", "bg"]
+  static targets = ["porc", "alert", "poids", "misesel", "sortiesel", "fumage", "sortieseche", "entreeaffinage", "sortieaffinage", "img", "bg"]
 //targets edit_coppa... = produitAopcontroller : vérifier si porc eli quand select porcAop , puis vérif si produit eli labelAop
 
   connect() {
@@ -21,44 +21,41 @@ export default class extends Controller {
   }
 
   produitAop() {
-    //define values (nbr de jours, etc....)
-// console.log(this.poidsTarget.value);
-// console.log(this.miseSelTarget);
-// console.log(this.sortieSelTarget.value);
-// console.log(this.fumageTarget.value);
-// console.log(this.sortieSechelTarget.value);
-// console.log(this.entreeAffinageTarget.value);
-// console.log(this.sortieAffinageTarget.value);
+    //CRITERES
 
-    // const poidsValue = parseFloat(this.poidsTarget.value);
-    // const lardValue = parseFloat(this.miseSelTarget.value);
-    // const phValue = parseFloat(this.sortieSelTarget.value);
-    // const phValue = parseFloat(this.fumageTarget.value);
-    // const phValue = parseFloat(this.sortieSechelTarget.value);
-    // const phValue = parseFloat(this.entreeAffinageTarget.value);
-    // const phValue = parseFloat(this.sortieAffinageTarget.value);
+  //console.log(this.poidsTarget.value);
+//console.log();
 
+  //mise au sel max 3 jours après abattage
+  const dateAbattage = this.miseselTarget.attributes[6].value;
+  const condiMiseSel = (new Date(this.miseselTarget.value) - new Date(dateAbattage)) / (24 * 60 * 60 * 1000) <= 3;
 
-  //vérifier les crtières
-// if (
-    //   (poidsValue >= 85 && poidsValue <= 140) &&
-    //   (lardValue >= 2.5 && lardValue <= 6) &&
-    //   (phValue >= 5.2 && phValue <= 5.7) &&
+  //1.5 à 2 jours de salage
+  const condiSortieSel = (new Date(this.sortieselTarget.value) - new Date(this.miseselTarget.value)) / (24 * 60 * 60 * 1000) >= 1.5 && (new Date(this.sortieselTarget.value) - new Date(this.miseselTarget.value)) / (24 * 60 * 60 * 1000) <= 2;
 
-    //ajouter la condition du porc
-&& (!this.alertTarget.classList.contains("d-none")) {
+  //max 7j de fumage
+  const condiFumage = this.fumageTarget.value <= 7
 
-}
+  //poids sortie sèche doit avoir diminué de 25% par rapport au poids frais
+  const condiSortieseche = (this.sortiesecheTarget.value <= (0.75 * this.poidsTarget.value))
 
+  //au moins 2 mois d'affinage
+  const condiAffinage = (new Date(this.sortieaffinageTarget.value) - new Date(this.entreeaffinageTarget.value)) / (24 * 60 * 60 * 1000) >= 60;
+  console.log(condiAffinage);
+
+  //vérifier les crtières et ajouter la condition du porc
+  if (condiMiseSel && condiSortieSel && condiFumage && condiSortieseche && condiAffinage && (!this.alertTarget.classList.contains("d-none"))) {
   //appliquer le style
+  {
+    img.classList.remove("d-none");
+    bg.classList.add("bg-success");
 
-    // ) {
-    //     img.classList.remove("d-none");
-    //     bg.classList.add("bg-success");
+  } else {
+    img.classList.add("d-none");
+    bg.classList.remove("bg-success");
+    }
 
-    //   } else {
-    //     img.classList.add("d-none");
-    //     bg.classList.remove("bg-success");
-    // }
+// }
+
   };
-}
+};

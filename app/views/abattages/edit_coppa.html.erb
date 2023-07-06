@@ -14,10 +14,11 @@
     </div>
   </div>
 
-  <div class="form-create-container" data-controller="checkable" data-controller="produit">
+  <div class="form-create-container" data-controller="checkable">
     <div class="formBloc">
-          <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe, action: "keyup->produit#produitAop".html_safe }, method: :patch do |fp| %>
-      <table class="table">
+          <%= simple_form_for @abattage, url: abattage_update_coppa_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
+          <div data-produit-target="abattage"><%= @abattage.date %></div>
+        <table class="table">
         <thead>
           <tr>
             <th class="header">Boucle porc</th>
@@ -31,7 +32,7 @@
             <th class="header"></th>
           </tr>
         </thead>
-        <tbody data-controller="produit">
+        <tbody data-controller="produit", data-action= "keyup->produit#produitAop">
             <tr class="form-row" data-produit-target="bg">
               <td >
               <div class="boucle-porc">
@@ -47,22 +48,22 @@
                 <input type="number" step="1" name="poids" value="<%= @coppa_temoin&.poids %>" data-checkable-target="checkable" data-produit-target="poids">
               </td>
               <td class="form-input">
-                <input type="date" step="1" name="date_mise_au_sel" value="<%= @coppa_temoin&.date_mise_au_sel %>" data-checkable-target="checkable" data-produit-target="mise-sel">
+                <input type="date" step="1" name="date_mise_au_sel" value="<%= @coppa_temoin&.date_mise_au_sel %>" data-checkable-target="checkable" data-produit-target="misesel" date-abattage="<%= @abattage.date%>">
               </td>
               <td class="form-input">
-                <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortie-sel">
+                <input type="date" step="1" name="date_sortie_de_sel" value="<%= @coppa_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortiesel">
               </td>
               <td class="form-input">
                 <input type="number" step="1" name="durée_fumage" value="<%= @coppa_temoin&.durée_fumage %>" data-checkable-target="checkable" data-produit-target="fumage">
               </td>
               <td class="form-input">
-                <input type="number" step="1" name="poids_sortie_sèche" value="<%= @coppa_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable" data-produit-target="sortie-seche">
+                <input type="number" step="1" name="poids_sortie_sèche" value="<%= @coppa_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable" data-produit-target="sortieseche">
               </td>
               <td class="form-input">
-                <input type="date" step="1" name="date_entrée_affinage" value="<%= @coppa_temoin&.date_entrée_affinage %>" data-checkable-target="checkable" data-produit-target="entree-affinage">
+                <input type="date" step="1" name="date_entrée_affinage" value="<%= @coppa_temoin&.date_entrée_affinage %>" data-checkable-target="checkable" data-produit-target="entreeaffinage">
               </td>
               <td class="form-input">
-                <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortie-affinage">
+                <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortieaffinage">
               </td>
                 <td class="aop form-input text-end">
                   <input type="hidden">

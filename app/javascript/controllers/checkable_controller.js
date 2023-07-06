@@ -5,12 +5,11 @@ export default class extends Controller {
   static targets = ["decoupe", "checkable"]
 
   connect () {
-    //this.validateForm();
+    this.validateForm();
   }
 
-  validateForm(event) {
-    event.preventDefault();
-    console.log(this.checkableTargets);
+  validateForm() {
+    //console.log(this.checkableTargets);
     // this.checkableTargets.forEach((target) => {
     //   console.log(target);
     //   console.log(target.value.length);

@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="form-create-container" data-controller="checkable">
+  <div class="form-create-container">
     <div class="formBloc">
       <table class="table">
         <thead>
@@ -26,21 +26,21 @@
           </tr>
         </thead>
         <tbody>
-          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm" }, method: :patch do |fp| %>
+          <%= simple_form_for @abattage, url: abattage_update_production_path(@abattage), data: { turbo: "false"}, method: :patch do |fp| %>
             <% @porcs.each_with_index do |porc, index| %>
-              <% porc.eligible_AOP = true if ((porc.poids_carcasse >= 85 && porc.poids_carcasse <= 140) && (porc.epaisseur_lard >= 2.5 && porc.epaisseur_lard <= 6) && (porc.ph >= 5.2 && porc.ph <= 5.7)) %>
+              <% porc.update!(eligible_AOP: true) if ((porc.poids_carcasse >= 85 && porc.poids_carcasse <= 140) && (porc.epaisseur_lard >= 2.5 && porc.epaisseur_lard <= 6) && (porc.ph >= 5.2 && porc.ph <= 5.7)) %>
               <%= simple_fields_for porc do |p| %>
                 <% if porc.eligible_AOP %>
                   <tr class="form-row bg-success">
                     <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité %>">
                     </td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité %>">
                     </td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité %>">
                     </td>
                     <td class="aop form-input text-end">
                     <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
@@ -51,13 +51,13 @@
                   <tr class="form-row">
                     <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[coppa][quantité]" id="coppa-porc" value="<%= porc.coppa.quantité %>">
                     </td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[prisuttu][quantité]" id="prisuttu-porc" value="<%= porc.prisuttu.quantité %>">
                     </td>
                     <td class="form-input">
-                      <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité %>" data-checkable-target="checkable">
+                      <input type="number" step="1" name="<%= index %>[lonzu][quantité]" id="lonzu-porc" value="<%= porc.lonzu.quantité %>">
                     </td>
                     <td class="aop form-input text-end">
                     <input type="hidden" name="<%= index %>[id]" id="id" value="<%= porc.id %>">
@@ -70,7 +70,7 @@
         </table>
         <div class="d-flex justify-content-between form-actions">
           <%= link_to "Annuler", abattage_path(@abattage), class: "annuler-button", data: { turbo: "false" } %>
-          <div class="decoupe d-none" data-checkable-target="decoupe">
+          <div class="decoupe">
             <%= fp.button :submit, 'Valider', class: 'submit-button' %>
           </div>
         </div>

@@ -31,7 +31,7 @@
             <% @porcs.each_with_index do |porc, index| %>
               <%= simple_fields_for porc do |p| %>
                 <tr class="form-row" data-controller="aop" data-aop-target="bg">
-                  <td class="boucle-porc"><%= current_user.EDE %><%= porc.boucle %></td>
+                  <td class="boucle-porc" data-aop-target="porc"><%= current_user.EDE %><%= porc.boucle %></td>
                   <td class="form-input" >
                     <input type="number" step="0.01" name="<%= index %>[poids_carcasse]" id="poids-carcasse" value="<%= porc.poids_carcasse %>" data-action="keyup->aop#labelAop" data-aop-target="poids" data-checkable-target="checkable">
                   </td>

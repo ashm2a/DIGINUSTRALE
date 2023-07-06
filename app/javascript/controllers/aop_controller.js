@@ -4,8 +4,8 @@ import { beforeMain } from "@popperjs/core";
 // Connects to data-controller="aop"
 export default class extends Controller {
 
-  static targets = ["bg", "poids", "lard", "ph", "eligible", "boucle"]
-
+  static targets = [ "eligible", "bg", "poids", "lard", "ph"]
+//targets edit = aopcontroller#labelAop
   connect() {
     this.labelAop();
   }
@@ -31,6 +31,6 @@ export default class extends Controller {
         img.classList.add("d-none");
         bg.classList.remove("bg-success");
     }
-    end
   };
+
 }

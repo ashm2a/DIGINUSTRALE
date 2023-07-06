@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   validateForm() {
+    console.log("date")
 
     const formIsValid = this.checkableTargets.every((target) => {
       return target.value.length > 0

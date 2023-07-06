@@ -74,10 +74,10 @@
                 <td class="form-input">
                   <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @coppa_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortieaffinage">
                 </td>
-                  <td class="aop form-input text-end">
-                    <input type="hidden">
-                      <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
-                    </td>
+                <td class="aop form-input text-end">
+                  <input type="hidden">
+                    <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
+                </td>
               </tr>
               <tr  data-produit-target="alert" class="d-none">
                 <td colspan="8" id="eligible-alert">Porc eligible AOP</td>

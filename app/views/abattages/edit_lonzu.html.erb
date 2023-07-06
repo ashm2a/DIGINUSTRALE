@@ -17,13 +17,13 @@
   <div class="form-create-container" data-controller="checkable">
     <h2>Saisie du lonzu témoin</h2>
     <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
-    <div class="formBloc d-block">
+    <div class="formBloc d-block" data-controller="produit", data-action= "keyup->produit#produitAop">
       <%= simple_form_for @abattage, url: abattage_update_lonzu_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
-        <table class="table">
+        <table class="table" data-produit-target="bg">
           <thead>
             <tr>
-              <th class="header">IPG du porc</th>
-              <th class="header">Poids(kg)</th>
+              <th class="header">Boucle porc</th>
+              <th class="header">Poids (kg)</th>
               <th class="header">Date mise au sel</th>
               <th class="header">Date sortie de sel</th>
             </tr>
@@ -31,26 +31,26 @@
           <tbody>
               <tr class="form-row">
                 <td class="boucle-porc">
-                  <select name="ipg">
+                  <select name="ipg" data-action="change->produit#porcAop" data-produit-target="porc">
                     <% @abattage.porcs.each do |porc| %>
-                      <option value="<%= porc.boucle %>" <%= "selected" if @lonzu_temoin&.porc == porc %>><%= porc.boucle %></option>
+                      <option value="<%= porc.boucle %>" <%= "selected" if @lonzu_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"><%= porc.boucle %></option>
                     <% end %>
                   </select>
                 </td>
                 <td class="form-input">
-                  <input type="number" step="1" name="poids" value="<%= @lonzu_temoin&.poids %>" data-checkable-target="checkable">
+                  <input type="number" step="1" name="poids" value="<%= @lonzu_temoin&.poids %>" data-checkable-target="checkable" data-produit-target="poids">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @lonzu_temoin&.date_mise_au_sel %>" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_mise_au_sel" value="<%= @lonzu_temoin&.date_mise_au_sel %>" data-checkable-target="checkable" data-produit-target="misesel" date-abattage="<%= @abattage.date%>">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_de_sel" value="<%= @lonzu_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_sortie_de_sel" value="<%= @lonzu_temoin&.date_sortie_de_sel %>" data-checkable-target="checkable" data-produit-target="sortiesel">
                 </td>
               </tr>
           </tbody>
         </table>
 
-        <table class="table">
+        <table class="table" data-produit-target="bg">
           <thead>
             <tr>
               <th class="header">Durée de fumage (jours)</th>
@@ -62,17 +62,24 @@
           <tbody>
               <tr class="form-row">
                 <td class="form-input">
-                  <input type="number" step="1" name="durée_fumage" value="<%= @lonzu_temoin&.durée_fumage %>">
+                  <input type="number" step="1" name="durée_fumage" value="<%= @lonzu_temoin&.durée_fumage %>" data-checkable-target="checkable" data-produit-target="fumage">
                 </td>
                 <td class="form-input">
-                  <input type="number" step="1" name="poids_sortie_sèche" value="<%= @lonzu_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable">
+                  <input type="number" step="1" name="poids_sortie_sèche" value="<%= @lonzu_temoin&.poids_sortie_sèche %>" data-checkable-target="checkable" data-produit-target="sortieseche">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @lonzu_temoin&.date_entrée_affinage %>" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_entrée_affinage" value="<%= @lonzu_temoin&.date_entrée_affinage %>" data-checkable-target="checkable" data-produit-target="entreeaffinage">
                 </td>
                 <td class="form-input">
-                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @lonzu_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable">
+                  <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @lonzu_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable" data-produit-target="sortieaffinage">
                 </td>
+                <td class="aop form-input text-end">
+                  <%# <input type="hidden"> %>
+                    <%= image_tag("aop.png", data: { produit_target: "img" }, class: "d-none") %>
+                </td>
+              </tr>
+              <tr  data-produit-target="alert" class="d-none">
+                <td colspan="8" id="eligible-alert">Porc eligible AOP</td>
               </tr>
           </tbody>
         </table>

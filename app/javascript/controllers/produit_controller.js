@@ -13,6 +13,7 @@ export default class extends Controller {
   porcAop() {
     //console.log(this.alertTarget);
     if (this.porcTarget.selectedOptions && this.porcTarget.selectedOptions.length) {
+      console.log(this.porcTarget.selectedOptions[0]);
       if (this.porcTarget.selectedOptions[0].dataset.eligible === "true")  {
         this.alertTarget.classList.remove("d-none")
       } else {

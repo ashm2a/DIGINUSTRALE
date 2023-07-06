@@ -257,9 +257,9 @@ class AbattagesController < ApplicationController
 
   def etape_deux_rempli?(porcs)
     porcs.all? do |porc|
-      porc.coppa.present? &&
-      porc.lonzu.present? &&
-      porc.prisuttu.present?
+      !porc.coppa&.quantité.nil? &&
+      !porc.lonzu&.quantité.nil? &&
+      !porc.prisuttu&.quantité.nil?
     end
   end
 end

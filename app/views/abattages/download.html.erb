@@ -134,46 +134,46 @@
               <td>Date sortie affinage vente</td>
             </tr>
           </thead>
-          <tbody>
-                <tr>
-                  <th>Coppa</th>
-                  <td class="form-input"><%= @coppa_temoin&.poids %></td>
-                  <td class="form-input">N/A</td>
-                  <td class="form-input">N/A</td>
-                  <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @coppa_temoin&.durée_fumage %></td>
-                  <td class="form-input"><%= @coppa_temoin&.poids_sortie_sèche %></td>
-                  <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
-                </tr>
+        <tbody>
+              <tr>
+                <th>Coppa</th>
+                <td class="form-input"><%= @coppa_temoin&.poids %></td>
+                <td class="form-input">N/A</td>
+                <td class="form-input">N/A</td>
+                <td class="form-input"><%= @coppa_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") ? @coppa_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") ? @coppa_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @coppa_temoin&.durée_fumage ? @coppa_temoin&.durée_fumage : 0 %></td>
+                <td class="form-input"><%= @coppa_temoin&.poids_sortie_sèche ? @coppa_temoin&.poids_sortie_sèche : 0 %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") ? @coppa_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @coppa_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") ? @coppa_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") : "null" %></td>
+              </tr>
 
-                <tr>
-                  <th>Lonzu</th>
-                  <td class="form-input"><%= @lonzu_temoin&.poids %></td>
-                  <td class="form-input">N/A</td>
-                  <td class="form-input">N/A</td>
-                  <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @lonzu_temoin&.durée_fumage %></td>
-                  <td class="form-input"><%= @lonzu_temoin&.poids_sortie_sèche %></td>
-                  <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
-                </tr>
+              <tr>
+                <th>Lonzu</th>
+                <td class="form-input"><%= @lonzu_temoin&.poids ? @lonzu_temoin&.poids : 0 %></td>
+                <td class="form-input">N/A</td>
+                <td class="form-input">N/A</td>
+                <td class="form-input"><%= @lonzu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") ? @lonzu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") ? @lonzu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @lonzu_temoin&.durée_fumage ? @lonzu_temoin&.durée_fumage : 0 %></td>
+                <td class="form-input"><%= @lonzu_temoin&.poids_sortie_sèche ? @lonzu_temoin&.poids_sortie_sèche : 0 %></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") ? @lonzu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") : "null"%></td>
+                <td class="form-input"><%= @lonzu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") ? @lonzu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") : "null" %></td>
+              </tr>
 
-                <tr>
-                  <th>Prisuttu</th>
-                  <td class="form-input"><%= @prisuttu_temoin&.poids %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.epaisseur_lard %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.ph %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.durée_fumage %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.poids_sortie_sèche %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") %></td>
-                  <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") %></td>
-                </tr>
-          </tbody>
+              <tr>
+                <th>Prisuttu</th>
+                <td class="form-input"><%= @prisuttu_temoin&.poids ? @prisuttu_temoin&.poids : 0 %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.epaisseur_lard ? @prisuttu_temoin&.epaisseur_lard : 0 %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.ph ? @prisuttu_temoin&.ph : 0 %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") ? @prisuttu_temoin&.date_mise_au_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") ? @prisuttu_temoin&.date_sortie_de_sel&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.durée_fumage ? @prisuttu_temoin&.durée_fumage : 0 %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.poids_sortie_sèche ? @prisuttu_temoin&.poids_sortie_sèche : 0 %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") ? @prisuttu_temoin&.date_entrée_affinage&.strftime("%d/%m/%Y") : "null" %></td>
+                <td class="form-input"><%= @prisuttu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") ? @prisuttu_temoin&.date_sortie_affinage_vente&.strftime("%d/%m/%Y") : "null" %></td>
+              </tr>
+        </tbody>
         </table>
       </div>
     </div>

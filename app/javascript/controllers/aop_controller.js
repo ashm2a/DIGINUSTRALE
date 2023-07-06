@@ -31,6 +31,5 @@ export default class extends Controller {
         img.classList.add("d-none");
         bg.classList.remove("bg-success");
     }
-    end
   };
 }

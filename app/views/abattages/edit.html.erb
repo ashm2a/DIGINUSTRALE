@@ -8,14 +8,14 @@
       </div>
 
       <div class="elevage">
-        <p>Date et lieu d'abattage</p>
-        <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+          <p><span style="color: gray; font-weight: 900;">Date</span> <%= @abattage.date.strftime("%d/%m/%Y") %></p>
+          <p><span style="color: gray; font-weight: 900;">Lieu d'abattage</span> <%= @abattage.lieu %></p>
       </div>
     </div>
   </div>
 
   <div class="form-create-container" data-controller="checkable">
-    <h2>Saisi des données</h2>
+    <h2>Saisie des données</h2>
     <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
     <div class="formBloc" style="display: block;">
       <%= simple_form_for @abattage, url: abattage_update_abattage_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm" }, method: :patch do |fp| %>

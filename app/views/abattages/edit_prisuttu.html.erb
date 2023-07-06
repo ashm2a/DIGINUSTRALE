@@ -8,8 +8,8 @@
       </div>
 
       <div class="elevage">
-        <p>Date et lieu d'abattage</p>
-        <p><%= @abattage.date.strftime("%d/%m/%Y") %>, <%= @abattage.lieu %></p>
+          <p><span style="color: gray; font-weight: 900;">Date</span> <%= @abattage.date.strftime("%d/%m/%Y") %></p>
+          <p><span style="color: gray; font-weight: 900;">Lieu d'abattage</span> <%= @abattage.lieu %></p>
       </div>
     </div>
   </div>
@@ -17,13 +17,13 @@
   <div class="form-create-container" data-controller="checkable">
     <h2>Saisie du prisuttu témoin</h2>
     <div style="width: 100px; height: 3px; background-color: gray; margin-bottom: 50px;"></div>
-    <div class="formBloc d-block">
+    <div class="formBloc d-block" data-controller="produit">
       <%= simple_form_for @abattage, url: abattage_update_prisuttu_path(@abattage), data: { turbo: "false", action: "keyup->checkable#validateForm".html_safe }, method: :patch do |fp| %>
         <table class="table">
           <thead>
             <tr>
-              <th class="header">IPG du porc</th>
-              <th class="header">Poids(kg)</th>
+              <th class="header">Boucle porc</th>
+              <th class="header">Poids (kg)</th>
               <th class="header">Epaisseur du lard (cm)</th>
               <th class="header">pH</th>
               <th class="header">Date mise au sel</th>
@@ -31,10 +31,10 @@
           </thead>
           <tbody>
               <tr class="form-row">
-                <td class="boucle-porc">
+                <td class="boucle-porc" data-action="change->produit#porcAop" data-produit-target="porc">
                   <select name="ipg">
                     <% @abattage.porcs.each do |porc| %>
-                      <option value="<%= porc.boucle %>" <%= "selected" if @prisuttu_temoin&.porc == porc %>><%= porc.boucle %></option>
+                      <option value="<%= porc.boucle %>" <%= "selected" if @prisuttu_temoin&.porc == porc %> data-eligible="<%= porc.eligible_AOP %>"><%= porc.boucle %></option>
                     <% end %>
                   </select>
                 </td>
@@ -81,6 +81,9 @@
                 <td class="form-input">
                   <input type="date" step="1" name="date_sortie_affinage_vente" value="<%= @prisuttu_temoin&.date_sortie_affinage_vente %>" data-checkable-target="checkable">
                 </td>
+              </tr>
+              <tr data-produit-target="alert" class="d-none">
+                <td colspan="8" id="eligible-alert">Porc eligible AOP</td>
               </tr>
           </tbody>
         </table>
